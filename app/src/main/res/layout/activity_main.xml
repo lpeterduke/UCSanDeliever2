@@ -11,8 +11,7 @@
     tools:context="edu.ucsd.cse110.ucsandeliever.MainActivity">
 
 
-
-
+/*sdsddsdsdsd*/
 
     <TextView
         android:layout_width="wrap_content"
