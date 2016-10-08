@@ -1,10 +1,12 @@
 package edu.ucsd.cse110.ucsandeliever;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
+import android.view.MenuItem;
 
 
 /**
@@ -20,8 +22,7 @@ public class homeActivity extends AppCompatActivity {
 
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(my_toolbar);
-        getSupportActionBar().setTitle(R.string.my_tb_title);
-        getSupportActionBar().setIcon(R.drawable.toolbar_add);
+        getSupportActionBar().setIcon(R.drawable.acct_info);
     }
 
     @Override
@@ -31,5 +32,28 @@ public class homeActivity extends AppCompatActivity {
 
 
         return super.onCreateOptionsMenu(menu);
+    }
+
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+
+        switch (item.getItemId()){
+            case R.id.menu_1:
+                Intent intent = new Intent(this,requestActivity.class);
+                startActivity(intent);
+                break;
+
+            case R.id.menu_2:
+
+                Intent intent2 = new Intent(this,orderStatus.class);
+                startActivity(intent2);
+
+                break;
+
+        }
+
+
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -19,6 +19,8 @@
         <activity android:name=".loginActivity"/>
         <activity android:name=".signupActivity"/>
         <activity android:name=".homeActivity"/>
+        <activity android:name=".requestActivity"/>
+        <activity android:name=".orderStatus"/>
 
     </application>
 

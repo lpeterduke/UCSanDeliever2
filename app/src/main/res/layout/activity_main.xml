@@ -18,7 +18,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="写一句 比较 Catchy的话 然后作为登陆界面的标语"
+        android:text="Welcome to UC Student Delivers"
         android:layout_above="@+id/buttonsignin"
         android:layout_centerHorizontal="true"
         android:layout_marginBottom="61dp" />
