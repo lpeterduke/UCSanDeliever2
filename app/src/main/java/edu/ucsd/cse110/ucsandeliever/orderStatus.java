@@ -23,6 +23,7 @@ public class orderStatus extends AppCompatActivity{
 
         Toolbar my_toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(my_toolbar);
+
         getSupportActionBar().setIcon(R.drawable.acct_info);
     }
 
