@@ -21,6 +21,7 @@
         <activity android:name=".homeActivity"/>
         <activity android:name=".requestActivity"/>
         <activity android:name=".orderStatus"/>
+        <activity android:name=".orderHistroyActivity"/>
 
     </application>
 
