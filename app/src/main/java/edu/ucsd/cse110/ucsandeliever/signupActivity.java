@@ -18,7 +18,7 @@ public class signupActivity extends Activity {
     }
 
     public void enterHome(View view){
-        Intent intent = new Intent(this,homeActivity.class);
+        Intent intent = new Intent(this,drawerActivity.class);
         startActivity(intent);
 
 
