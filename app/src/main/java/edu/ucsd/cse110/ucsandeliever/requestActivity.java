@@ -30,12 +30,13 @@ public class requestActivity extends AppCompatActivity{
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.toolbar_menu, menu);
+        getMenuInflater().inflate(R.menu.main, menu);
         return super.onCreateOptionsMenu(menu);
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        /*
         switch (item.getItemId()){
             case R.id.menu_2:
                 Toast.makeText(requestActivity.this, "My Order Status",Toast.LENGTH_SHORT).show();
@@ -49,6 +50,7 @@ public class requestActivity extends AppCompatActivity{
                 startActivity(intent3);
                 break;
         }
+        */
         return super.onOptionsItemSelected(item);
     }
 }

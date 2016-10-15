@@ -2,14 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-    //aseofhoasifho
-
-
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar_layout"
-        />
-
     <TextView
         android:text="You check your order"
         android:layout_width="wrap_content"
