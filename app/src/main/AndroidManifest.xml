@@ -19,11 +19,11 @@
 
         <activity android:name=".loginActivity"/>
         <activity android:name=".signupActivity"/>
-        <activity android:name=".homeActivity"/>
         <activity android:name=".requestActivity"/>
         <activity android:name=".orderStatus"/>
         <activity android:name=".orderHistroyActivity"/>
         <activity android:name=".drawerActivity"/>
+        <activity android:name=".homeActivity"/>
 
     </application>
 
