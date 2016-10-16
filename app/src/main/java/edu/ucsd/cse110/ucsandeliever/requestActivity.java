@@ -36,21 +36,7 @@ public class requestActivity extends AppCompatActivity{
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        /*
-        switch (item.getItemId()){
-            case R.id.menu_2:
-                Toast.makeText(requestActivity.this, "My Order Status",Toast.LENGTH_SHORT).show();
-                Intent intent2 = new Intent(this,orderStatus.class);
-                startActivity(intent2);
-                break;
 
-            case R.id.menu_3:
-                Toast.makeText(requestActivity.this, "Order history",Toast.LENGTH_SHORT).show();
-                Intent intent3 = new Intent(this,orderHistroyActivity.class);
-                startActivity(intent3);
-                break;
-        }
-        */
         return super.onOptionsItemSelected(item);
     }
 }
