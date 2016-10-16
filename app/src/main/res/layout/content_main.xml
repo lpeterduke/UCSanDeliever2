@@ -15,4 +15,16 @@
     tools:context="edu.ucsd.cse110.ucsandeliever.drawerActivity">
 
 
+    <TextView
+        android:text="This is the home screen where users see delievery requests "
+        android:gravity="center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView13"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="182dp" />
+
+
 </RelativeLayout>
