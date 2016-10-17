@@ -3,14 +3,21 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
     <TextView
-        android:text="This is the home screen "
+        android:text="View All Requests Here!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="56dp"
+        android:id="@+id/textView9"
         android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <ListView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="37dp"
+        android:id="@+id/Request_List"
+        android:layout_below="@+id/textView9"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
-        android:layout_marginLeft="132dp"
-        android:layout_marginStart="132dp"
-        android:layout_marginTop="237dp"
-        android:id="@+id/textView9" />
+        android:background="@android:color/holo_orange_light" />
 </RelativeLayout>
