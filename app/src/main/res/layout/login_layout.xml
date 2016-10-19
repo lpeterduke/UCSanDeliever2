@@ -22,19 +22,6 @@
         android:layout_toStartOf="@+id/textView"
         android:textSize="20sp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:layout_alignTop="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_toEndOf="@+id/textView2"
-        android:layout_marginLeft="16dp"
-        android:layout_marginStart="16dp"
-        android:id="@+id/editText"
-        style="@android:style/Widget.DeviceDefault.Light.EditText" />
-
     <TextView
         android:text="Password"
         android:layout_width="wrap_content"
@@ -46,16 +33,6 @@
         android:layout_alignStart="@+id/textView2"
         android:textSize="20sp" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPassword"
-        android:ems="10"
-        android:layout_alignTop="@+id/textView4"
-        android:layout_alignLeft="@+id/editText"
-        android:layout_alignStart="@+id/editText"
-        android:id="@+id/editText2" />
-
     <Button
         android:text="Login"
         android:layout_width="wrap_content"
@@ -66,4 +43,27 @@
         android:layout_alignStart="@+id/editText2"
         android:layout_marginTop="52dp"
         android:id="@+id/login2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:layout_marginLeft="17dp"
+        android:layout_marginStart="17dp"
+        android:id="@+id/editText"
+        style="@android:style/Widget.DeviceDefault.Light.EditText"
+        android:layout_alignTop="@+id/textView2"
+        android:layout_toRightOf="@+id/textView2"
+        android:layout_toEndOf="@+id/textView2" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:ems="10"
+        android:id="@+id/editText2"
+        android:layout_alignTop="@+id/textView4"
+        android:layout_alignLeft="@+id/editText"
+        android:layout_alignStart="@+id/editText" />
 </RelativeLayout>
