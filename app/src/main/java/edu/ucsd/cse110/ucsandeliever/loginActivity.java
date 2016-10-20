@@ -17,6 +17,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
+
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -33,7 +34,7 @@ public class loginActivity extends Activity  {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Firebase.setAndroidContext(this);
+
         setContentView(R.layout.login_layout );
     }
 
@@ -41,6 +42,8 @@ public class loginActivity extends Activity  {
 
     public void enterHome(View view){
 
+        final boolean isName = false;    // indicator
+        boolean isPword = false;
         EditText etID = (EditText) findViewById(R.id.editText); // get user ID
         EditText etPassword = (EditText) findViewById(R.id.editText2); // get user password
         String id = etID.getText().toString();      // change username to string
@@ -52,10 +55,16 @@ public class loginActivity extends Activity  {
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot == null || snapshot.getValue() == null)   // check if id exist.
-                    Toast.makeText(loginActivity.this, "No record found", Toast.LENGTH_SHORT).show();
-                else
+                    {
+                        Toast.makeText(loginActivity.this, "No record found, please try again",
+                                                                  Toast.LENGTH_SHORT).show();
+                    }
+                else {
                     Toast.makeText(loginActivity.this, snapshot.getValue().toString(), Toast.LENGTH_SHORT).show();
 
+                    Intent intent = new Intent(loginActivity.this, drawerActivity.class);
+                    startActivity(intent);
+                }
             }
 
             @Override
@@ -63,8 +72,7 @@ public class loginActivity extends Activity  {
             }
         });
 
-        Intent intent = new Intent(this,drawerActivity.class);
-        startActivity(intent);
+
 
 
     }
