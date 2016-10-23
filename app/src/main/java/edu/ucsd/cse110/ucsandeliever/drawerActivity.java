@@ -30,14 +30,6 @@ public class drawerActivity extends AppCompatActivity
         setContentView(R.layout.draweractivity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -109,7 +101,9 @@ public class drawerActivity extends AppCompatActivity
 
             fragmentManager.beginTransaction().replace(R.id.content_main, new requestActivity()).commit();
 
-        } else if (id == R.id.blablabla) {
+        } else if (id == R.id.log_out) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
 

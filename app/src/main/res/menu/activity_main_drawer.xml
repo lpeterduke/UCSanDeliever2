@@ -22,9 +22,9 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="Order History" />
         <item
-            android:id="@+id/blablabla"
+            android:id="@+id/log_out"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="blablabla" />
+            android:title="log out" />
         <item
             android:id="@+id/nav_manage"
             android:icon="@drawable/ic_menu_manage"

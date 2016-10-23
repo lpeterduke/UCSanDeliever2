@@ -5,7 +5,6 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -33,7 +32,8 @@
         <activity android:name="ucsandelievery"/>
 
         <activity android:name=".ViewRequestDetailActivity" />
-        <activity android:name=".PlaceBidActivity"></activity>
+        <activity android:name=".PlaceBidActivity" />
+        <activity android:name=".userRunnerWaitingActivity"></activity>
     </application>
 
 </manifest>
