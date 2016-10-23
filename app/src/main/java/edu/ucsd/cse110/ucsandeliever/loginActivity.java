@@ -95,12 +95,13 @@ public class loginActivity extends Activity  {
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
 
-                        Toast.makeText(loginActivity.this, "loged in ",
-                                Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(loginActivity.this,drawerActivity.class);
+                        startActivity(intent);
+
                         //means user is loged in
                     }else{
 
-                        Toast.makeText(loginActivity.this, "not loged in ",
+                        Toast.makeText(loginActivity.this, "Invalid Id or Password",
                                 Toast.LENGTH_SHORT).show();
 
                     }

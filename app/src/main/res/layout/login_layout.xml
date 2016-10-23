@@ -13,16 +13,6 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="User Name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="59dp"
-        android:id="@+id/textView2"
-        android:layout_below="@+id/textView"
-        android:layout_toStartOf="@+id/textView"
-        android:textSize="20sp" />
-
-    <TextView
         android:text="Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -66,4 +56,17 @@
         android:layout_alignTop="@+id/textView4"
         android:layout_alignLeft="@+id/editText"
         android:layout_alignStart="@+id/editText" />
+
+    <TextView
+        android:text="UCSD Email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="62dp"
+        android:id="@+id/textView2"
+        android:textSize="20sp"
+        android:layout_marginLeft="19dp"
+        android:layout_marginStart="19dp"
+        android:layout_below="@+id/textView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>

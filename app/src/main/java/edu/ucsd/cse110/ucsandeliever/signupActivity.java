@@ -3,8 +3,11 @@ package edu.ucsd.cse110.ucsandeliever;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
@@ -13,8 +16,10 @@ import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
-
-
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 
 
 /**
@@ -22,14 +27,93 @@ import com.firebase.client.ValueEventListener;
  */
 
 public class signupActivity extends Activity {
+
+
+
+
+    private EditText etID;
+    private EditText etEmail;
+
+    private EditText etPassword;
+
+    private Button signUpBtn;
+
+
+    final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
+
+    private FirebaseAuth mAuth;
+
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //Firebase.setAndroidContext(this);
         setContentView(R.layout.signup_layout);
+
+
+        mAuth = FirebaseAuth.getInstance();
+
+
+        etID  = (EditText) findViewById(R.id.SUName); // get user ID
+        etEmail = (EditText) findViewById(R.id.editText5); // get user Email
+        etPassword  = (EditText) findViewById(R.id.editText4); // get user password
+        signUpBtn = (Button) findViewById(R.id.button);
+
+        signUpBtn.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                updateDataBase(view);
+                enterHome();
+
+            }
+        });
+
+
+
     }
 
-    public void enterHome(View view){
+
+    public void enterHome(){
+
+
+        String email = etEmail.getText().toString();
+        String password = etPassword.getText().toString();
+
+        if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
+
+            Toast.makeText(signupActivity.this, "input empty",
+                    Toast.LENGTH_SHORT).show();
+
+
+        }else{
+
+            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(
+                    new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+
+                        Intent intent = new Intent(signupActivity.this,drawerActivity.class);
+                        startActivity(intent);
+
+                        //means user is loged in
+                    }else{
+
+                        Toast.makeText(signupActivity.this, "Invalid Id or Password",
+                                Toast.LENGTH_SHORT).show();
+
+                    }
+
+
+                }
+            });
+
+        }
+
+
+    }
+
+    public void updateDataBase(View view) {
 
         EditText etName = (EditText) findViewById(R.id.SUName);
         EditText etPid = (EditText) findViewById(R.id.editText6);
@@ -57,12 +141,9 @@ public class signupActivity extends Activity {
                     student.setEmail(email);
                     student.setPassword(password);
                     myFirebaseRef.child("users").child(student.getStudentId()).setValue(student);
-                    Intent intent = new Intent(signupActivity.this,drawerActivity.class);
+                    Intent intent = new Intent(signupActivity.this, drawerActivity.class);
                     startActivity(intent);
-                }
-
-                else
-                {
+                } else {
 
                     Toast.makeText(signupActivity.this, "ID already registered, please try another one",
                             Toast.LENGTH_SHORT).show();
@@ -73,21 +154,11 @@ public class signupActivity extends Activity {
             public void onCancelled(FirebaseError error) {
             }
         });
-        /*
-        Student student = new Student();
-        student.setName(name);
-        student.setStudentId(id);
-        student.setEmail(email);
-        student.setPassword(password);
-        myFirebaseRef.child(student.getStudentId()).setValue(student);
-
-        Intent intent = new Intent(this,drawerActivity.class);
-        startActivity(intent);
-*/
+    }
 
     }
 
 
 
 
-}
+
