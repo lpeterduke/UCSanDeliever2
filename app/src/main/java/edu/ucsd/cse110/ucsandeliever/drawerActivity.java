@@ -109,7 +109,9 @@ public class drawerActivity extends AppCompatActivity
 
             fragmentManager.beginTransaction().replace(R.id.content_main, new requestActivity()).commit();
 
-        } else if (id == R.id.blablabla) {
+        } else if (id == R.id.log_out) {
+            Intent intent = new Intent(this, MainActivity.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_manage) {
 
