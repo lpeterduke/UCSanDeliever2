@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "181059771387",
+    "firebase_url": "https://uc-student-deliver.firebaseio.com",
+    "project_id": "uc-student-deliver",
+    "storage_bucket": "uc-student-deliver.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:181059771387:android:46712cfdd62b236e",
+        "android_client_info": {
+          "package_name": "edu.ucsd.cse110.ucsandeliever"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "181059771387-fcrnlm6om00ud105kpuqe2k99613tgii.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB2nW3Gp9vg40y3U9bwfHkk4mhdXrjrOXw"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

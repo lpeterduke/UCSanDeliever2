@@ -29,6 +29,9 @@
         <activity android:name=".orderHistroyActivity" />
         <activity android:name=".drawerActivity" />
         <activity android:name=".homeActivity" />
+
+        <activity android:name="ucsandelievery"/>
+
         <activity android:name=".ViewRequestDetailActivity" />
         <activity android:name=".PlaceBidActivity"></activity>
     </application>

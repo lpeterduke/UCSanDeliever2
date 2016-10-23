@@ -56,7 +56,13 @@ public class signupActivity extends Activity {
                     student.setStudentId(id);
                     student.setEmail(email);
                     student.setPassword(password);
-                    myFirebaseRef.child(student.getStudentId()).setValue(student);
+
+
+
+
+                    myFirebaseRef.child("users").setValue(student);
+
+
 
                     Intent intent = new Intent(signupActivity.this,drawerActivity.class);
                     startActivity(intent);

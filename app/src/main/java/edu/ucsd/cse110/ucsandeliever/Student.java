@@ -11,6 +11,12 @@ public class Student {
         private String email;
         private String password;
 
+
+        // if requesting is true,when login screen will lock
+        private boolean requesting;
+
+        public boolean getRequestingSatus(){ return requesting;  }
+
         public String getName() {
             return name;
         }
@@ -42,6 +48,9 @@ public class Student {
         public void setPassword(String password) {
         this.password = password;
         }
+
+
+
         public Student(){
 
         }
