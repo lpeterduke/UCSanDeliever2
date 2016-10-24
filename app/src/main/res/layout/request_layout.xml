@@ -16,45 +16,45 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="where you want it deliver"
         android:ems="10"
         android:id="@+id/editText10"
         android:layout_above="@+id/button2"
         android:layout_alignLeft="@+id/editText9"
-        android:layout_alignStart="@+id/editText9" />
+        android:layout_alignStart="@+id/editText9"
+        android:hint="where you want it deliver" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="when you want"
         android:ems="10"
         android:id="@+id/editText9"
         android:layout_above="@+id/editText10"
         android:layout_alignLeft="@+id/editText8"
         android:layout_alignStart="@+id/editText8"
-        android:layout_marginBottom="48dp" />
+        android:layout_marginBottom="48dp"
+        android:hint="when you want" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="what you want"
         android:ems="10"
         android:id="@+id/editText8"
         android:layout_above="@+id/editText9"
         android:layout_alignLeft="@+id/editText7"
         android:layout_alignStart="@+id/editText7"
-        android:layout_marginBottom="38dp" />
+        android:layout_marginBottom="38dp"
+        android:hint="what you want" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
-        android:text="restaurants"
         android:ems="10"
         android:id="@+id/editText7"
         android:layout_above="@+id/editText8"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp" />
+        android:layout_marginBottom="40dp"
+        android:hint="restaurants" />
 </RelativeLayout>

@@ -21,7 +21,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 
-
+import com.firebase.client.AuthData;
 import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
@@ -31,6 +31,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 /**
  * Created by Peterli on 10/6/16.
@@ -38,6 +39,8 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class loginActivity extends Activity  {
 
+
+    public FirebaseUser currentUser;
 
     private EditText etID;
     private EditText etPassword;
@@ -58,6 +61,7 @@ public class loginActivity extends Activity  {
 
         mAuth = FirebaseAuth.getInstance();
 
+         currentUser = mAuth.getCurrentUser();
 
         etID  = (EditText) findViewById(R.id.editText); // get user ID
         etPassword  = (EditText) findViewById(R.id.editText2); // get user password

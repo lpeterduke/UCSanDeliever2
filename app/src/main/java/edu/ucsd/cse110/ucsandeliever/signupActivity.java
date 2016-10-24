@@ -42,8 +42,7 @@ public class signupActivity extends Activity {
     final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
 
     private FirebaseAuth mAuth;
-
-
+    final String userID=null;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -62,8 +61,9 @@ public class signupActivity extends Activity {
         signUpBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
-                updateDataBase(view);
                 enterHome();
+                updateDataBase(view);
+
 
             }
         });
@@ -92,6 +92,12 @@ public class signupActivity extends Activity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
+
+
+                        final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
+
+                        userID = userEmail.substring(0,userEmail.lastIndexOf('@'));
+
 
                         Intent intent = new Intent(signupActivity.this,drawerActivity.class);
                         startActivity(intent);
@@ -122,7 +128,7 @@ public class signupActivity extends Activity {
 
         final String name = etName.getText().toString();
         final String id = etPid.getText().toString();
-        final String email = etEmail.getText().toString();
+        final String email8 = etEmail.getText().toString();
         final String password = etPassword.getText().toString();
 
         final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
@@ -131,6 +137,8 @@ public class signupActivity extends Activity {
         Query queryRef1 = myFirebaseRef.orderByChild("studentId").equalTo(id);  // check id
 
         queryRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+
+            //Push到Data Space
             @Override
             public void onDataChange(DataSnapshot snapshot) {
                 if (snapshot == null || snapshot.getValue() == null)   // check if id exist.
@@ -138,11 +146,16 @@ public class signupActivity extends Activity {
                     Student student = new Student();
                     student.setName(name);
                     student.setStudentId(id);
-                    student.setEmail(email);
+                    student.setEmail2(email8);
                     student.setPassword(password);
-                    myFirebaseRef.child("users").child(student.getStudentId()).setValue(student);
-                    Intent intent = new Intent(signupActivity.this, drawerActivity.class);
-                    startActivity(intent);
+                    student.setRequestingStatus(false);
+
+
+                    System.out.println(userID);
+
+
+                    myFirebaseRef.child("users").child(userID).setValue(student);
+
                 } else {
 
                     Toast.makeText(signupActivity.this, "ID already registered, please try another one",
@@ -150,6 +163,7 @@ public class signupActivity extends Activity {
                 }
             }
 
+            //没用
             @Override
             public void onCancelled(FirebaseError error) {
             }
