@@ -69,29 +69,33 @@ public class homeActivity extends Fragment {
 
 
         ordersRef.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+
+
+
             @Override
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
 
-                Order order1 = dataSnapshot.getValue(Order.class);
+                //Order order1 = dataSnapshot.getValue(Order.class);
 
                 Iterable<com.google.firebase.database.DataSnapshot> orders = dataSnapshot.getChildren();
 
                 Iterator<com.google.firebase.database.DataSnapshot> iterator = orders.iterator();
 
-                while(iterator.hasNext()){
-                    com.google.firebase.database.DataSnapshot current = iterator.next();
-
-                    System.out.println(current.getValue(Order.class).getDestination()+"++++++++++++++++++++");
-                    System.out.println(current.getValue(Order.class).getItem()+"++++++++++++++++++++");
-                    System.out.println(current.getValue(Order.class).getRequestor()+"++++++++++++++++++++");
-                    System.out.println(current.getValue(Order.class).getRestaurants()+"++++++++++++++++++++");
-                    System.out.println(current.getValue(Order.class).getTime()+"++++++++++++++++++++");
+               for(int i =0; i<dataSnapshot.getChildrenCount();i++) {
 
 
-                }
+                   com.google.firebase.database.DataSnapshot current = iterator.next();
 
+                   requests.add(current.getValue(Order.class).getRequestor() + " -- " +
+                           current.getValue(Order.class).getRestaurants() + " -- " +
+                           current.getValue(Order.class).getDestination() + " -- ");
 
-
+                   //System.out.println(current.getValue(Order.class).getDestination());
+                   //System.out.println(current.getValue(Order.class).getItem());
+                   //System.out.println(current.getValue(Order.class).getRequestor());
+                   //System.out.println(current.getValue(Order.class).getRestaurants());
+                   //System.out.println(current.getValue(Order.class).getTime());
+               }
             }
 
             @Override
@@ -103,11 +107,10 @@ public class homeActivity extends Fragment {
 
 
 
-        requests.add("User1 -- Tapioca -- ERC Europe Hall");
 
-        requests.add("User2 -- BurgerKing -- CSE B230");
+        //requests.add("User2 -- BurgerKing -- CSE B230");
 
-        requests.add("User3 -- Panda -- Geisel 2nd west");
+        //requests.add("User3 -- Panda -- Geisel 2nd west");
 
         // diff from tutorial30
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
