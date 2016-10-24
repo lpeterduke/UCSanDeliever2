@@ -90,11 +90,15 @@ public class requestActivity extends Fragment{
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-       FirebaseUser currentUser = mAuth.getCurrentUser();
 
-        String email = currentUser.getEmail().toString();
+        final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
+        System.out.println("+++++++++++++++++++"+ userEmail+" ");
 
-        System.out.println("      "+email+"    ");
+        final String userID = userEmail.substring(0,userEmail.indexOf('@'));
+        System.out.println("+++++++++++++++++++"+ userID+" ");
+
+
+
 
 
 
@@ -109,14 +113,7 @@ public class requestActivity extends Fragment{
 
 
 
-        // check if the id has been used
-        Query queryRef1 = myFirebaseRef.orderByChild("studentId").equalTo("A91030200");  // check id
 
-        queryRef1.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                if (snapshot == null || snapshot.getValue() == null)   // check if id exist.
-                {
 
                     Order order = new Order();
                     order.setRestaurants(res);
@@ -124,19 +121,14 @@ public class requestActivity extends Fragment{
                     order.setItem(item);
                     order.setTime(time);
                     order.setDestination(destination);
+                    order.setRequestor(userID);
 
 
                     myFirebaseRef.child("orders").child(order.getRestaurants()).setValue(order);
 
 
-                } else {
 
-                }
-            }
 
-            @Override
-            public void onCancelled(FirebaseError error) {}
-        });
 
     }
 

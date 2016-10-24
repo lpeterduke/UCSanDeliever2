@@ -127,10 +127,8 @@ public class signupActivity extends Activity {
 
 
                                     final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
-                                    System.out.println("+++++++++++++++++++"+ userEmail+" ");
 
                                     final String userID = userEmail.substring(0,userEmail.indexOf('@'));
-                                    System.out.println("+++++++++++++++++++"+ userID+" ");
 
 
                                     myFirebaseRef.child("users").child(userID).setValue(student);
