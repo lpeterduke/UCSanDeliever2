@@ -62,7 +62,6 @@ public class signupActivity extends Activity {
             @Override
             public void onClick(View view){
                 enterHome();
-                updateDataBase(view);
 
 
             }
@@ -94,9 +93,78 @@ public class signupActivity extends Activity {
                     if (task.isSuccessful()) {
 
 
-                        final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
 
-                        userID = userEmail.substring(0,userEmail.lastIndexOf('@'));
+
+
+                        EditText etName = (EditText) findViewById(R.id.SUName);
+                        EditText etPid = (EditText) findViewById(R.id.editText6);
+                        EditText etEmail = (EditText) findViewById(R.id.editText5);
+                        EditText etPassword = (EditText) findViewById(R.id.editText4);
+
+                        final String name = etName.getText().toString();
+                        final String id = etPid.getText().toString();
+                        final String email8 = etEmail.getText().toString();
+                        final String password = etPassword.getText().toString();
+
+                        final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
+
+                        // check if the id has been used
+                        Query queryRef1 = myFirebaseRef.orderByChild("studentId").equalTo(id);  // check id
+
+                        queryRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                            //Push到Data Space
+                            @Override
+                            public void onDataChange(DataSnapshot snapshot) {
+                                if (snapshot == null || snapshot.getValue() == null)   // check if id exist.
+                                {
+                                    Student student = new Student();
+                                    student.setName(name);
+                                    student.setStudentId(id);
+                                    student.setEmail2(email8);
+                                    student.setPassword(password);
+                                    student.setRequestingStatus(false);
+
+
+                                    final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
+                                    System.out.println("+++++++++++++++++++"+ userEmail+" ");
+
+                                    final String userID = userEmail.substring(0,userEmail.indexOf('@'));
+                                    System.out.println("+++++++++++++++++++"+ userID+" ");
+
+
+                                    myFirebaseRef.child("users").child(userID).setValue(student);
+
+                                } else {
+
+                                    Toast.makeText(signupActivity.this, "ID already registered, please try another one",
+                                            Toast.LENGTH_SHORT).show();
+                                }
+                            }
+
+                            //没用
+                            @Override
+                            public void onCancelled(FirebaseError error) {
+                            }
+                        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
                         Intent intent = new Intent(signupActivity.this,drawerActivity.class);
@@ -119,56 +187,7 @@ public class signupActivity extends Activity {
 
     }
 
-    public void updateDataBase(View view) {
 
-        EditText etName = (EditText) findViewById(R.id.SUName);
-        EditText etPid = (EditText) findViewById(R.id.editText6);
-        EditText etEmail = (EditText) findViewById(R.id.editText5);
-        EditText etPassword = (EditText) findViewById(R.id.editText4);
-
-        final String name = etName.getText().toString();
-        final String id = etPid.getText().toString();
-        final String email8 = etEmail.getText().toString();
-        final String password = etPassword.getText().toString();
-
-        final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
-
-        // check if the id has been used
-        Query queryRef1 = myFirebaseRef.orderByChild("studentId").equalTo(id);  // check id
-
-        queryRef1.addListenerForSingleValueEvent(new ValueEventListener() {
-
-            //Push到Data Space
-            @Override
-            public void onDataChange(DataSnapshot snapshot) {
-                if (snapshot == null || snapshot.getValue() == null)   // check if id exist.
-                {
-                    Student student = new Student();
-                    student.setName(name);
-                    student.setStudentId(id);
-                    student.setEmail2(email8);
-                    student.setPassword(password);
-                    student.setRequestingStatus(false);
-
-
-                    System.out.println(userID);
-
-
-                    myFirebaseRef.child("users").child(userID).setValue(student);
-
-                } else {
-
-                    Toast.makeText(signupActivity.this, "ID already registered, please try another one",
-                            Toast.LENGTH_SHORT).show();
-                }
-            }
-
-            //没用
-            @Override
-            public void onCancelled(FirebaseError error) {
-            }
-        });
-    }
 
     }
 
