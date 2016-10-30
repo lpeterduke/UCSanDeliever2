@@ -3,37 +3,64 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-    <Button
-        android:text="make my order!"
+    <TextView
+        android:text="Restaurant"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="100dp" />
+        android:layout_marginLeft="32dp"
+        android:layout_marginStart="32dp"
+        android:id="@+id/textView21"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginTop="88dp"
+        android:textAlignment="center" />
 
-    <EditText
-        android:layout_width="wrap_content"
+    <Spinner
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText10"
-        android:layout_above="@+id/button2"
-        android:layout_alignLeft="@+id/editText9"
-        android:layout_alignStart="@+id/editText9"
-        android:hint="where you want it deliver" />
+        android:id="@+id/spinner_restaurant"
+        android:layout_alignTop="@+id/textView21"
+        android:layout_toRightOf="@+id/textView21"
+        android:layout_marginLeft="26dp"
+        android:layout_marginStart="26dp" />
 
-    <EditText
+    <TextView
+        android:text="What Would You Like"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText9"
-        android:layout_above="@+id/editText10"
-        android:layout_alignLeft="@+id/editText8"
-        android:layout_alignStart="@+id/editText8"
-        android:layout_marginBottom="48dp"
-        android:hint="when you want" />
+        android:id="@+id/textView22"
+        android:textAlignment="center"
+        android:layout_below="@+id/spinner_restaurant"
+        android:layout_alignLeft="@+id/textView21"
+        android:layout_alignStart="@+id/textView21"
+        android:layout_marginTop="16dp"
+        android:layout_toLeftOf="@+id/spinner_restaurant"
+        android:layout_toStartOf="@+id/spinner_restaurant" />
+
+    <TextView
+        android:text="Delivery Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView23"
+        android:layout_below="@+id/textView22"
+        android:layout_alignLeft="@+id/textView22"
+        android:layout_alignStart="@+id/textView22"
+        android:layout_marginTop="40dp"
+        android:layout_alignRight="@+id/textView22"
+        android:layout_alignEnd="@+id/textView22"
+        android:textAlignment="center" />
+
+    <TextView
+        android:text="Delivery Destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/editText10"
+        android:layout_alignLeft="@+id/textView23"
+        android:layout_alignStart="@+id/textView23"
+        android:id="@+id/textView24"
+        android:layout_alignRight="@+id/textView23"
+        android:layout_alignEnd="@+id/textView23" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -41,20 +68,38 @@
         android:inputType="textPersonName"
         android:ems="10"
         android:id="@+id/editText8"
-        android:layout_above="@+id/editText9"
-        android:layout_alignLeft="@+id/editText7"
-        android:layout_alignStart="@+id/editText7"
-        android:layout_marginBottom="38dp"
-        android:hint="what you want" />
+        android:hint="   "
+        android:layout_alignBottom="@+id/textView22"
+        android:layout_alignLeft="@+id/spinner_restaurant"
+        android:layout_alignStart="@+id/spinner_restaurant" />
 
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:inputType="textPersonName"
         android:ems="10"
-        android:id="@+id/editText7"
-        android:layout_above="@+id/editText8"
+        android:id="@+id/editText9"
+        android:layout_alignBottom="@+id/textView23"
+        android:layout_alignLeft="@+id/editText8"
+        android:layout_alignStart="@+id/editText8" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText10"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/editText9"
+        android:layout_alignStart="@+id/editText9" />
+
+    <Button
+        android:text="make my order!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:layout_below="@+id/textView24"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="40dp"
-        android:hint="restaurants" />
+        android:layout_marginTop="105dp" />
+
 </RelativeLayout>

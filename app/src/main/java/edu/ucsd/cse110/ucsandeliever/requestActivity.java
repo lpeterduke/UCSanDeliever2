@@ -15,7 +15,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 import android.widget.Button;
 
@@ -35,9 +37,10 @@ import com.google.firebase.auth.FirebaseUser;
 
 public class requestActivity extends Fragment{
 
+    Spinner spinner;
+    ArrayAdapter<CharSequence> adapter;
 
-
-    private EditText etRestaurants;
+    private String etRestaurants;
     private EditText etItemName;
     private EditText etTime;
     private EditText etDestination;
@@ -55,21 +58,34 @@ public class requestActivity extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.request_layout, container, false);
 
+        spinner = (Spinner) myView.findViewById(R.id.spinner_restaurant);
+        adapter = ArrayAdapter.createFromResource(getActivity(),R.array.restaurant_names,android.R.layout.simple_spinner_item);
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner.setAdapter(adapter);
+        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                etRestaurants  =  (String) parent.getItemAtPosition(position); // get user ID
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
+
+
 
 
         //create button
         makeOrder = (Button) myView.findViewById(R.id.button2);
-
         makeOrder.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 updateDataBase();
-
-
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
-
-
             }
         });
 
@@ -81,7 +97,6 @@ public class requestActivity extends Fragment{
     public void updateDataBase() {
 
         //get Input
-        etRestaurants  = (EditText) myView.findViewById(R.id.editText7); // get user ID
         etItemName = (EditText) myView.findViewById(R.id.editText8); // get user Email
         etTime  = (EditText) myView.findViewById(R.id.editText9); // get user password
         etDestination  = (EditText) myView.findViewById(R.id.editText10); // get user password
@@ -103,17 +118,13 @@ public class requestActivity extends Fragment{
 
 
 
-        final String res = etRestaurants.getText().toString();
+        final String res = etRestaurants;
 
        final String  item= etItemName.getText().toString();
         final String time = etTime.getText().toString();
         final String destination = etDestination.getText().toString();
 
         final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
-
-
-
-
 
                     Order order = new Order();
                     order.setRestaurants(res);
@@ -122,14 +133,7 @@ public class requestActivity extends Fragment{
                     order.setTime(time);
                     order.setDestination(destination);
                     order.setRequestor(userID);
-
-
                     myFirebaseRef.child("orders").child(order.getRestaurants()).setValue(order);
-
-
-
-
-
     }
 
 
