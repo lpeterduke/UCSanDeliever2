@@ -40,6 +40,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 
 import com.firebase.client.Firebase;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -50,6 +51,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class homeActivity extends Fragment {
 
+    private Button refresh;
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference ordersRef = mRootRef.child("orders");
@@ -67,35 +69,50 @@ public class homeActivity extends Fragment {
         myView = inflater.inflate(R.layout.home_screen_layout, container, false);
 
 
-
-        ordersRef.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
-
-
-
+        refresh = (Button) myView.findViewById(R.id.HomeRefresh);
+        refresh.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+            public void onClick(View v) {
+                updateOrders();
+            }
+        });
 
-                //Order order1 = dataSnapshot.getValue(Order.class);
+
+
+
+        return myView;
+    }
+
+    public void updateOrders(){
+
+        ordersRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
                 Iterable<com.google.firebase.database.DataSnapshot> orders = dataSnapshot.getChildren();
 
-                Iterator<com.google.firebase.database.DataSnapshot> iterator = orders.iterator();
-
-               for(int i =0; i<dataSnapshot.getChildrenCount();i++) {
 
 
-                   com.google.firebase.database.DataSnapshot current = iterator.next();
 
-                   requests.add(current.getValue(Order.class).getRequestor() + " -- " +
-                           current.getValue(Order.class).getRestaurants() + " -- " +
-                           current.getValue(Order.class).getDestination() + " -- ");
+                requests.add(dataSnapshot.getValue(Order.class).getRequestor() + " -- " +
+                        dataSnapshot.getValue(Order.class).getRestaurants() + " -- " +
+                        dataSnapshot.getValue(Order.class).getDestination() + " -- ");
+            }
 
-                   //System.out.println(current.getValue(Order.class).getDestination());
-                   //System.out.println(current.getValue(Order.class).getItem());
-                   //System.out.println(current.getValue(Order.class).getRequestor());
-                   //System.out.println(current.getValue(Order.class).getRestaurants());
-                   //System.out.println(current.getValue(Order.class).getTime());
-               }
+            @Override
+            public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(com.google.firebase.database.DataSnapshot dataSnapshot) {
+
+
+            }
+
+            @Override
+            public void onChildMoved(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
             }
 
             @Override
@@ -103,14 +120,6 @@ public class homeActivity extends Fragment {
 
             }
         });
-
-
-
-
-
-        //requests.add("User2 -- BurgerKing -- CSE B230");
-
-        //requests.add("User3 -- Panda -- Geisel 2nd west");
 
         // diff from tutorial30
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
@@ -122,11 +131,14 @@ public class homeActivity extends Fragment {
         myFirstListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
             }
         });
 
-        return myView;
+
     }
 }

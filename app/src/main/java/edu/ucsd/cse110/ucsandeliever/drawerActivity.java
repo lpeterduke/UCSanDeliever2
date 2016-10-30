@@ -37,11 +37,14 @@ public class drawerActivity extends AppCompatActivity
         drawer.setDrawerListener(toggle);
         toggle.syncState();
 
-
-
-
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
+
+
     }
 
     @Override
@@ -89,6 +92,7 @@ public class drawerActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
+
             fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
 
         }else if (id == R.id.order_status_layout) {
