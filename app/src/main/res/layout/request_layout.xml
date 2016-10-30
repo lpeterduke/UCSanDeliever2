@@ -51,17 +51,6 @@
         android:layout_alignEnd="@+id/textView22"
         android:textAlignment="center" />
 
-    <TextView
-        android:text="Delivery Destination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/editText10"
-        android:layout_alignLeft="@+id/textView23"
-        android:layout_alignStart="@+id/textView23"
-        android:id="@+id/textView24"
-        android:layout_alignRight="@+id/textView23"
-        android:layout_alignEnd="@+id/textView23" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -73,26 +62,6 @@
         android:layout_alignLeft="@+id/spinner_restaurant"
         android:layout_alignStart="@+id/spinner_restaurant" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText9"
-        android:layout_alignBottom="@+id/textView23"
-        android:layout_alignLeft="@+id/editText8"
-        android:layout_alignStart="@+id/editText8" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText10"
-        android:layout_centerVertical="true"
-        android:layout_alignLeft="@+id/editText9"
-        android:layout_alignStart="@+id/editText9" />
-
     <Button
         android:text="make my order!"
         android:layout_width="wrap_content"
@@ -101,5 +70,53 @@
         android:layout_below="@+id/textView24"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="105dp" />
+
+    <TextView
+        android:text="Delivery Destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView24"
+        android:textAlignment="center"
+        android:layout_alignBottom="@+id/editText10"
+        android:layout_alignLeft="@+id/textView23"
+        android:layout_alignStart="@+id/textView23"
+        android:layout_toStartOf="@+id/editText8" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText10"
+        android:layout_marginTop="79dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp"
+        android:layout_below="@+id/textView23"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignStart="@+id/button2" />
+
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/editText3"
+        android:singleLine="false"
+        android:layout_alignTop="@+id/textView23"
+        android:layout_alignLeft="@+id/editText8"
+        android:layout_alignStart="@+id/editText8" />
+
+    <Button
+        android:text="Pick A Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:background="@android:color/white"
+        android:layout_alignBaseline="@+id/editText3"
+        android:layout_alignBottom="@+id/editText3"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginRight="15dp"
+        android:layout_marginEnd="15dp" />
 
 </RelativeLayout>
