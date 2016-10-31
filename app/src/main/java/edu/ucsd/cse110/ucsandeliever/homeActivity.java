@@ -100,12 +100,14 @@ public class homeActivity extends Fragment {
 
 
                 if( ! requests.contains("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: "+
-                        dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to  " +
-                        dataSnapshot.getValue(Order.class).getDestination())){
+                        dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
+                        dataSnapshot.getValue(Order.class).getDestination() + "\nAt: " +
+                        dataSnapshot.getValue(Order.class).getTime())){
 
                     requests.add("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: "+
-                            dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to  " +
-                            dataSnapshot.getValue(Order.class).getDestination());
+                            dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
+                            dataSnapshot.getValue(Order.class).getDestination() + "\nAt: " +
+                            dataSnapshot.getValue(Order.class).getTime());
                 }
             }
 
