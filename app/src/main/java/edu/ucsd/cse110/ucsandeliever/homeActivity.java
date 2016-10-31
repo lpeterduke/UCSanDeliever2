@@ -17,6 +17,8 @@ import android.widget.ListView;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
+
+import android.widget.Switch;
 import android.widget.Toast;
 import android.app.Activity;
 import android.content.Intent;
@@ -97,10 +99,14 @@ public class homeActivity extends Fragment {
 
 
 
+                if( ! requests.contains("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: "+
+                        dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to  " +
+                        dataSnapshot.getValue(Order.class).getDestination())){
 
-                requests.add(dataSnapshot.getValue(Order.class).getRequestor() + " -- " +
-                        dataSnapshot.getValue(Order.class).getRestaurants() + " -- " +
-                        dataSnapshot.getValue(Order.class).getDestination() + " -- ");
+                    requests.add("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: "+
+                            dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to  " +
+                            dataSnapshot.getValue(Order.class).getDestination());
+                }
             }
 
             @Override
@@ -136,13 +142,24 @@ public class homeActivity extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+                switch(position){
+                    case 0:
+                        Toast.makeText(getActivity(),parent.getItemAtPosition(position).toString(),Toast.LENGTH_SHORT);
+                        FragmentManager fragmentManager = getFragmentManager();
+                        fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
+                        break;
+
+                    case 1:
+                        break;
+
+                }
 
 
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
             }
         });
 
 
     }
+
+
 }
