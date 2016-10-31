@@ -17,6 +17,14 @@
         <item>Canyon Vista</item>
         <item>Cafe Vetanas</item>
     </string-array>
+    <string-array name="building_names">
+
+        <item>ERC Europe Hall</item>
+        <item>CSE Building</item>
+        <item>Geisel</item>
+        <item>Library Walk</item>
+        <item>Rimac Arena</item>
+    </string-array>
 
 
 </resources>

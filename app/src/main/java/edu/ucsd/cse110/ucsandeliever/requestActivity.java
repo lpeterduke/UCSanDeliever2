@@ -48,12 +48,14 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
 
 
     Spinner spinner;
+    Spinner spinner2;
     ArrayAdapter<CharSequence> adapter;
+    ArrayAdapter<CharSequence> adapter2;
 
     private String etRestaurants;
+    private String etDestinations;
     private EditText etItemName;
     private EditText etTime;
-    private EditText etDestination;
     private Button makeOrder;
     private   EditText etPid;
     private EditText timeFromClock;
@@ -83,9 +85,6 @@ int hour,minute;
                 TimePickerDialog timePickerDialog = new TimePickerDialog(getActivity(),requestActivity.this,hour,minute,true);
                 timePickerDialog.show();
 
-
-
-
             }
         });
 
@@ -105,7 +104,22 @@ int hour,minute;
             }
         });
 
+        // another spinner for the destination
+        spinner2 = (Spinner) myView.findViewById(R.id.spinner_building);
+        adapter2 = ArrayAdapter.createFromResource(getActivity(),R.array.building_names,android.R.layout.simple_spinner_item);
+        adapter2.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line);
+        spinner2.setAdapter(adapter2);
+        spinner2.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener(){
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                etDestinations  =  (String) parent.getItemAtPosition(position); // get user ID
+            }
 
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
 
 
 
@@ -130,7 +144,6 @@ int hour,minute;
         //get Input
         etItemName = (EditText) myView.findViewById(R.id.editText8); // get user Email
        etTime  =  timeFromClock; // get user password
-        etDestination  = (EditText) myView.findViewById(R.id.editText10); // get user password
 
        // etPid = (EditText) myView.findViewById(R.id.editText6);
 
@@ -150,19 +163,18 @@ int hour,minute;
 
 
         final String res = etRestaurants;
+        final String des = etDestinations;
 
        final String  item= etItemName.getText().toString();
         final String time = etTime.getText().toString();
-        final String destination = etDestination.getText().toString();
 
         final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
 
                     Order order = new Order();
                     order.setRestaurants(res);
-
                     order.setItem(item);
                     order.setTime(time);
-                    order.setDestination(destination);
+                    order.setDestination(des);
                     order.setRequestor(userID);
                     myFirebaseRef.child("orders").child(order.getRestaurants()).setValue(order);
     }
