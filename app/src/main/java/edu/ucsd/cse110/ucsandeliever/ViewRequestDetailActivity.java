@@ -39,6 +39,4 @@ public class ViewRequestDetailActivity extends Fragment implements Button.OnClic
         }
     }
 
-
-
 }

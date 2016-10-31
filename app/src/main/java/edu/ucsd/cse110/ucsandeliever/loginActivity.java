@@ -33,6 +33,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+
 /**
  * Created by Peterli on 10/6/16.
  */
@@ -97,11 +98,13 @@ public class loginActivity extends Activity  {
             mAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (/*task.isSuccessful()*/ true) {
+                    if (task.isSuccessful()) {
+
+                        UserList.user = new Student(task.getResult().getUser().getUid(),task.getResult().getUser().getDisplayName(), task.getResult().getUser().getEmail());
 
                         Intent intent = new Intent(loginActivity.this,drawerActivity.class);
                         startActivity(intent);
-
+                        finish();
                         //means user is loged in
                     }else{
 

@@ -105,7 +105,7 @@ public class signupActivity extends Activity {
                         final String id = etPid.getText().toString();
                         final String email8 = etEmail.getText().toString();
                         final String password = etPassword.getText().toString();
-
+                        final String currentUid = mAuth.getCurrentUser().getUid();
                         final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
 
                         // check if the id has been used
@@ -124,7 +124,7 @@ public class signupActivity extends Activity {
                                     student.setEmail2(email8);
                                     student.setPassword(password);
                                     student.setRequestingStatus(false);
-
+                                    student.setuid(currentUid);
 
                                     final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
 
@@ -145,24 +145,6 @@ public class signupActivity extends Activity {
                             public void onCancelled(FirebaseError error) {
                             }
                         });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                         Intent intent = new Intent(signupActivity.this,drawerActivity.class);

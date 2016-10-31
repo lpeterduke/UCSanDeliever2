@@ -46,8 +46,6 @@ public class drawerActivity extends AppCompatActivity
 
 
     }
-
-    @Override
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -111,7 +109,9 @@ public class drawerActivity extends AppCompatActivity
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_manage) {
+        } else if (id == R.id.Chat) {
+            Intent intent = new Intent(this, UserList.class);
+            startActivity(intent);
 
         } else if (id == R.id.nav_share) {
 

@@ -64,7 +64,7 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
 
     TimePickerDialog.OnTimeSetListener onTimeSetListener;
 
-int hour,minute;
+    int hour,minute;
 
     View myView;
     @Nullable
@@ -143,9 +143,9 @@ int hour,minute;
 
         //get Input
         etItemName = (EditText) myView.findViewById(R.id.editText8); // get user Email
-       etTime  =  timeFromClock; // get user password
+        etTime  =  timeFromClock; // get user password
 
-       // etPid = (EditText) myView.findViewById(R.id.editText6);
+        // etPid = (EditText) myView.findViewById(R.id.editText6);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
@@ -165,18 +165,18 @@ int hour,minute;
         final String res = etRestaurants;
         final String des = etDestinations;
 
-       final String  item= etItemName.getText().toString();
+        final String  item= etItemName.getText().toString();
         final String time = etTime.getText().toString();
 
         final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
 
-                    Order order = new Order();
-                    order.setRestaurants(res);
-                    order.setItem(item);
-                    order.setTime(time);
-                    order.setDestination(des);
-                    order.setRequestor(userID);
-                    myFirebaseRef.child("orders").child(order.getRestaurants()).setValue(order);
+        Order order = new Order();
+        order.setRestaurants(res);
+        order.setItem(item);
+        order.setTime(time);
+        order.setDestination(des);
+        order.setRequestor(userID);
+        myFirebaseRef.child("orders").child(order.getRestaurants()).setValue(order);
     }
 
 
@@ -188,7 +188,7 @@ int hour,minute;
 
         Toast.makeText(getActivity(),"Hour: "+hourOfDay + " Minute: " + minute,Toast.LENGTH_SHORT);
 
-        timeFromClock.setText(hourOfDay+ minute);
+        timeFromClock.setText(""+hourOfDay+""+ minute);
 
     }
 
