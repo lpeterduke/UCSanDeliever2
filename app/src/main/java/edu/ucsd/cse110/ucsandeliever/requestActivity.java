@@ -188,7 +188,7 @@ int hour,minute;
 
         Toast.makeText(getActivity(),"Hour: "+hourOfDay + " Minute: " + minute,Toast.LENGTH_SHORT);
 
-        timeFromClock.setText(hourOfDay+" : "+ minute);
+        timeFromClock.setText(hourOfDay+ minute);
 
     }
 

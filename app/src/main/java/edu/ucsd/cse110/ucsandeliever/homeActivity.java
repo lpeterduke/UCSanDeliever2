@@ -15,6 +15,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 
@@ -97,17 +98,29 @@ public class homeActivity extends Fragment {
 
                 Iterable<com.google.firebase.database.DataSnapshot> orders = dataSnapshot.getChildren();
 
+                Calendar calendar = Calendar.getInstance();
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int minutes = calendar.get(Calendar.MINUTE);
+                String time = Integer.toString(hour) +Integer.toString(minutes);
 
+                System.out.println("-------------------------------"+time);
+                System.out.println("-------------------------------"+ dataSnapshot.getValue(Order.class).getTime());
 
-                if( ! requests.contains("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: "+
-                        dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
-                        dataSnapshot.getValue(Order.class).getDestination() + "\nAt: " +
-                        dataSnapshot.getValue(Order.class).getTime())){
+                int currTime = Integer.parseInt(time);
+                int orderTime = Integer.parseInt(dataSnapshot.getValue(Order.class).getTime());
 
-                    requests.add("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: "+
+                if(orderTime > currTime) {
+
+                    if (!requests.contains("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
                             dataSnapshot.getValue(Order.class).getDestination() + "\nAt: " +
-                            dataSnapshot.getValue(Order.class).getTime());
+                            dataSnapshot.getValue(Order.class).getTime())) {
+
+                        requests.add("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
+                                dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
+                                dataSnapshot.getValue(Order.class).getDestination() + "\nAt: " +
+                                dataSnapshot.getValue(Order.class).getTime());
+                    }
                 }
             }
 
@@ -147,6 +160,7 @@ public class homeActivity extends Fragment {
                 switch(position){
                     case 0:
                         Toast.makeText(getActivity(),parent.getItemAtPosition(position).toString(),Toast.LENGTH_SHORT);
+
                         FragmentManager fragmentManager = getFragmentManager();
                         fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
                         break;
