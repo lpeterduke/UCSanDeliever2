@@ -1,5 +1,7 @@
 package edu.ucsd.cse110.ucsandeliever;
 
+import java.util.Random;
+
 /**
  * Created by Peterli on 10/23/16.
  */
@@ -14,9 +16,28 @@ public class Order {
     private String time;
     private String destination;
     private String requestor;
+    private String orderNumber;
 
-    public Order(){}
+    private Random random = new Random();
 
+    public Order(){
+        int first = random.nextInt(1000);
+        int second = random.nextInt(1000);
+        int third = random.nextInt(1000);
+
+        String string = Integer.toString(first) + Integer.toString(second) + Integer.toString(third);
+        orderNumber = string;
+
+
+    }
+
+    public String getOrderNumber( ) {
+        return this.orderNumber;
+    }
+
+    public void setOrderNumber(String orderNumber) {
+        this.orderNumber = orderNumber;
+    }
 
     public String getRestaurants( ) {
         return this.restaurants;

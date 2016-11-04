@@ -114,12 +114,14 @@ public class homeActivity extends Fragment {
                     if (!requests.contains("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
                             dataSnapshot.getValue(Order.class).getDestination() + "\nAt: " +
-                            dataSnapshot.getValue(Order.class).getTime())) {
+                            dataSnapshot.getValue(Order.class).getTime() + "\nOrder Number: " +
+                            dataSnapshot.getValue(Order.class).getOrderNumber())) {
 
                         requests.add("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
                                 dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
                                 dataSnapshot.getValue(Order.class).getDestination() + "\nAt: " +
-                                dataSnapshot.getValue(Order.class).getTime());
+                                dataSnapshot.getValue(Order.class).getTime()+ "\nOrder Number: " +
+                                dataSnapshot.getValue(Order.class).getOrderNumber());
                     }
                 }
             }
@@ -160,17 +162,10 @@ public class homeActivity extends Fragment {
 
                 String str = "blablablabla";
                 mSelectInterface.onTitleSelect(str);
+                System.out.println("-----"+parent.getItemAtPosition(position).toString());
 
-                switch(position){
-                    case 0:
-                        Toast.makeText(getActivity(),parent.getItemAtPosition(position).toString(),Toast.LENGTH_SHORT);
 
-                        FragmentManager fragmentManager = getFragmentManager();
-                        fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
-                        break;
-                    case 1:
-                        break;
-                }
+
             }
         });
     }
