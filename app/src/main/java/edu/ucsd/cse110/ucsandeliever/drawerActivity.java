@@ -22,7 +22,7 @@ import android.content.Intent;
 
 
 public class drawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,homeActivity.titleSelectInterface {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +43,7 @@ public class drawerActivity extends AppCompatActivity
 
         FragmentManager fragmentManager = getFragmentManager();
         fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
+
 
 
     }
@@ -92,7 +93,6 @@ public class drawerActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
-
             fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
 
         }else if (id == R.id.order_status_layout) {
@@ -123,4 +123,41 @@ public class drawerActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+
+
+
+
+    //向viewdetailed发射 创建
+    private OnMainListener mainListener = new OnMainListener() {
+        @Override
+        public void onMainAction(String str) {
+
+        }
+    };
+
+    // 接口
+    public interface OnMainListener {
+        public void onMainAction(String str);
+    }
+
+
+
+String strFromHome;
+
+
+    //从Home里面接受
+    @Override
+    public void onTitleSelect(String title) {
+        System.out.println("==========="+title);
+        strFromHome = title;
+        System.out.println("==========="+strFromHome);
+
+    }
+
+    public String getStrFromHome(){
+        return strFromHome;
+    }
+
+
 }

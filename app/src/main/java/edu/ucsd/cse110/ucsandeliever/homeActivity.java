@@ -114,12 +114,14 @@ public class homeActivity extends Fragment {
                     if (!requests.contains("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
                             dataSnapshot.getValue(Order.class).getDestination() + "\nAt: " +
-                            dataSnapshot.getValue(Order.class).getTime())) {
+                            dataSnapshot.getValue(Order.class).getTime() + "\nOrder Number: " +
+                            dataSnapshot.getValue(Order.class).getOrderNumber())) {
 
                         requests.add("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
                                 dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
                                 dataSnapshot.getValue(Order.class).getDestination() + "\nAt: " +
-                                dataSnapshot.getValue(Order.class).getTime());
+                                dataSnapshot.getValue(Order.class).getTime()+ "\nOrder Number: " +
+                                dataSnapshot.getValue(Order.class).getOrderNumber());
                     }
                 }
             }
@@ -157,25 +159,40 @@ public class homeActivity extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                switch(position){
-                    case 0:
-                        Toast.makeText(getActivity(),parent.getItemAtPosition(position).toString(),Toast.LENGTH_SHORT);
 
-                        FragmentManager fragmentManager = getFragmentManager();
-                        fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
-                        break;
+                String str = "blablablabla";
+                mSelectInterface.onTitleSelect(str);
+                System.out.println("-----"+parent.getItemAtPosition(position).toString());
 
-                    case 1:
-                        break;
-
-                }
 
 
             }
         });
-
-
     }
 
+
+
+    //回调Function
+    titleSelectInterface mSelectInterface = new titleSelectInterface() {
+        @Override
+        public void onTitleSelect(String title) {
+            // do nothing?
+        }
+    };
+
+    public interface titleSelectInterface{
+        public void onTitleSelect(String title);
+    }
+
+    //为了补Error
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            mSelectInterface = (titleSelectInterface) activity;
+        } catch (Exception e) {
+            throw new ClassCastException(activity.toString() + "must implement OnArticleSelectedListener");
+        }
+    }
 
 }

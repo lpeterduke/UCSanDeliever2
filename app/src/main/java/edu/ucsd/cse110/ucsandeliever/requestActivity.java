@@ -13,6 +13,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.AppCompatAutoCompleteTextView;
 import android.support.v7.widget.Toolbar;
 import android.support.v7.widget.helper.ItemTouchHelper;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,6 +38,8 @@ import com.firebase.client.Query;
 import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+
+import org.w3c.dom.Text;
 
 /**
  * Created by Administrator on 2016/10/8.
@@ -129,8 +132,7 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
             @Override
             public void onClick(View view){
                 updateDataBase();
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
+
             }
         });
 
@@ -176,7 +178,20 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
         order.setTime(time);
         order.setDestination(des);
         order.setRequestor(userID);
-        myFirebaseRef.child("orders").child(order.getRestaurants()).setValue(order);
+
+
+        if(TextUtils.isEmpty(res) ||
+                TextUtils.isEmpty(item)||
+                TextUtils.isEmpty(time)||
+                TextUtils.isEmpty(des)||
+                TextUtils.isEmpty(userID)) {
+            //do nothing
+        }else{
+
+            myFirebaseRef.child("orders").child(order.getRestaurants()).setValue(order);
+            FragmentManager fragmentManager = getFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
+        }
     }
 
 
