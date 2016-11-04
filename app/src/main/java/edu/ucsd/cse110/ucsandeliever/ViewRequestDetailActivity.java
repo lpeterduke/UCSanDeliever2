@@ -12,20 +12,33 @@ import android.view.ViewGroup;
 import android.widget.Button;
 
 
-public class ViewRequestDetailActivity extends Fragment implements Button.OnClickListener{
+public class ViewRequestDetailActivity extends Fragment implements Button.OnClickListener, drawerActivity.OnMainListener{
 
     private Button btnClick;
+    private String mTv;
+
+
     View myView;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.activity_view_request_detail, container, false);
 
+
+
+
+        System.out.println("------------"+mTv);
+
+
         btnClick = (Button) myView.findViewById(R.id.button3);
         btnClick.setOnClickListener(this);
 
         return myView;
     }
+
+
+
+
 
     public void onClick (View v){
         int id = v.getId();
@@ -39,4 +52,12 @@ public class ViewRequestDetailActivity extends Fragment implements Button.OnClic
         }
     }
 
+    @Override
+    public void onMainAction(String str) {
+
+        System.out.println("---View---------"+mTv);
+
+        mTv = str;
+
+    }
 }

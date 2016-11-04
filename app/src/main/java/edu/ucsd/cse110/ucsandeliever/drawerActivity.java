@@ -22,7 +22,7 @@ import android.content.Intent;
 
 
 public class drawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+        implements NavigationView.OnNavigationItemSelectedListener,homeActivity.titleSelectInterface {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -123,4 +123,55 @@ public class drawerActivity extends AppCompatActivity
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }
+
+    //向viewdetailed发射
+    private OnMainListener mainListener = new OnMainListener() {
+        @Override
+        public void onMainAction(String str) {
+            //不知道干什么
+        }
+    };
+
+
+
+// 绑定接口
+
+    @Override
+
+    public void onAttachFragment(Fragment fragment) {
+
+        try {
+
+            mainListener = (OnMainListener)fragment;
+
+        } catch (Exception e) {
+
+            throw new ClassCastException(this.toString() + " must implementOnMainListener");
+
+        }
+
+        super.onAttachFragment(fragment);
+
+    }
+
+// 接口
+
+    public interface OnMainListener {
+
+        public void onMainAction(String str);
+
+    }
+    //从Home里面接受
+    @Override
+    public void onTitleSelect(String title) {
+
+
+
+        System.out.println("==========="+title);
+
+        mainListener.onMainAction(title);
+
+    }
+
+
 }

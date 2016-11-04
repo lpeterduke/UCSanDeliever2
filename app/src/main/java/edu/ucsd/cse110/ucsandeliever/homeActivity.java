@@ -157,6 +157,11 @@ public class homeActivity extends Fragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
+
+                String str = "blablablabla";
+
+                mSelectInterface.onTitleSelect(str);
+
                 switch(position){
                     case 0:
                         Toast.makeText(getActivity(),parent.getItemAtPosition(position).toString(),Toast.LENGTH_SHORT);
@@ -177,5 +182,28 @@ public class homeActivity extends Fragment {
 
     }
 
+
+
+    //回调Function
+     titleSelectInterface mSelectInterface = new titleSelectInterface() {
+        @Override
+        public void onTitleSelect(String title) {
+            // do nothing?
+        }
+    };
+
+    public interface titleSelectInterface{
+        public void onTitleSelect(String title);
+    }
+
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+
+        try {
+            mSelectInterface = (titleSelectInterface) activity;
+        } catch (Exception e) {
+            throw new ClassCastException(activity.toString() + "must implement OnArticleSelectedListener");
+        }
+    }
 
 }
