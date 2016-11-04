@@ -10,81 +10,65 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.ucsd.cse110.ucsandeliever.ViewRequestDetailActivity">
 
-    <TextView
-        android:text="Note: less sugar green tea "
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView18"
-        android:textSize="18sp"
-        android:layout_marginTop="38dp"
-        android:layout_below="@+id/textView17"
-        android:layout_alignLeft="@+id/textView17"
-        android:layout_alignStart="@+id/textView17" />
-
-    <TextView
-        android:text="Food: Combo E"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView17"
-        android:textSize="18sp"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/textView16"
-        android:layout_alignLeft="@+id/textView16"
-        android:layout_alignStart="@+id/textView16" />
-
-    <TextView
-        android:text="To: ERC Europe Hall"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView16"
-        android:textSize="18sp"
-        android:layout_marginTop="38dp"
-        android:layout_below="@+id/textView15"
-        android:layout_alignLeft="@+id/textView15"
-        android:layout_alignStart="@+id/textView15" />
-
-    <TextView
-        android:text="From: Tapioca"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView15"
-        android:textSize="18sp"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/textView14"
-        android:layout_alignLeft="@+id/textView14"
-        android:layout_alignStart="@+id/textView14" />
-
-    <TextView
-        android:text="Username: User1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="46dp"
-        android:layout_marginStart="46dp"
-        android:id="@+id/textView14"
-        android:textSize="18sp"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="50dp" />
-
-    <TextView
-        android:text="Expect Time: 20mins"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView10"
-        android:textSize="18sp"
-        android:layout_marginTop="40dp"
-        android:layout_below="@+id/textView18"
-        android:layout_alignLeft="@+id/textView18"
-        android:layout_alignStart="@+id/textView18" />
 
     <Button
         android:text="I am interested!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="52dp"
         android:id="@+id/button3"
-        android:layout_below="@+id/textView10"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="65dp" />
+
+    <TextView
+        android:text="Username: User1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/View_User"
+        android:layout_marginTop="133dp"
+        android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="From: Tapioca"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/View_Res"
+        android:textSize="18sp"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/View_User"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Food: Combo E"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/View_item"
+        android:textSize="18sp"
+        android:layout_marginTop="36dp"
+        android:layout_below="@+id/View_Res"
+        android:layout_alignLeft="@+id/View_Res"
+        android:layout_alignStart="@+id/View_Res" />
+
+    <TextView
+        android:text="To: ERC Europe Hall"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/View_dest"
+        android:textSize="18sp"
+
+        android:layout_below="@+id/View_item"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="22dp" />
+
+    <TextView
+        android:text="Expect Time: 20mins"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/View_time"
+        android:textSize="18sp"
+        android:layout_below="@+id/View_dest"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="34dp" />
 
 </RelativeLayout>

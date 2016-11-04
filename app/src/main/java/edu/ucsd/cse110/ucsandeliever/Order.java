@@ -27,6 +27,7 @@ public class Order {
 
         String string = Integer.toString(first) + Integer.toString(second) + Integer.toString(third);
         orderNumber = string;
+        //liset
 
 
     }
