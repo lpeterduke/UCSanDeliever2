@@ -15,6 +15,10 @@ public class Order {
     private String destination;
     private String requestor;
 
+    private String runner;
+    private String requestorUid;
+    private String runnerUid;
+
     public Order(){}
 
 
@@ -58,7 +62,29 @@ public class Order {
         this.requestor = requestor;
     }
 
+    public String getRunner( ) {
+        return this.runner;
+    }
 
+    public void setRunner(String runner) {
+        this.runner = runner;
+    }
+
+    public String getRequestorUid( ) {
+        return this.requestorUid;
+    }
+
+    public void setRequestorUid(String requestorUid) {
+        this.requestorUid = requestorUid;
+    }
+
+    public String getRunnerUid( ) {
+        return this.runnerUid;
+    }
+
+    public void setRunnerUid(String runnerUid) {
+        this.runnerUid = runnerUid;
+    }
 
 
 }
