@@ -20,10 +20,23 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 
+import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+
 
 public class drawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,homeActivity.titleSelectInterface {
 
+
+    private List<String> requests = new ArrayList<>();
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +59,106 @@ public class drawerActivity extends AppCompatActivity
 
 
 
+
     }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference ordersRef = mRootRef.child("orders");
+
+        ordersRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+                System.out.println("数据抓包");
+                Iterable<com.google.firebase.database.DataSnapshot> orders = dataSnapshot.getChildren();
+
+                Calendar calendar = Calendar.getInstance();
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int minutes = calendar.get(Calendar.MINUTE);
+                String time = Integer.toString(hour) +Integer.toString(minutes);
+
+
+                int currTime = Integer.parseInt(time);
+                System.out.println("当下时间"+ currTime);
+
+                int orderTime = Integer.parseInt(dataSnapshot.getValue(Order.class).getTime());
+                System.out.println("加入时间"+ orderTime);
+
+
+                if(orderTime > currTime) {
+
+
+                    requests.add(dataSnapshot.getValue(Order.class).getItem() + "=" +
+                            dataSnapshot.getValue(Order.class).getRestaurants() + "=" +
+                            dataSnapshot.getValue(Order.class).getDestination() + "=" +
+                            dataSnapshot.getValue(Order.class).getTime()+ "=" +
+                            dataSnapshot.getValue(Order.class).getOrderNumber());
+
+                }
+
+
+            }
+
+            @Override
+            public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+                System.out.println("数据更改");
+
+
+                Iterable<com.google.firebase.database.DataSnapshot> orders = dataSnapshot.getChildren();
+
+                Calendar calendar = Calendar.getInstance();
+                int hour = calendar.get(Calendar.HOUR_OF_DAY);
+                int minutes = calendar.get(Calendar.MINUTE);
+                String time = Integer.toString(hour) +Integer.toString(minutes);
+
+
+                int currTime = Integer.parseInt(time);
+                System.out.println("当下时间"+ currTime);
+
+                int orderTime = Integer.parseInt(dataSnapshot.getValue(Order.class).getTime());
+                System.out.println("加入时间"+ orderTime);
+
+
+                if(orderTime > currTime) {
+
+
+                    requests.add(dataSnapshot.getValue(Order.class).getItem() + "=" +
+                            dataSnapshot.getValue(Order.class).getRestaurants() + "=" +
+                            dataSnapshot.getValue(Order.class).getDestination() + "=" +
+                            dataSnapshot.getValue(Order.class).getTime()+ "=" +
+                            dataSnapshot.getValue(Order.class).getOrderNumber());
+
+                }
+
+            }
+
+            @Override
+            public void onChildRemoved(com.google.firebase.database.DataSnapshot dataSnapshot) {
+
+
+            }
+
+            @Override
+            public void onChildMoved(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
+
+    }
+
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -144,19 +256,49 @@ public class drawerActivity extends AppCompatActivity
 
 
 String strFromHome;
+    String itemSelected;
+    String resSelected;
+    String destSelected;
+    String timeSelected;
+    String orderNumSelected;
+
 
 
     //从Home里面接受
     @Override
-    public void onTitleSelect(String title) {
-        System.out.println("==========="+title);
-        strFromHome = title;
-        System.out.println("==========="+strFromHome);
-
+    public void onTitleSelect(String item, String res, String dest, String time,String orderNum) {
+        itemSelected=item;
+        resSelected = res;
+        destSelected=dest;
+         timeSelected=time;
+        orderNumSelected=orderNum;
     }
 
-    public String getStrFromHome(){
-        return strFromHome;
+
+
+
+    public String getItemSelected(){
+        return itemSelected;
+    }
+
+    public String getResSelected() {
+        return resSelected;
+    }
+
+    public String getDestSelected() {
+        return destSelected;
+    }
+
+    public String getOrderNumSelected() {
+        return orderNumSelected;
+    }
+
+    public String getTimeSelected() {
+        return timeSelected;
+    }
+
+    public List<String>  getOrderArrayListFromDrawer(){
+        return requests;
     }
 
 

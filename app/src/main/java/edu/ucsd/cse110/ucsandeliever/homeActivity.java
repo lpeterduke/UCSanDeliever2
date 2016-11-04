@@ -71,14 +71,18 @@ public class homeActivity extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
         myView = inflater.inflate(R.layout.home_screen_layout, container, false);
+
 
 
         refresh = (Button) myView.findViewById(R.id.HomeRefresh);
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateOrders();
+                refresh();
+
             }
         });
 
@@ -89,66 +93,10 @@ public class homeActivity extends Fragment {
     }
 
 
+    public void refresh(){
 
-    public void updateOrders(){
+        System.out.println("刷新主界面");
 
-        ordersRef.addChildEventListener(new ChildEventListener() {
-            @Override
-            public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
-
-                Iterable<com.google.firebase.database.DataSnapshot> orders = dataSnapshot.getChildren();
-
-                Calendar calendar = Calendar.getInstance();
-                int hour = calendar.get(Calendar.HOUR_OF_DAY);
-                int minutes = calendar.get(Calendar.MINUTE);
-                String time = Integer.toString(hour) +Integer.toString(minutes);
-
-                System.out.println("-------------------------------"+time);
-                System.out.println("-------------------------------"+ dataSnapshot.getValue(Order.class).getTime());
-
-                int currTime = Integer.parseInt(time);
-                int orderTime = Integer.parseInt(dataSnapshot.getValue(Order.class).getTime());
-
-                if(orderTime > currTime) {
-
-                    if (!requests.contains("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
-                            dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
-                            dataSnapshot.getValue(Order.class).getDestination() + "\nAt: " +
-                            dataSnapshot.getValue(Order.class).getTime() + "\nOrder Number: " +
-                            dataSnapshot.getValue(Order.class).getOrderNumber())) {
-
-                        requests.add("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
-                                dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
-                                dataSnapshot.getValue(Order.class).getDestination() + "\nAt: " +
-                                dataSnapshot.getValue(Order.class).getTime()+ "\nOrder Number: " +
-                                dataSnapshot.getValue(Order.class).getOrderNumber());
-                    }
-                }
-            }
-
-            @Override
-            public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onChildRemoved(com.google.firebase.database.DataSnapshot dataSnapshot) {
-
-
-            }
-
-            @Override
-            public void onChildMoved(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-        // diff from tutorial30
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, requests);
 
@@ -160,9 +108,101 @@ public class homeActivity extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                String str = "blablablabla";
-                mSelectInterface.onTitleSelect(str);
-                System.out.println("-----"+parent.getItemAtPosition(position).toString());
+                System.out.println("试图从Home Queue传输的数据：" +requests.get(position));
+
+                String orderInfo = requests.get(position);
+
+                String item = orderInfo.substring(0,orderInfo.indexOf('='));
+                orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
+                System.out.println("剩下的OrderInfo: "+orderInfo);
+
+                String res = orderInfo.substring(0,orderInfo.indexOf('='));
+                orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
+                System.out.println("剩下的OrderInfo: "+orderInfo);
+
+                String dest = orderInfo.substring(0,orderInfo.indexOf('='));
+                orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
+                System.out.println("剩下的OrderInfo: "+orderInfo);
+
+                String time = orderInfo.substring(0,orderInfo.indexOf('='));
+                orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
+                System.out.println("剩下的OrderInfo: "+orderInfo);
+
+                String orderNum = orderInfo;
+
+                System.out.println("提取出来的item"+item);
+                System.out.println("提取出来的item"+res);
+                System.out.println("提取出来的item"+dest);
+                System.out.println("提取出来的item"+time);
+                System.out.println("提取出来的item"+orderNum);
+
+
+
+                mSelectInterface.onTitleSelect(item,res,dest,time,orderNum);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
+
+
+
+
+            }
+        });
+    }
+
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
+                android.R.layout.simple_list_item_1, requests);
+
+        ListView myFirstListView = (ListView) (myView.findViewById(R.id.Request_List));
+        myFirstListView.setAdapter(adapter);
+
+        myFirstListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+
+                System.out.println("试图从Home Queue传输的数据：" +requests.get(position));
+
+                String orderInfo = requests.get(position);
+
+                String item = orderInfo.substring(0,orderInfo.indexOf('='));
+                orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
+                System.out.println("剩下的OrderInfo: "+orderInfo);
+
+                String res = orderInfo.substring(0,orderInfo.indexOf('='));
+                orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
+                System.out.println("剩下的OrderInfo: "+orderInfo);
+
+                String dest = orderInfo.substring(0,orderInfo.indexOf('='));
+                orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
+                System.out.println("剩下的OrderInfo: "+orderInfo);
+
+                String time = orderInfo.substring(0,orderInfo.indexOf('='));
+                orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
+                System.out.println("剩下的OrderInfo: "+orderInfo);
+
+                String orderNum = orderInfo;
+
+                System.out.println("提取出来的item"+item);
+                System.out.println("提取出来的item"+res);
+                System.out.println("提取出来的item"+dest);
+                System.out.println("提取出来的item"+time);
+                System.out.println("提取出来的item"+orderNum);
+
+
+
+                mSelectInterface.onTitleSelect(item,res,dest,time,orderNum);
+
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
+
 
 
 
@@ -172,27 +212,32 @@ public class homeActivity extends Fragment {
 
 
 
+
+
     //回调Function
     titleSelectInterface mSelectInterface = new titleSelectInterface() {
         @Override
-        public void onTitleSelect(String title) {
-            // do nothing?
+        public void onTitleSelect(String item, String res, String dest, String time, String orderNum) {
+
         }
+
     };
 
+
     public interface titleSelectInterface{
-        public void onTitleSelect(String title);
+        public void onTitleSelect(String item, String res, String dest, String time, String orderNum);
     }
 
-    //为了补Error
+    @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
+        requests = ((drawerActivity) activity).getOrderArrayListFromDrawer();
+        mSelectInterface = (titleSelectInterface) activity;
 
-        try {
-            mSelectInterface = (titleSelectInterface) activity;
-        } catch (Exception e) {
-            throw new ClassCastException(activity.toString() + "must implement OnArticleSelectedListener");
-        }
+        System.out.println("Orders从Server接受了");
     }
+
+
+
 
 }

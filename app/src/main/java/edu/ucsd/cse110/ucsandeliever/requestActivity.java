@@ -188,7 +188,7 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
             //do nothing
         }else{
 
-            myFirebaseRef.child("orders").child(order.getRestaurants()).setValue(order);
+            myFirebaseRef.child("orders").child(order.getOrderNumber()).setValue(order);
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
         }
