@@ -159,7 +159,6 @@ public class homeActivity extends Fragment {
 
 
                 String str = "blablablabla";
-
                 mSelectInterface.onTitleSelect(str);
 
                 switch(position){
@@ -169,23 +168,17 @@ public class homeActivity extends Fragment {
                         FragmentManager fragmentManager = getFragmentManager();
                         fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
                         break;
-
                     case 1:
                         break;
-
                 }
-
-
             }
         });
-
-
     }
 
 
 
     //回调Function
-     titleSelectInterface mSelectInterface = new titleSelectInterface() {
+    titleSelectInterface mSelectInterface = new titleSelectInterface() {
         @Override
         public void onTitleSelect(String title) {
             // do nothing?
@@ -196,6 +189,7 @@ public class homeActivity extends Fragment {
         public void onTitleSelect(String title);
     }
 
+    //为了补Error
     public void onAttach(Activity activity) {
         super.onAttach(activity);
 

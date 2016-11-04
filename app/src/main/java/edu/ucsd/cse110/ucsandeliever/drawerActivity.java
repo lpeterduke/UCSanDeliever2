@@ -45,6 +45,7 @@ public class drawerActivity extends AppCompatActivity
         fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
 
 
+
     }
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
@@ -92,7 +93,6 @@ public class drawerActivity extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
-
             fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
 
         }else if (id == R.id.order_status_layout) {
@@ -124,53 +124,39 @@ public class drawerActivity extends AppCompatActivity
         return true;
     }
 
-    //向viewdetailed发射
+
+
+
+
+    //向viewdetailed发射 创建
     private OnMainListener mainListener = new OnMainListener() {
         @Override
         public void onMainAction(String str) {
-            //不知道干什么
+
         }
     };
 
-
-
-// 绑定接口
-
-    @Override
-
-    public void onAttachFragment(Fragment fragment) {
-
-        try {
-
-            mainListener = (OnMainListener)fragment;
-
-        } catch (Exception e) {
-
-            throw new ClassCastException(this.toString() + " must implementOnMainListener");
-
-        }
-
-        super.onAttachFragment(fragment);
-
-    }
-
-// 接口
-
+    // 接口
     public interface OnMainListener {
-
         public void onMainAction(String str);
-
     }
+
+
+
+String strFromHome;
+
+
     //从Home里面接受
     @Override
     public void onTitleSelect(String title) {
-
-
-
         System.out.println("==========="+title);
+        strFromHome = title;
+        System.out.println("==========="+strFromHome);
 
-        mainListener.onMainAction(title);
+    }
 
+    public String getStrFromHome(){
+        return strFromHome;
     }
 
 
