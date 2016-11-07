@@ -33,6 +33,8 @@
 
         <activity android:name=".ViewRequestDetailActivity" />
         <activity android:name=".PlaceBidActivity" />
+        <activity android:name=".balanceActivity" />
+
         <activity android:name=".userRunnerWaitingActivity"></activity>
 
         <activity

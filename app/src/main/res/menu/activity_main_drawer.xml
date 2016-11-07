@@ -25,6 +25,12 @@
             android:id="@+id/Chat"
             android:icon="@drawable/ic_menu_manage"
             android:title="Chat" />
+
+        <item
+            android:id="@+id/Account"
+            android:icon="@drawable/ic_menu_slideshow"
+            android:title="Account" />
+
         <item
             android:id="@+id/log_out"
             android:icon="@drawable/ic_menu_slideshow"

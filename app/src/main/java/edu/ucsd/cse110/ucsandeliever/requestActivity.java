@@ -179,6 +179,8 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
         order.setDestination(des);
         order.setRequestor(userID);
 
+        order.setRequestorUid(FirebaseAuth.getInstance().getCurrentUser().getUid().toString());
+
 
         if(TextUtils.isEmpty(res) ||
                 TextUtils.isEmpty(item)||

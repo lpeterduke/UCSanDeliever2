@@ -21,6 +21,7 @@ import android.view.MenuItem;
 import android.content.Intent;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -39,7 +40,13 @@ public class drawerActivity extends AppCompatActivity
 
     private List<String> requests = new ArrayList<>();
     private List<String> ouput = new ArrayList<>();
+    private List<String> orderHistory = new ArrayList<>();
 
+    private String balance;
+    public FirebaseUser currentUser;
+
+    private FirebaseAuth mAuth;
+    final String userID = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,6 +76,42 @@ public class drawerActivity extends AppCompatActivity
 
         DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ordersRef = mRootRef.child("orders");
+
+
+        mAuth = FirebaseAuth.getInstance();
+        currentUser = mAuth.getCurrentUser();
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+
+        final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
+        System.out.println("+++++++++++++++++++"+ userEmail+" ");
+
+        final String userID = userEmail.substring(0,userEmail.indexOf('@'));
+        System.out.println("+++++++++++++++++++"+ userID+" ");
+
+
+        DatabaseReference ref =FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("balance");
+
+        ref.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+            @Override
+            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+
+                System.out.println("余额变更");
+                int message = dataSnapshot.getValue(Integer.class);
+                balance = Integer.toString(message);
+
+
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
         ordersRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -132,6 +175,28 @@ public class drawerActivity extends AppCompatActivity
                 System.out.println("++++++++++");
                 System.out.println(orderDay);
                 System.out.println(currDay);
+
+
+
+
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                String uid = null;
+                if(auth !=null)
+                {
+                    uid = auth.getCurrentUser().getUid().toString();
+                }
+
+
+                if(uid.contentEquals(dataSnapshot.getValue(Order.class).getRequestorUid()))
+                {
+                    orderHistory.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
+                            dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
+                            dataSnapshot.getValue(Order.class).getDestination() + "\nBy the time at: " +
+                            dataSnapshot.getValue(Order.class).getTime());
+                }
+
+
+
 
 
 
@@ -225,6 +290,24 @@ public class drawerActivity extends AppCompatActivity
 
 
 
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                String uid = null;
+                if(auth !=null)
+                {
+                    uid = auth.getCurrentUser().getUid().toString();
+                }
+
+
+                if(uid.contentEquals(dataSnapshot.getValue(Order.class).getRequestorUid()))
+                {
+                    orderHistory.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
+                            dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
+                            dataSnapshot.getValue(Order.class).getDestination() + "\nBy the time at: " +
+                            dataSnapshot.getValue(Order.class).getTime());
+                }
+
+
+
 
                 if(orderTimeint > currTime && orderDay >= currDay) {
 
@@ -248,6 +331,8 @@ public class drawerActivity extends AppCompatActivity
 
                 }
 
+                FragmentManager fragmentManager = getFragmentManager();
+                fragmentManager.beginTransaction().replace(R.id.home_main, new homeActivity()).commit();
 
 
 
@@ -354,7 +439,13 @@ public class drawerActivity extends AppCompatActivity
             Intent intent = new Intent(this, UserList.class);
             startActivity(intent);
 
-        } else if (id == R.id.nav_share) {
+        }
+        else if (id == R.id.Account) {
+            fragmentManager.beginTransaction().replace(R.id.content_main, new balanceActivity()).commit();
+
+
+        }
+        else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
@@ -404,7 +495,14 @@ String strFromHome;
     }
 
 
+    public List<String> getOrderHistory() {
+        return orderHistory;
+    }
 
+
+    public String getBalance() {
+        return balance;
+    }
 
     public String getItemSelected(){
         return itemSelected;
