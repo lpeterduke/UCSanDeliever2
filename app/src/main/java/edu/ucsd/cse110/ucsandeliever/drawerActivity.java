@@ -20,6 +20,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -37,10 +38,13 @@ public class drawerActivity extends AppCompatActivity
 
 
     private List<String> requests = new ArrayList<>();
+    private List<String> ouput = new ArrayList<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.draweractivity_main);
+
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
@@ -53,9 +57,6 @@ public class drawerActivity extends AppCompatActivity
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
-
-        FragmentManager fragmentManager = getFragmentManager();
-        fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
 
 
 
@@ -76,20 +77,77 @@ public class drawerActivity extends AppCompatActivity
                 System.out.println("数据抓包");
                 Iterable<com.google.firebase.database.DataSnapshot> orders = dataSnapshot.getChildren();
 
-                Calendar calendar = Calendar.getInstance();
+
+                java.util.Calendar calendar = java.util.Calendar.getInstance();
+                int year = calendar.get(java.util.Calendar.YEAR);
+                int month = calendar.get(java.util.Calendar.MONTH);
+                int day = calendar.get(java.util.Calendar.DAY_OF_MONTH);
+
+                String dayS="";
+                if(day<10){
+                    dayS = "0"+Integer.toString(day);
+                }
+
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int minutes = calendar.get(Calendar.MINUTE);
-                String time = Integer.toString(hour) +Integer.toString(minutes);
+
+                String cday = Integer.toString(year)+
+                        Integer.toString(month)+ dayS;
+
+                String ctime =Integer.toString(hour) +
+                        Integer.toString(minutes);
+
+                int currDay=Integer.parseInt(cday);
+                int currTime = Integer.parseInt(ctime);
+                System.out.println("当下时间"+ cday+currTime);
 
 
-                int currTime = Integer.parseInt(time);
-                System.out.println("当下时间"+ currTime);
 
-                int orderTime = Integer.parseInt(dataSnapshot.getValue(Order.class).getTime());
+
+
+
+                String  orderTime = dataSnapshot.getValue(Order.class).getTime();
+                System.out.println("在OnStart里面 OrderTime before 截取"+ orderTime);
+                String orderDate = orderTime.substring(0,8);
+                System.out.println(orderTime);
+                System.out.println(orderDate);
+
+                String orderT = orderTime.substring(8);
+
+
+
+                System.out.println("创建日："+orderDate);
+                System.out.println("创建时："+orderT);
+
+
+                int orderTimeint = Integer.parseInt(orderT);
+                int orderDay = Integer.parseInt(orderDate);
+
                 System.out.println("加入时间"+ orderTime);
 
 
-                if(orderTime > currTime) {
+                System.out.println("++++++++++");
+                System.out.println(orderTimeint);
+                System.out.println(currTime);
+                System.out.println("++++++++++");
+                System.out.println(orderDay);
+                System.out.println(currDay);
+
+
+
+
+                if(orderTimeint > currTime && orderDay >= currDay) {
+
+
+                    System.out.println("注入Request");
+                    ouput.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
+                            dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
+                            dataSnapshot.getValue(Order.class).getDestination() + "\nBy the time at: " +
+                            dataSnapshot.getValue(Order.class).getTime());
+
+
+
+
 
 
                     requests.add(dataSnapshot.getValue(Order.class).getItem() + "=" +
@@ -106,25 +164,80 @@ public class drawerActivity extends AppCompatActivity
             @Override
             public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
-                System.out.println("数据更改");
-
-
+                System.out.println("数据更新");
                 Iterable<com.google.firebase.database.DataSnapshot> orders = dataSnapshot.getChildren();
 
-                Calendar calendar = Calendar.getInstance();
+
+                java.util.Calendar calendar = java.util.Calendar.getInstance();
+                int year = calendar.get(java.util.Calendar.YEAR);
+                int month = calendar.get(java.util.Calendar.MONTH);
+                int day = calendar.get(java.util.Calendar.DAY_OF_MONTH);
+
+                String dayS="";
+                if(day<10){
+                    dayS = "0"+Integer.toString(day);
+                }
+
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int minutes = calendar.get(Calendar.MINUTE);
-                String time = Integer.toString(hour) +Integer.toString(minutes);
+
+                String cday = Integer.toString(year)+
+                        Integer.toString(month)+ dayS;
+
+                String ctime =Integer.toString(hour) +
+                        Integer.toString(minutes);
+
+                int currDay=Integer.parseInt(cday);
+                int currTime = Integer.parseInt(ctime);
+                System.out.println("当下时间"+ cday+currTime);
 
 
-                int currTime = Integer.parseInt(time);
-                System.out.println("当下时间"+ currTime);
 
-                int orderTime = Integer.parseInt(dataSnapshot.getValue(Order.class).getTime());
+
+
+
+                String  orderTime = dataSnapshot.getValue(Order.class).getTime();
+                System.out.println("在OnStart里面 OrderTime before 截取"+ orderTime);
+                String orderDate = orderTime.substring(0,8);
+                System.out.println(orderTime);
+                System.out.println(orderDate);
+
+                String orderT = orderTime.substring(8);
+
+
+
+                System.out.println("创建日："+orderDate);
+                System.out.println("创建时："+orderT);
+
+
+                int orderTimeint = Integer.parseInt(orderT);
+                int orderDay = Integer.parseInt(orderDate);
+
                 System.out.println("加入时间"+ orderTime);
 
 
-                if(orderTime > currTime) {
+                System.out.println("++++++++++");
+                System.out.println(orderTimeint);
+                System.out.println(currTime);
+                System.out.println("++++++++++");
+                System.out.println(orderDay);
+                System.out.println(currDay);
+
+
+
+
+                if(orderTimeint > currTime && orderDay >= currDay) {
+
+
+                    System.out.println("注入Request");
+                    ouput.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
+                            dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
+                            dataSnapshot.getValue(Order.class).getDestination() + "\nBy the time at: " +
+                            dataSnapshot.getValue(Order.class).getTime());
+
+
+
+
 
 
                     requests.add(dataSnapshot.getValue(Order.class).getItem() + "=" +
@@ -134,6 +247,10 @@ public class drawerActivity extends AppCompatActivity
                             dataSnapshot.getValue(Order.class).getOrderNumber());
 
                 }
+
+
+
+
 
             }
 
@@ -159,14 +276,26 @@ public class drawerActivity extends AppCompatActivity
 
     }
 
+
+
+
+    public void prioritizeOwnOrder(){
+        FirebaseAuth mAuth = FirebaseAuth.getInstance();
+
+        final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
+        final String userID = userEmail.substring(0,userEmail.indexOf('@'));
+
+        System.out.println("");
+
+
+    }
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
+
         }
     }
 
@@ -297,9 +426,11 @@ String strFromHome;
         return timeSelected;
     }
 
-    public List<String>  getOrderArrayListFromDrawer(){
+    public List<String>  getDataArrayListFromDrawer(){
         return requests;
     }
-
+    public List<String>  getOuputArrayListFromDrawer(){
+        return ouput;
+    }
 
 }

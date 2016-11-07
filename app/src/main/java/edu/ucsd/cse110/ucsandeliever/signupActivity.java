@@ -123,8 +123,8 @@ public class signupActivity extends Activity {
                                     student.setStudentId(id);
                                     student.setEmail2(email8);
                                     student.setPassword(password);
-                                    student.setRequestingStatus(false);
                                     student.setuid(currentUid);
+                                    student.setRequesting(false);
 
                                     final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
 

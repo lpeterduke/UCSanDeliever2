@@ -189,6 +189,9 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
         }else{
 
             myFirebaseRef.child("orders").child(order.getOrderNumber()).setValue(order);
+            myFirebaseRef.child("users").child(order.getRequestor()).child("requesting").setValue(true);
+
+
             FragmentManager fragmentManager = getFragmentManager();
             fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
         }
@@ -203,7 +206,18 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
 
         Toast.makeText(getActivity(),"Hour: "+hourOfDay + " Minute: " + minute,Toast.LENGTH_SHORT);
 
-        timeFromClock.setText(""+hourOfDay+""+ minute);
+        java.util.Calendar calendar = java.util.Calendar.getInstance();
+        int year = calendar.get(java.util.Calendar.YEAR);
+        int month = calendar.get(java.util.Calendar.MONTH);
+        int day = calendar.get(java.util.Calendar.DAY_OF_MONTH);
+
+        String dayS="";
+        if(day<10){
+             dayS = "0"+Integer.toString(day);
+        }
+        System.out.println("创建时间是："+year+month+dayS+hourOfDay+minute);
+
+        timeFromClock.setText(""+year+month+dayS+hourOfDay+minute);
 
     }
 

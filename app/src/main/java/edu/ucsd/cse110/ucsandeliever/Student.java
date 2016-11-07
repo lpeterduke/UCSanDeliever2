@@ -15,11 +15,18 @@ public class Student implements Serializable {
     private String password;
 
 
+    private Boolean requesting;
     // if requesting is true,when login screen will lock
-    private boolean requesting;
 
-    public boolean getRequestingSatus(){ return requesting;  }
-    public void setRequestingStatus(boolean boo){ requesting=boo;}
+
+    public Boolean getRequesting() {
+        return requesting;
+    }
+
+    public void setRequesting(Boolean requesting) {
+
+        this.requesting = requesting;
+    }
 
     public String getName() {
         return name;

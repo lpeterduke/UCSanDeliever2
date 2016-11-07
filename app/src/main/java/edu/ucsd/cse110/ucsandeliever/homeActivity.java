@@ -64,6 +64,7 @@ public class homeActivity extends Fragment {
 
     // temp list for exhibiting fake requests
     private List<String> requests = new ArrayList<>();
+    private List<String> ouputList = new ArrayList<>();
 
     View myView;
     @Nullable
@@ -97,8 +98,10 @@ public class homeActivity extends Fragment {
 
         System.out.println("刷新主界面");
 
+
+
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, requests);
+                android.R.layout.simple_list_item_1, ouputList);
 
         ListView myFirstListView = (ListView) (myView.findViewById(R.id.Request_List));
         myFirstListView.setAdapter(adapter);
@@ -158,7 +161,7 @@ public class homeActivity extends Fragment {
 
 
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
-                android.R.layout.simple_list_item_1, requests);
+                android.R.layout.simple_list_item_1, ouputList);
 
         ListView myFirstListView = (ListView) (myView.findViewById(R.id.Request_List));
         myFirstListView.setAdapter(adapter);
@@ -228,10 +231,12 @@ public class homeActivity extends Fragment {
         public void onTitleSelect(String item, String res, String dest, String time, String orderNum);
     }
 
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
-        requests = ((drawerActivity) activity).getOrderArrayListFromDrawer();
+        requests = ((drawerActivity) activity).getDataArrayListFromDrawer();
+        ouputList=((drawerActivity) activity).getOuputArrayListFromDrawer();
         mSelectInterface = (titleSelectInterface) activity;
 
         System.out.println("Orders从Server接受了");
