@@ -63,8 +63,8 @@ public class homeActivity extends Fragment {
 
 
     // temp list for exhibiting fake requests
-    private List<String> requests = new ArrayList<>();
-    private List<String> ouputList = new ArrayList<>();
+    private ArrayList<String> requests = new ArrayList<>();
+    private ArrayList<String> ouputList = new ArrayList<>();
 
     View myView;
     @Nullable
