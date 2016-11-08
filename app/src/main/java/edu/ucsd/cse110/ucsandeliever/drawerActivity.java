@@ -264,7 +264,7 @@ public class drawerActivity extends AppCompatActivity
 
                 String oD = dataSnapshot.getValue(Order.class).getOrderNumber();
                 System.out.println("数据更改的Order#：" + oD);
-                System.out.println("三判定：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) + "|" +(requestMaps.contains(oD)));
+                System.out.println("三判定1：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) + "|" +(requestMaps.contains(oD)));
                 int indexofChange=0;
                 for(Map.Entry<Integer,String> orde: requestMaps.entrySet()){
 
@@ -275,19 +275,22 @@ public class drawerActivity extends AppCompatActivity
                     }
                 }
 
+                System.out.println(requestMaps);
+
                 if(requestMaps.contains(oD)) {
 
-                    requestMaps.remove(indexofChange);
-                    System.out.println(requests);
-                    requests.remove(indexofChange);
                     System.out.println("数据更改的Order#被删掉了：" + indexofChange);
-                    System.out.println(requests);
+                    requestMaps.remove(indexofChange);
+
+                    System.out.println(requests.get(indexofChange));
+                    requests.remove(indexofChange);
+                   // System.out.println(requests);
 
                     ouput.remove(indexofChange);
 
                 }
 
-                System.out.println("三判定 2：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) + "|" +(requestMaps.contains(oD)));
+                System.out.println("三判定2：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) + "|" +(requestMaps.contains(oD)));
 
 
 
@@ -315,8 +318,8 @@ public class drawerActivity extends AppCompatActivity
 
                 System.out.println(requests);
 
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.home_main, new homeActivity()).commit();
+  //              FragmentManager fragmentManager = getFragmentManager();
+    //            fragmentManager.beginTransaction().replace(R.id.home_main, new homeActivity()).commit();
 
 
 

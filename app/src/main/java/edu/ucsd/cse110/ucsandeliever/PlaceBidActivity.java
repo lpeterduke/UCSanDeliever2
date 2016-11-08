@@ -54,6 +54,8 @@ public class PlaceBidActivity extends android.app.Fragment implements TimePicker
             @Override
             public void onClick(View v) {
                 updateDataBase1();
+                Intent intent = new Intent(getActivity(), userRunnerWaitingActivity.class);
+                startActivity(intent);
             }
         });
 
@@ -76,17 +78,6 @@ public class PlaceBidActivity extends android.app.Fragment implements TimePicker
 
 
 
-    /*
-    public void onClick (View v){
-        int id = v.getId();
-
-        if (id == R.id.button4) {
-            Intent intent = new Intent(getActivity(), userRunnerWaitingActivity.class);
-            startActivity(intent);
-            (getActivity()).overridePendingTransition(0,0);
-        }
-    }
-    */
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {

@@ -191,6 +191,7 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
         }else{
 
             myFirebaseRef.child("orders").child(order.getOrderNumber()).setValue(order);
+            
             myFirebaseRef.child("users").child(order.getRequestor()).child("requesting").setValue(true);
 
 
