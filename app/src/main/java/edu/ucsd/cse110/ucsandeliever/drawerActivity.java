@@ -408,10 +408,6 @@ public class drawerActivity extends AppCompatActivity
             // Handle the camera action
             fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
 
-        }else if (id == R.id.order_status_layout) {
-            // Handle the camera action
-            Intent intent = new Intent(this, orderStatus.class);
-            startActivity(intent);
 
         } else if (id == R.id.order_history_layout) {
             fragmentManager.beginTransaction().replace(R.id.content_main, new orderHistroyActivity()).commit();
@@ -422,9 +418,6 @@ public class drawerActivity extends AppCompatActivity
         } else if (id == R.id.log_out) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
-
-        } else if (id == R.id.Chat) {
-
 
         }
         else if (id == R.id.Account) {
