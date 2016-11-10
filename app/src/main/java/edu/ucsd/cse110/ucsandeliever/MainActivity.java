@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity {
             Intent intent = new Intent(this,loginActivity.class);
             startActivity(intent);
 
-        }else if(button_text.equals("Become A New Member")){
+        }else if(button_text.equals("New Member")){
 
             Intent intent = new Intent(this,signupActivity.class);
             startActivity(intent);

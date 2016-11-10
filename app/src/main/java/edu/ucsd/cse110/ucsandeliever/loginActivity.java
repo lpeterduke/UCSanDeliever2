@@ -43,6 +43,7 @@ public class loginActivity extends Activity  {
 
     public FirebaseUser currentUser;
 
+
     private EditText etID;
     private EditText etPassword;
 

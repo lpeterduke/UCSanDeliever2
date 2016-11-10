@@ -5,7 +5,7 @@
         <item
             android:id="@+id/nav_home"
             android:icon="@drawable/nav_home"
-            android:title="Home" />
+            android:title="View Orders" />
 
         <item
             android:id="@+id/nav_request"
@@ -13,23 +13,17 @@
             android:title="Request A Delivery" />
 
 
-        <item
-            android:id="@+id/order_status_layout"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Order Status" />
+
         <item
             android:id="@+id/order_history_layout"
             android:icon="@drawable/ic_menu_gallery"
             android:title="Order History" />
-        <item
-            android:id="@+id/Chat"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Chat" />
+
 
         <item
             android:id="@+id/Account"
             android:icon="@drawable/ic_menu_slideshow"
-            android:title="Account" />
+            android:title="Balance" />
 
         <item
             android:id="@+id/log_out"

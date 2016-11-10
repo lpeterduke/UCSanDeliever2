@@ -5,6 +5,7 @@
 
     <TextView
         android:text="Restaurant"
+        android:textSize="13dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="32dp"
@@ -25,66 +26,6 @@
         android:layout_marginLeft="26dp"
         android:layout_marginStart="26dp" />
 
-    <TextView
-        android:text="What Would You Like"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView22"
-        android:textAlignment="center"
-        android:layout_below="@+id/spinner_restaurant"
-        android:layout_alignLeft="@+id/textView21"
-        android:layout_alignStart="@+id/textView21"
-        android:layout_marginTop="16dp"
-        android:layout_toLeftOf="@+id/spinner_restaurant"
-        android:layout_toStartOf="@+id/spinner_restaurant" />
-
-    <TextView
-        android:text="Delivery Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView23"
-        android:layout_below="@+id/textView22"
-        android:layout_alignLeft="@+id/textView22"
-        android:layout_alignStart="@+id/textView22"
-        android:layout_marginTop="40dp"
-        android:layout_alignRight="@+id/textView22"
-        android:layout_alignEnd="@+id/textView22"
-        android:textAlignment="center" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText8"
-        android:hint="   "
-        android:layout_alignBottom="@+id/textView22"
-        android:layout_alignLeft="@+id/spinner_restaurant"
-        android:layout_alignStart="@+id/spinner_restaurant" />
-
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:id="@+id/editText3"
-        android:singleLine="false"
-        android:layout_alignTop="@+id/textView23"
-        android:layout_alignLeft="@+id/editText8"
-        android:layout_alignStart="@+id/editText8" />
-
-    <Button
-        android:text="Pick A Time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker"
-        android:background="@android:color/white"
-        android:layout_alignBaseline="@+id/editText3"
-        android:layout_alignBottom="@+id/editText3"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginRight="15dp"
-        android:layout_marginEnd="15dp" />
 
     <Button
         android:text="make my order!"
@@ -93,27 +34,91 @@
         android:id="@+id/button2"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="77dp" />
+        android:layout_marginBottom="80dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText8"
+        android:hint="   "
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_alignTop="@+id/textView22"
+        android:layout_alignLeft="@+id/spinner_restaurant"
+        android:layout_alignStart="@+id/spinner_restaurant" />
 
     <TextView
         android:text="Delivery Destination"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView24"
+        android:textSize="12dp"
         android:textAlignment="center"
-        android:layout_marginTop="70dp"
-        android:layout_below="@+id/timePicker"
-        android:layout_alignRight="@+id/textView23"
-        android:layout_alignEnd="@+id/textView23" />
+        android:layout_above="@+id/button2"
+        android:layout_alignLeft="@+id/textView23"
+        android:layout_alignStart="@+id/textView23"
+        android:layout_marginBottom="66dp" />
 
     <Spinner
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/spinner_building"
         android:layout_alignTop="@+id/textView24"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignLeft="@+id/button2"
-        android:layout_alignStart="@+id/button2" />
+        android:layout_toRightOf="@+id/textView24"
+        android:layout_alignRight="@+id/timePicker"
+        android:layout_alignEnd="@+id/timePicker" />
+
+    <TextView
+        android:text="Delivery Time"
+        android:textSize="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView23"
+        android:textAlignment="center"
+        android:layout_marginTop="63dp"
+        android:layout_below="@+id/editText8"
+        android:layout_alignLeft="@+id/textView21"
+        android:layout_alignStart="@+id/textView21" />
+
+    <TextView
+        android:text="Items"
+        android:textSize="13dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView22"
+        android:textAlignment="center"
+        android:layout_marginTop="31dp"
+        android:layout_below="@+id/spinner_restaurant"
+        android:layout_alignLeft="@+id/textView21"
+        android:layout_alignStart="@+id/textView21"
+        android:layout_toLeftOf="@+id/spinner_restaurant"
+        android:layout_toStartOf="@+id/spinner_restaurant" />
+
+    <Button
+        android:text=" Pick A Time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:background="@color/main_color_gray"
+        style="@style/btn_white_large"
+        android:layout_alignTop="@+id/textView23"
+        android:layout_alignRight="@+id/editText8"
+        android:layout_alignEnd="@+id/editText8"
+        android:layout_alignLeft="@+id/editText8"
+        android:layout_alignStart="@+id/editText8" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="5"
+        android:id="@+id/editText3"
+        android:singleLine="false"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/editText8"
+        android:layout_alignEnd="@+id/editText8"
+        android:layout_alignLeft="@+id/timePicker"
+        android:layout_alignStart="@+id/timePicker" />
 
 </RelativeLayout>

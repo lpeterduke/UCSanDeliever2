@@ -11,15 +11,18 @@
     tools:context="edu.ucsd.cse110.ucsandeliever.MainActivity">
 
 
-
-
-    <TextView
+    <Button
+        android:text="New Member"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Welcome to UC Student Delivers"
-        android:layout_above="@+id/buttonsignin"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="61dp" />
+        android:id="@+id/buttonsignup"
+        android:onClick="welcomeSystem"
+        android:layout_marginTop="52dp"
+        android:layout_below="@+id/buttonsignin"
+        android:layout_alignLeft="@+id/buttonsignin"
+        android:layout_alignStart="@+id/buttonsignin"
+        android:layout_alignRight="@+id/buttonsignin"
+        android:layout_alignEnd="@+id/buttonsignin" />
 
     <Button
         android:text="Returning Customer"
@@ -30,14 +33,16 @@
         android:layout_centerVertical="true"
         android:layout_centerHorizontal="true" />
 
-    <Button
-        android:text="Become A New Member"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/buttonsignup"
-        android:onClick="welcomeSystem"
-        android:layout_marginTop="100dp"
-        android:layout_alignTop="@+id/buttonsignin"
+        android:text="Ultimate Convenient Student Delivery"
+        android:textSize="15dp"
+        android:textColor="@color/colorPrimary"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:layout_marginBottom="94dp"
+        android:id="@+id/textView14"
+        android:layout_above="@+id/buttonsignin"
         android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
