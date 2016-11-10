@@ -31,15 +31,22 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Hashtable;
 import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 
 
 public class drawerActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener,homeActivity.titleSelectInterface {
 
 
-    private List<String> requests = new ArrayList<>();
-    private List<String> ouput = new ArrayList<>();
+    private ArrayList<String> requests = new ArrayList<>();
+    private ArrayList<String> ouput = new ArrayList<>();
+
+    private  int i=0;
+    private Hashtable<Integer,String> requestMaps = new Hashtable<Integer, String>();
+
     private List<String> orderHistory = new ArrayList<>();
 
     private String balance;
@@ -51,6 +58,7 @@ public class drawerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.draweractivity_main);
+
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -84,10 +92,8 @@ public class drawerActivity extends AppCompatActivity
 
 
         final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
-        System.out.println("+++++++++++++++++++"+ userEmail+" ");
 
         final String userID = userEmail.substring(0,userEmail.indexOf('@'));
-        System.out.println("+++++++++++++++++++"+ userID+" ");
 
 
         DatabaseReference ref =FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("balance");
@@ -150,31 +156,14 @@ public class drawerActivity extends AppCompatActivity
 
 
                 String  orderTime = dataSnapshot.getValue(Order.class).getTime();
-                System.out.println("在OnStart里面 OrderTime before 截取"+ orderTime);
                 String orderDate = orderTime.substring(0,8);
-                System.out.println(orderTime);
-                System.out.println(orderDate);
-
                 String orderT = orderTime.substring(8);
 
-
-
-                System.out.println("创建日："+orderDate);
-                System.out.println("创建时："+orderT);
-
+                System.out.println("创建时间："+orderTime);
 
                 int orderTimeint = Integer.parseInt(orderT);
                 int orderDay = Integer.parseInt(orderDate);
 
-                System.out.println("加入时间"+ orderTime);
-
-
-                System.out.println("++++++++++");
-                System.out.println(orderTimeint);
-                System.out.println(currTime);
-                System.out.println("++++++++++");
-                System.out.println(orderDay);
-                System.out.println(currDay);
 
 
 
@@ -198,10 +187,10 @@ public class drawerActivity extends AppCompatActivity
 
 
 
+                System.out.println("双判定：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) );
 
 
-
-                if(orderTimeint > currTime && orderDay >= currDay) {
+                if(((orderTimeint > currTime) && (orderDay == currDay)) || orderDay > currDay) {
 
 
                     System.out.println("注入Request");
@@ -210,6 +199,9 @@ public class drawerActivity extends AppCompatActivity
                             dataSnapshot.getValue(Order.class).getDestination() + "\nBy the time at: " +
                             dataSnapshot.getValue(Order.class).getTime());
 
+
+                    requestMaps.put(i,dataSnapshot.getValue(Order.class).getOrderNumber());
+                    i++;
 
 
 
@@ -230,6 +222,8 @@ public class drawerActivity extends AppCompatActivity
             public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
                 System.out.println("数据更新");
+
+
                 Iterable<com.google.firebase.database.DataSnapshot> orders = dataSnapshot.getChildren();
 
 
@@ -258,61 +252,52 @@ public class drawerActivity extends AppCompatActivity
 
 
 
-
-
-
                 String  orderTime = dataSnapshot.getValue(Order.class).getTime();
-                System.out.println("在OnStart里面 OrderTime before 截取"+ orderTime);
                 String orderDate = orderTime.substring(0,8);
-                System.out.println(orderTime);
-                System.out.println(orderDate);
-
                 String orderT = orderTime.substring(8);
 
 
-
-                System.out.println("创建日："+orderDate);
-                System.out.println("创建时："+orderT);
 
 
                 int orderTimeint = Integer.parseInt(orderT);
                 int orderDay = Integer.parseInt(orderDate);
 
-                System.out.println("加入时间"+ orderTime);
+                String oD = dataSnapshot.getValue(Order.class).getOrderNumber();
+                System.out.println("数据更改的Order#：" + oD);
+                System.out.println("三判定1：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) + "|" +(requestMaps.contains(oD)));
+                int indexofChange=0;
+                for(Map.Entry<Integer,String> orde: requestMaps.entrySet()){
 
 
-                System.out.println("++++++++++");
-                System.out.println(orderTimeint);
-                System.out.println(currTime);
-                System.out.println("++++++++++");
-                System.out.println(orderDay);
-                System.out.println(currDay);
+                    if (oD.equals(orde.getValue())) {
+                        indexofChange =   orde.getKey();
 
-
-
-                FirebaseAuth auth = FirebaseAuth.getInstance();
-                String uid = null;
-                if(auth !=null)
-                {
-                    uid = auth.getCurrentUser().getUid().toString();
+                    }
                 }
 
+                System.out.println(requestMaps);
 
-                if(uid.contentEquals(dataSnapshot.getValue(Order.class).getRequestorUid()))
-                {
-                    orderHistory.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
-                            dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
-                            dataSnapshot.getValue(Order.class).getDestination() + "\nBy the time at: " +
-                            dataSnapshot.getValue(Order.class).getTime());
+                if(requestMaps.contains(oD)) {
+
+                    System.out.println("数据更改的Order#被删掉了：" + indexofChange);
+                    requestMaps.remove(indexofChange);
+
+                    System.out.println(requests.get(indexofChange));
+                    requests.remove(indexofChange);
+                   // System.out.println(requests);
+
+                    ouput.remove(indexofChange);
+
                 }
 
+                System.out.println("三判定2：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) + "|" +(requestMaps.contains(oD)));
 
 
 
-                if(orderTimeint > currTime && orderDay >= currDay) {
+                if(((orderTimeint > currTime) && (orderDay == currDay)) || orderDay > currDay) {
 
 
-                    System.out.println("注入Request");
+                    System.out.println("注入更改后的Request");
                     ouput.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
                             dataSnapshot.getValue(Order.class).getDestination() + "\nBy the time at: " +
@@ -331,8 +316,10 @@ public class drawerActivity extends AppCompatActivity
 
                 }
 
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.home_main, new homeActivity()).commit();
+                System.out.println(requests);
+
+  //              FragmentManager fragmentManager = getFragmentManager();
+    //            fragmentManager.beginTransaction().replace(R.id.home_main, new homeActivity()).commit();
 
 
 
@@ -475,7 +462,7 @@ public class drawerActivity extends AppCompatActivity
 
 
 
-String strFromHome;
+    String strFromHome;
     String itemSelected;
     String resSelected;
     String destSelected;
@@ -490,7 +477,7 @@ String strFromHome;
         itemSelected=item;
         resSelected = res;
         destSelected=dest;
-         timeSelected=time;
+        timeSelected=time;
         orderNumSelected=orderNum;
     }
 
@@ -524,10 +511,10 @@ String strFromHome;
         return timeSelected;
     }
 
-    public List<String>  getDataArrayListFromDrawer(){
+    public ArrayList<String>  getDataArrayListFromDrawer(){
         return requests;
     }
-    public List<String>  getOuputArrayListFromDrawer(){
+    public ArrayList<String>  getOuputArrayListFromDrawer(){
         return ouput;
     }
 
