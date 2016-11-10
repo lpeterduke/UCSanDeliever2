@@ -28,9 +28,7 @@
         <activity android:name=".orderHistroyActivity" />
         <activity android:name=".drawerActivity" />
         <activity android:name=".homeActivity" />
-
-        <activity android:name="ucsandelievery"/>
-
+        <activity android:name=".ucsandelievery" />
         <activity android:name=".ViewRequestDetailActivity" />
         <activity android:name=".PlaceBidActivity" />
         <activity android:name=".balanceActivity" />
@@ -38,18 +36,16 @@
         <activity android:name=".userRunnerWaitingActivity"></activity>
 
         <activity
-            android:name="UserList"
+            android:name=".UserList"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
-        </activity>
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
         <activity
-            android:name="Chat"
+            android:name=".Chat"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize" >
-        </activity>
-
+            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+        <activity android:name=".confirmPickingBidActivity"></activity>
     </application>
 
 </manifest>
