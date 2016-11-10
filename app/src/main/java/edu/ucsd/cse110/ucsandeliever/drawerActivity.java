@@ -4,7 +4,6 @@ package edu.ucsd.cse110.ucsandeliever;
  * Created by PANYUE on 16/10/11.
  */
 
-import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -20,19 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
-import android.widget.TextView;
 
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
-
-import com.google.android.gms.appindexing.Action;
-import com.google.android.gms.appindexing.AppIndex;
-import com.google.android.gms.appindexing.Thing;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.ChildEventListener;
@@ -41,8 +28,6 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-
-import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -53,14 +38,14 @@ import java.util.Objects;
 
 
 public class drawerActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener, homeActivity.titleSelectInterface {
+        implements NavigationView.OnNavigationItemSelectedListener,homeActivity.titleSelectInterface {
 
 
     private ArrayList<String> requests = new ArrayList<>();
     private ArrayList<String> ouput = new ArrayList<>();
 
-    private int i = 0;
-    private Hashtable<Integer, String> requestMaps = new Hashtable<Integer, String>();
+    private  int i=0;
+    private Hashtable<Integer,String> requestMaps = new Hashtable<Integer, String>();
 
     private List<String> orderHistory = new ArrayList<>();
 
@@ -68,20 +53,12 @@ public class drawerActivity extends AppCompatActivity
     public FirebaseUser currentUser;
 
     private FirebaseAuth mAuth;
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    private GoogleApiClient client;
-
+    final String userID = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.draweractivity_main);
 
-        // indentify the user
-       // TextView textview = (TextView)findViewById(R.id.textView6);
-        //textview.setText(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -96,16 +73,14 @@ public class drawerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
+
+
+
     }
 
     @Override
     protected void onStart() {
-        super.onStart();// ATTENTION: This was auto-generated to implement the App Indexing API.
-// See https://g.co/AppIndexing/AndroidStudio for more information.
-        client.connect();
+        super.onStart();
 
         DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
         DatabaseReference ordersRef = mRootRef.child("orders");
@@ -116,20 +91,21 @@ public class drawerActivity extends AppCompatActivity
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
 
-        final String userEmail = mAuth.getCurrentUser().getEmail().toString();
+        final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
 
-        final String userID = userEmail.substring(0, userEmail.indexOf('@'));
+        final String userID = userEmail.substring(0,userEmail.indexOf('@'));
 
 
-        DatabaseReference ref = FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("balance");
+        DatabaseReference ref =FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("balance");
 
-        ref.addValueEventListener(new ValueEventListener() {
+        ref.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
             @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
+            public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
 
                 System.out.println("余额变更");
                 int message = dataSnapshot.getValue(Integer.class);
                 balance = Integer.toString(message);
+
 
 
             }
@@ -141,84 +117,100 @@ public class drawerActivity extends AppCompatActivity
         });
 
 
+
+
         ordersRef.addChildEventListener(new ChildEventListener() {
             @Override
-            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+            public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
                 System.out.println("数据抓包");
-                Iterable<DataSnapshot> orders = dataSnapshot.getChildren();
+                Iterable<com.google.firebase.database.DataSnapshot> orders = dataSnapshot.getChildren();
 
 
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                java.util.Calendar calendar = java.util.Calendar.getInstance();
+                int year = calendar.get(java.util.Calendar.YEAR);
+                int month = calendar.get(java.util.Calendar.MONTH);
+                int day = calendar.get(java.util.Calendar.DAY_OF_MONTH);
 
-                String dayS = "";
-                if (day < 10) {
-                    dayS = "0" + Integer.toString(day);
+                String dayS="";
+                if(day<10){
+                    dayS = "0"+Integer.toString(day);
                 }
 
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int minutes = calendar.get(Calendar.MINUTE);
 
-                String cday = Integer.toString(year) +
-                        Integer.toString(month) + dayS;
+                String cday = Integer.toString(year)+
+                        Integer.toString(month)+ dayS;
 
-                String ctime = Integer.toString(hour) +
+                String ctime =Integer.toString(hour) +
                         Integer.toString(minutes);
 
-                int currDay = Integer.parseInt(cday);
+                int currDay=Integer.parseInt(cday);
                 int currTime = Integer.parseInt(ctime);
-                System.out.println("当下时间" + cday + currTime);
+                System.out.println("当下时间"+ cday+currTime);
 
 
-                String orderTime = dataSnapshot.getValue(Order.class).getTime();
-                String orderDate = orderTime.substring(0, 8);
+
+
+
+
+                String  orderTime = dataSnapshot.getValue(Order.class).getTime();
+                String orderDate = orderTime.substring(0,8);
                 String orderT = orderTime.substring(8);
 
-                System.out.println("创建时间：" + orderTime);
+                System.out.println("创建时间："+orderTime);
 
                 int orderTimeint = Integer.parseInt(orderT);
                 int orderDay = Integer.parseInt(orderDate);
 
 
+
+
+
                 FirebaseAuth auth = FirebaseAuth.getInstance();
                 String uid = null;
-                if (auth != null) {
+                if(auth !=null)
+                {
                     uid = auth.getCurrentUser().getUid().toString();
                 }
 
 
-                if (uid.contentEquals(dataSnapshot.getValue(Order.class).getRequestorUid())) {
-                    orderHistory.add("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
+                if(uid.contentEquals(dataSnapshot.getValue(Order.class).getRequestorUid()))
+                {
+                    orderHistory.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
                             dataSnapshot.getValue(Order.class).getDestination() + "\nBy the time at: " +
                             dataSnapshot.getValue(Order.class).getTime());
                 }
 
 
-                System.out.println("双判定：" + (orderTimeint > currTime) + "|" + (orderDay >= currDay));
 
 
-                if (((orderTimeint > currTime) && (orderDay == currDay)) || orderDay > currDay) {
+                System.out.println("双判定：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) );
+
+
+                if(((orderTimeint > currTime) && (orderDay == currDay)) || orderDay > currDay) {
 
 
                     System.out.println("注入Request");
-                    ouput.add("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
+                    ouput.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
                             dataSnapshot.getValue(Order.class).getDestination() + "\nBy the time at: " +
                             dataSnapshot.getValue(Order.class).getTime());
 
 
-                    requestMaps.put(i, dataSnapshot.getValue(Order.class).getOrderNumber());
+                    requestMaps.put(i,dataSnapshot.getValue(Order.class).getOrderNumber());
                     i++;
+
+
+
 
 
                     requests.add(dataSnapshot.getValue(Order.class).getItem() + "=" +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "=" +
                             dataSnapshot.getValue(Order.class).getDestination() + "=" +
-                            dataSnapshot.getValue(Order.class).getTime() + "=" +
+                            dataSnapshot.getValue(Order.class).getTime()+ "=" +
                             dataSnapshot.getValue(Order.class).getOrderNumber());
 
                 }
@@ -227,41 +219,44 @@ public class drawerActivity extends AppCompatActivity
             }
 
             @Override
-            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+            public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
                 System.out.println("数据更新");
 
 
-                Iterable<DataSnapshot> orders = dataSnapshot.getChildren();
+                Iterable<com.google.firebase.database.DataSnapshot> orders = dataSnapshot.getChildren();
 
 
-                Calendar calendar = Calendar.getInstance();
-                int year = calendar.get(Calendar.YEAR);
-                int month = calendar.get(Calendar.MONTH);
-                int day = calendar.get(Calendar.DAY_OF_MONTH);
+                java.util.Calendar calendar = java.util.Calendar.getInstance();
+                int year = calendar.get(java.util.Calendar.YEAR);
+                int month = calendar.get(java.util.Calendar.MONTH);
+                int day = calendar.get(java.util.Calendar.DAY_OF_MONTH);
 
-                String dayS = "";
-                if (day < 10) {
-                    dayS = "0" + Integer.toString(day);
+                String dayS="";
+                if(day<10){
+                    dayS = "0"+Integer.toString(day);
                 }
 
                 int hour = calendar.get(Calendar.HOUR_OF_DAY);
                 int minutes = calendar.get(Calendar.MINUTE);
 
-                String cday = Integer.toString(year) +
-                        Integer.toString(month) + dayS;
+                String cday = Integer.toString(year)+
+                        Integer.toString(month)+ dayS;
 
-                String ctime = Integer.toString(hour) +
+                String ctime =Integer.toString(hour) +
                         Integer.toString(minutes);
 
-                int currDay = Integer.parseInt(cday);
+                int currDay=Integer.parseInt(cday);
                 int currTime = Integer.parseInt(ctime);
-                System.out.println("当下时间" + cday + currTime);
+                System.out.println("当下时间"+ cday+currTime);
 
 
-                String orderTime = dataSnapshot.getValue(Order.class).getTime();
-                String orderDate = orderTime.substring(0, 8);
+
+                String  orderTime = dataSnapshot.getValue(Order.class).getTime();
+                String orderDate = orderTime.substring(0,8);
                 String orderT = orderTime.substring(8);
+
+
 
 
                 int orderTimeint = Integer.parseInt(orderT);
@@ -269,69 +264,76 @@ public class drawerActivity extends AppCompatActivity
 
                 String oD = dataSnapshot.getValue(Order.class).getOrderNumber();
                 System.out.println("数据更改的Order#：" + oD);
-                System.out.println("三判定1：" + (orderTimeint > currTime) + "|" + (orderDay >= currDay) + "|" + (requestMaps.contains(oD)));
-                int indexofChange = 0;
-                for (Map.Entry<Integer, String> orde : requestMaps.entrySet()) {
+                System.out.println("三判定1：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) + "|" +(requestMaps.contains(oD)));
+                int indexofChange=0;
+                for(Map.Entry<Integer,String> orde: requestMaps.entrySet()){
 
 
                     if (oD.equals(orde.getValue())) {
-                        indexofChange = orde.getKey();
+                        indexofChange =   orde.getKey();
 
                     }
                 }
 
                 System.out.println(requestMaps);
 
-                if (requestMaps.contains(oD)) {
+                if(requestMaps.contains(oD)) {
 
                     System.out.println("数据更改的Order#被删掉了：" + indexofChange);
                     requestMaps.remove(indexofChange);
 
                     System.out.println(requests.get(indexofChange));
                     requests.remove(indexofChange);
-                    // System.out.println(requests);
+                   // System.out.println(requests);
 
                     ouput.remove(indexofChange);
 
                 }
 
-                System.out.println("三判定2：" + (orderTimeint > currTime) + "|" + (orderDay >= currDay) + "|" + (requestMaps.contains(oD)));
+                System.out.println("三判定2：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) + "|" +(requestMaps.contains(oD)));
 
 
-                if (((orderTimeint > currTime) && (orderDay == currDay)) || orderDay > currDay) {
+
+                if(((orderTimeint > currTime) && (orderDay == currDay)) || orderDay > currDay) {
 
 
                     System.out.println("注入更改后的Request");
-                    ouput.add("Getting: " + dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
+                    ouput.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
                             dataSnapshot.getValue(Order.class).getDestination() + "\nBy the time at: " +
                             dataSnapshot.getValue(Order.class).getTime());
 
 
+
+
+
+
                     requests.add(dataSnapshot.getValue(Order.class).getItem() + "=" +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "=" +
                             dataSnapshot.getValue(Order.class).getDestination() + "=" +
-                            dataSnapshot.getValue(Order.class).getTime() + "=" +
+                            dataSnapshot.getValue(Order.class).getTime()+ "=" +
                             dataSnapshot.getValue(Order.class).getOrderNumber());
 
                 }
 
                 System.out.println(requests);
 
-                //              FragmentManager fragmentManager = getFragmentManager();
-                //            fragmentManager.beginTransaction().replace(R.id.home_main, new homeActivity()).commit();
+  //              FragmentManager fragmentManager = getFragmentManager();
+    //            fragmentManager.beginTransaction().replace(R.id.home_main, new homeActivity()).commit();
+
+
 
 
             }
 
             @Override
-            public void onChildRemoved(DataSnapshot dataSnapshot) {
+            public void onChildRemoved(com.google.firebase.database.DataSnapshot dataSnapshot) {
 
 
             }
 
             @Override
-            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+            public void onChildMoved(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
             }
 
@@ -342,23 +344,23 @@ public class drawerActivity extends AppCompatActivity
         });
 
 
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.start(client, getIndexApiAction());
+
+
     }
 
 
-    public void prioritizeOwnOrder() {
+
+
+    public void prioritizeOwnOrder(){
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
-        final String userEmail = mAuth.getCurrentUser().getEmail().toString();
-        final String userID = userEmail.substring(0, userEmail.indexOf('@'));
+        final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
+        final String userID = userEmail.substring(0,userEmail.indexOf('@'));
 
         System.out.println("");
 
 
     }
-
     public void onBackPressed() {
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
 
@@ -400,11 +402,16 @@ public class drawerActivity extends AppCompatActivity
         FragmentManager fragmentManager = getFragmentManager();
 
 
+
+
         if (id == R.id.nav_home) {
             // Handle the camera action
             fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
 
-
+        }else if (id == R.id.order_status_layout) {
+            // Handle the camera action
+            Intent intent = new Intent(this, orderStatus.class);
+            startActivity(intent);
 
         } else if (id == R.id.order_history_layout) {
             fragmentManager.beginTransaction().replace(R.id.content_main, new orderHistroyActivity()).commit();
@@ -416,12 +423,16 @@ public class drawerActivity extends AppCompatActivity
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
 
+        } else if (id == R.id.Chat) {
 
-        } else if (id == R.id.Account) {
+
+        }
+        else if (id == R.id.Account) {
             fragmentManager.beginTransaction().replace(R.id.content_main, new balanceActivity()).commit();
 
 
-        } else if (id == R.id.nav_share) {
+        }
+        else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {
 
@@ -433,6 +444,9 @@ public class drawerActivity extends AppCompatActivity
     }
 
 
+
+
+
     //向viewdetailed发射 创建
     private OnMainListener mainListener = new OnMainListener() {
         @Override
@@ -441,36 +455,11 @@ public class drawerActivity extends AppCompatActivity
         }
     };
 
-    /**
-     * ATTENTION: This was auto-generated to implement the App Indexing API.
-     * See https://g.co/AppIndexing/AndroidStudio for more information.
-     */
-    public Action getIndexApiAction() {
-        Thing object = new Thing.Builder()
-                .setName("drawer Page") // TODO: Define a title for the content shown.
-                // TODO: Make sure this auto-generated URL is correct.
-                .setUrl(Uri.parse("http://[ENTER-YOUR-URL-HERE]"))
-                .build();
-        return new Action.Builder(Action.TYPE_VIEW)
-                .setObject(object)
-                .setActionStatus(Action.STATUS_TYPE_COMPLETED)
-                .build();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
-
-        // ATTENTION: This was auto-generated to implement the App Indexing API.
-        // See https://g.co/AppIndexing/AndroidStudio for more information.
-        AppIndex.AppIndexApi.end(client, getIndexApiAction());
-        client.disconnect();
-    }
-
     // 接口
     public interface OnMainListener {
         public void onMainAction(String str);
     }
+
 
 
     String strFromHome;
@@ -481,14 +470,15 @@ public class drawerActivity extends AppCompatActivity
     String orderNumSelected;
 
 
+
     //从Home里面接受
     @Override
-    public void onTitleSelect(String item, String res, String dest, String time, String orderNum) {
-        itemSelected = item;
+    public void onTitleSelect(String item, String res, String dest, String time,String orderNum) {
+        itemSelected=item;
         resSelected = res;
-        destSelected = dest;
-        timeSelected = time;
-        orderNumSelected = orderNum;
+        destSelected=dest;
+        timeSelected=time;
+        orderNumSelected=orderNum;
     }
 
 
@@ -501,7 +491,7 @@ public class drawerActivity extends AppCompatActivity
         return balance;
     }
 
-    public String getItemSelected() {
+    public String getItemSelected(){
         return itemSelected;
     }
 
@@ -521,11 +511,10 @@ public class drawerActivity extends AppCompatActivity
         return timeSelected;
     }
 
-    public ArrayList<String> getDataArrayListFromDrawer() {
+    public ArrayList<String>  getDataArrayListFromDrawer(){
         return requests;
     }
-
-    public ArrayList<String> getOuputArrayListFromDrawer() {
+    public ArrayList<String>  getOuputArrayListFromDrawer(){
         return ouput;
     }
 
