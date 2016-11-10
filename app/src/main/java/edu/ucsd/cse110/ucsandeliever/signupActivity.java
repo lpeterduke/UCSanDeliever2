@@ -58,6 +58,8 @@ public class signupActivity extends Activity {
         etPassword  = (EditText) findViewById(R.id.editText4); // get user password
         signUpBtn = (Button) findViewById(R.id.button);
 
+        etID.requestFocus();
+
         signUpBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
@@ -91,9 +93,6 @@ public class signupActivity extends Activity {
                 @Override
                 public void onComplete(@NonNull Task<AuthResult> task) {
                     if (task.isSuccessful()) {
-
-
-
 
 
                         EditText etName = (EditText) findViewById(R.id.SUName);
