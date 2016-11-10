@@ -126,15 +126,26 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
 
 
 
+        //Zihan Zheng nov 6/2016
         //create button
         makeOrder = (Button) myView.findViewById(R.id.button2);
         makeOrder.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
                 updateDataBase();
+                //FragmentManager fragmentManager = getFragmentManager();
+                //fragmentManager.beginTransaction().replace(R.id.content_main, new homeActivity()).commit();
+                int id = view.getId();
 
+                if (id == R.id.button2) {
+                    Intent intent = new Intent(getActivity(), orderStatus.class);
+                    startActivity(intent);
+                    (getActivity()).overridePendingTransition(0,0);
+                }
             }
         });
+
+        //Zihan Zheng nov 6/2016 end
 
 
         return myView;
