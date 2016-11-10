@@ -103,9 +103,9 @@ public class drawerActivity extends AppCompatActivity
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
 
                 System.out.println("余额变更");
-                int message = dataSnapshot.getValue(Integer.class);
-                balance = Integer.toString(message);
-
+                String msg = dataSnapshot.getValue(String.class);
+                System.out.println("msg: " + msg);
+                balance = msg;
 
 
             }

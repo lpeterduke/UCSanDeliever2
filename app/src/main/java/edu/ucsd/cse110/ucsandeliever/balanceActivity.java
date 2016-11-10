@@ -6,6 +6,7 @@ package edu.ucsd.cse110.ucsandeliever;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.app.FragmentManager;
 import android.os.Bundle;
 import android.os.SystemClock;
 import android.support.annotation.Nullable;
@@ -52,7 +53,7 @@ public class balanceActivity extends Fragment {
     private EditText etBalance;
     private EditText name;
     private TextView mTextView;
-
+    private Button settingButton;
 
     DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
     DatabaseReference usersRef = mRootRef.child("users");
@@ -78,9 +79,18 @@ public class balanceActivity extends Fragment {
 
         mTextView = (TextView) myView.findViewById(R.id.Balance);
 
+        settingButton =  (Button) myView.findViewById(R.id.balanceSetting);
+
         System.out.println("余额是："+balance);
 
         mTextView.setText(balance);
+
+        settingButton.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                enterHome();
+            }
+        });
 
 
         return myView;
@@ -98,7 +108,18 @@ public class balanceActivity extends Fragment {
     }
 
 
+    public void enterHome() {
+
+        Intent intent = new Intent(getActivity(), bSetActivity.class);
+        startActivity(intent);
+        (getActivity()).overridePendingTransition(0,0);
+
+
+    }
 
 
 
-}
+
+
+
+    }
