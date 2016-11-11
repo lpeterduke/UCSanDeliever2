@@ -107,7 +107,7 @@ public class orderStatus extends AppCompatActivity {
         super.onStart();
 
         DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference ordersRef = mRootRef.child("orders");
+        DatabaseReference ordersRef = mRootRef.child("bidList");
 
         ordersRef.addChildEventListener(new ChildEventListener() {
             @Override
@@ -115,20 +115,21 @@ public class orderStatus extends AppCompatActivity {
 
                 // get the current uid
                 String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-                
-                if(currUid.contentEquals(dataSnapshot.getValue(Order.class).getRequestorUid())){
+
+
+
+                if(currUid.contentEquals(dataSnapshot.getKey())){
                     //需要更新bid list
                     //need more testing over here!!!!!!
                     output.clear();
                     bids.clear();
 
+                    System.out.println("找到对应的Requestor");
 
                     // test1, if bug then change to add test-null condition for bidLevel (some have bids but some don't)
                     // and just delete the iterable and loop.
-                    if(dataSnapshot.child("bids") != null){
-                        com.google.firebase.database.DataSnapshot bidLevel = dataSnapshot.child("bids");
 
-                        Iterable<com.google.firebase.database.DataSnapshot> newbids = bidLevel.getChildren();
+                        Iterable<com.google.firebase.database.DataSnapshot> newbids = dataSnapshot.getChildren();
                         for(com.google.firebase.database.DataSnapshot e: newbids) {
                             output.add("Money: " + e.getValue(Bid.class).getMoney() + "\nTime: " +
                                     e.getValue(Bid.class).getTime() + "\nWho : " +
@@ -143,37 +144,44 @@ public class orderStatus extends AppCompatActivity {
                             System.out.println(bids.get(i));
                         }
 
-                    }
+
                 }
             }
 
             @Override
             public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
-
                 // get the current uid
                 String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
 
-                // need getRequestorUID
-                if(currUid.contentEquals(dataSnapshot.getValue(Order.class).getRequestorUid())){
+
+                if(currUid.contentEquals(dataSnapshot.getKey())){
+                    //需要更新bid list
                     //need more testing over here!!!!!!
                     output.clear();
                     bids.clear();
 
-                    if(dataSnapshot.child("bids") != null){
-                        com.google.firebase.database.DataSnapshot bidLevel = dataSnapshot.child("bids");
+                    System.out.println("找到对应的Requestor");
 
-                        Iterable<com.google.firebase.database.DataSnapshot> newbids = bidLevel.getChildren();
-                        for(com.google.firebase.database.DataSnapshot e: newbids) {
-                            output.add("Money: " + e.getValue(Bid.class).getMoney() + "\nTime: " +
-                                    e.getValue(Bid.class).getTime() + "\nWho : " +
-                                    e.getValue(Bid.class).getRunner());
+                    // test1, if bug then change to add test-null condition for bidLevel (some have bids but some don't)
+                    // and just delete the iterable and loop.
 
-                            bids.add(e.getValue(Bid.class).getMoney() + "=" +
-                                    e.getValue(Bid.class).getTime() + "=" +
-                                    e.getValue(Bid.class).getRunner());
-                        }
+                    Iterable<com.google.firebase.database.DataSnapshot> newbids = dataSnapshot.getChildren();
+                    for(com.google.firebase.database.DataSnapshot e: newbids) {
+                        output.add("Money: " + e.getValue(Bid.class).getMoney() + "\nTime: " +
+                                e.getValue(Bid.class).getTime() + "\nWho : " +
+                                e.getValue(Bid.class).getRunner());
+
+                        bids.add(e.getValue(Bid.class).getMoney() + "=" +
+                                e.getValue(Bid.class).getTime() + "=" +
+                                e.getValue(Bid.class).getRunner());
                     }
+                    //see what's in bids after adding
+                    for(int i =0; i<bids.size(); i++){
+                        System.out.println(bids.get(i));
+                    }
+
+
                 }
             }
 

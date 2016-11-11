@@ -65,13 +65,13 @@ public class PlaceBidActivity extends android.app.Fragment implements TimePicker
     public void updateDataBase1() {
         String id;
         id = mAuth.getCurrentUser().getUid();
-        Bid bid = new Bid(money.getText().toString(), timeFromClock.getText().toString(), id);
+        Bid bid = new Bid(money.getText().toString(), timeFromClock.getText().toString(), id,requestorUid );
         if (TextUtils.isEmpty(money.toString()) ||
                 TextUtils.isEmpty(timeFromClock.getText()) ||
                 TextUtils.isEmpty(id)) {
             System.out.println("Not enough");
         } else {
-            ref.child("orders").child(orderNumb).child("bids").child(bid.getBidNum()).setValue(bid);
+            ref.child("bidList").child(requestorUid).child(bid.getBidNum()).setValue(bid);
         }
     }
 
@@ -86,10 +86,12 @@ public class PlaceBidActivity extends android.app.Fragment implements TimePicker
     }
 
     private String orderNumb;
+    private String requestorUid;
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);
         orderNumb = ((drawerActivity) activity).getOrderNumSelected();
+        requestorUid =((drawerActivity) activity).getRequestorUid();
         System.out.println("order 已接受");
 
     }

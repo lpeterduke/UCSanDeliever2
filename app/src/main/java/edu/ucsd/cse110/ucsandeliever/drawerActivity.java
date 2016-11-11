@@ -211,6 +211,7 @@ public class drawerActivity extends AppCompatActivity
                             dataSnapshot.getValue(Order.class).getRestaurants() + "=" +
                             dataSnapshot.getValue(Order.class).getDestination() + "=" +
                             dataSnapshot.getValue(Order.class).getTime()+ "=" +
+                            dataSnapshot.getValue(Order.class).getRequestorUid()+ "=" +
                             dataSnapshot.getValue(Order.class).getOrderNumber());
 
                 }
@@ -312,6 +313,7 @@ public class drawerActivity extends AppCompatActivity
                             dataSnapshot.getValue(Order.class).getRestaurants() + "=" +
                             dataSnapshot.getValue(Order.class).getDestination() + "=" +
                             dataSnapshot.getValue(Order.class).getTime()+ "=" +
+                            dataSnapshot.getValue(Order.class).getRequestorUid()+ "=" +
                             dataSnapshot.getValue(Order.class).getOrderNumber());
 
                 }
@@ -424,6 +426,11 @@ public class drawerActivity extends AppCompatActivity
             fragmentManager.beginTransaction().replace(R.id.content_main, new balanceActivity()).commit();
 
 
+        }else if (id == R.id.orderStatus) {
+
+            Intent intent = new Intent(drawerActivity.this,orderStatus.class);
+            startActivity(intent);
+
         }
         else if (id == R.id.nav_share) {
 
@@ -461,19 +468,24 @@ public class drawerActivity extends AppCompatActivity
     String destSelected;
     String timeSelected;
     String orderNumSelected;
+    String requestorUid;
 
 
 
     //从Home里面接受
     @Override
-    public void onTitleSelect(String item, String res, String dest, String time,String orderNum) {
+    public void onTitleSelect(String item, String res, String dest, String time,String orderNum, String requestor) {
         itemSelected=item;
         resSelected = res;
         destSelected=dest;
         timeSelected=time;
         orderNumSelected=orderNum;
+        requestorUid = requestor;
     }
 
+    public String getRequestorUid() {
+        return requestorUid;
+    }
 
     public List<String> getOrderHistory() {
         return orderHistory;
