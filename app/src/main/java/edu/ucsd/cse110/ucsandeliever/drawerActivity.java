@@ -319,6 +319,7 @@ public class drawerActivity extends AppCompatActivity
                 System.out.println(requestMaps);
                 if(requestMaps.contains(oD)) {
                     System.out.println("数据更改的Order#被删掉了：" + indexofChange);
+                    i--;
                     requestMaps.remove(indexofChange);
                     System.out.println("还剩下： "+requestMaps);
                     requests.remove(indexofChange);
