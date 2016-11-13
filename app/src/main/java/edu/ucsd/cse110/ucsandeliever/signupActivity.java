@@ -130,7 +130,7 @@ public class signupActivity extends Activity {
                                     final String userID = userEmail.substring(0,userEmail.indexOf('@'));
 
 
-                                    myFirebaseRef.child("users").child(userID).setValue(student);
+                                    myFirebaseRef.child("users").child(currentUid).setValue(student);
 
                                 } else {
 

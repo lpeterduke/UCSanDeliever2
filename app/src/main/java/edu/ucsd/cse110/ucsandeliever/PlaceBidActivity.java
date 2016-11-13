@@ -81,8 +81,11 @@ public class PlaceBidActivity extends android.app.Fragment implements TimePicker
 
     @Override
     public void onTimeSet(TimePicker view, int hourOfDay, int minute) {
-
-        timeFromClock.setText("" + hourOfDay + "" + minute);
+        String h = Integer.toString(hourOfDay);
+        if(hourOfDay<10){
+            h="0"+h;
+        }
+        timeFromClock.setText("" + h + "" + minute);
     }
 
     private String orderNumb;
