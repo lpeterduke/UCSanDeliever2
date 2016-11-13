@@ -6,7 +6,7 @@ import java.util.*;
  */
 
 public class Bid {
-    private String bidNum,money,runner,time;
+    private String bidNum,money,runner,time,requestor;
     private Random r=new Random();
 
     public Bid()
@@ -17,12 +17,21 @@ public class Bid {
             bidNum+=Integer.toString(r.nextInt(1000));
     }
 
-    public Bid(String s1, String s2, String s3)
+    public Bid(String s1, String s2, String s3, String s4)
     {
         this();
         money=s1;
         time=s2;
         runner=s3;
+        requestor=s4;
+    }
+
+    public String getRequestor() {
+        return requestor;
+    }
+
+    public void setRequestor(String requestor) {
+        this.requestor = requestor;
     }
 
     public String getMoney()

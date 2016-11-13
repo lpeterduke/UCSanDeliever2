@@ -7,8 +7,8 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
-        android:label="UC Student Delivery now Online"
+        android:icon="@drawable/uc"
+        android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
@@ -30,6 +30,7 @@
         <activity android:name=".homeActivity" />
         <activity android:name=".ucsandelievery" />
         <activity android:name=".ViewRequestDetailActivity" />
+        <activity android:name=".bSetActivity" />
         <activity android:name=".PlaceBidActivity" />
         <activity android:name=".balanceActivity" />
 

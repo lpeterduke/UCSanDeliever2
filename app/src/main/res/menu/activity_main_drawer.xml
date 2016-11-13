@@ -1,38 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@android:drawable/btn_star_big_on"
+            android:icon="@drawable/nav_home"
             android:title="View Orders" />
 
         <item
             android:id="@+id/nav_request"
-            android:icon="@android:drawable/ic_input_add"
+            android:icon="@drawable/nav_home"
             android:title="Request A Delivery" />
+
 
 
         <item
             android:id="@+id/order_history_layout"
-            android:icon="@android:drawable/ic_lock_idle_alarm"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="Order History" />
 
         <item
-            android:id="@+id/order_status_layout"
+            android:id="@+id/Chat"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="order Status" />
+            android:title="Chat" />
 
+        <item
+        android:id="@+id/orderStatus"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="Order Status" />
 
         <item
             android:id="@+id/Account"
-            android:icon="@android:drawable/ic_secure"
+            android:icon="@drawable/ic_menu_slideshow"
             android:title="Balance" />
 
         <item
             android:id="@+id/log_out"
-            android:icon="?android:attr/alertDialogIcon"
+            android:icon="@drawable/ic_menu_slideshow"
             android:title="log out" />
 
     </group>

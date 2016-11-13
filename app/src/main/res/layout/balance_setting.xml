@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@+id/balance_setting"
+    >
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="35dp"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/balanceEdit"
+        style="@android:style/Widget.DeviceDefault.Light.EditText"
+        android:layout_alignBaseline="@+id/newbalance"
+        android:layout_alignBottom="@+id/newbalance"
+        android:layout_alignLeft="@+id/confirm"
+        android:layout_alignStart="@+id/confirm" />
+
+    <TextView
+        android:text="New Balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/newbalance"
+        android:textSize="20sp"
+        android:layout_marginTop="58dp"
+        android:layout_below="@+id/accountView"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginLeft="21dp"
+        android:layout_marginStart="21dp" />
+
+    <TextView
+        android:text=" Balance Setting "
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/accountView"
+        android:textSize="18sp"
+        android:layout_marginTop="140dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Confirm"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/confirm"
+
+        android:layout_marginTop="65dp"
+        android:layout_below="@+id/balanceEdit"
+        android:layout_centerHorizontal="true" />
+
+</RelativeLayout>

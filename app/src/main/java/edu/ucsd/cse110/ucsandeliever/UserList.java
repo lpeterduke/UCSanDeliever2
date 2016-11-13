@@ -83,10 +83,11 @@ public class UserList extends CustomActivity
 	 * 
 	 * @param online
 	 *            true if user is online
-	 */
+	 **/
+
 	private void updateUserStatus(boolean online)
 	{
-		// TODO: Add user status updates
+		//TODO: Add user status updates
     }
 
 	/**

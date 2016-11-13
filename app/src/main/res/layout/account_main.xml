@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:id="@+id/account_main">
 
     <TextView
         android:text="Balance"
@@ -52,5 +53,14 @@
         android:layout_marginStart="11dp"
         android:layout_alignRight="@+id/accountView"
         android:layout_alignEnd="@+id/accountView" />
+
+    <Button
+        android:text="Set Balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/Balance"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="49dp"
+        android:id="@+id/balanceSetting" />
 
 </RelativeLayout>
