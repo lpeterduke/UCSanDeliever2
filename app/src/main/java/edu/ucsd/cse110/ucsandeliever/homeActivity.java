@@ -212,10 +212,25 @@ public class homeActivity extends Fragment {
 
                 mSelectInterface.onTitleSelect(item,res,dest,time,orderNum,requestor);
 
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
 
 
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                String uid = null;
+                if(auth !=null)
+                {
+                    uid = auth.getCurrentUser().getUid().toString();
+                }
+
+                if(uid.contentEquals(requestor)){
+
+System.out.println("Your Own Order");
+                }else {
+
+
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
+
+                }
 
 
             }
