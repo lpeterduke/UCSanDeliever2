@@ -58,7 +58,7 @@ public class Chat extends CustomActivity {
     private EditText txt;
 
     /**
-     * The user name of buddy.
+     * The user name of buddy   receiver.
      */
     private Student buddy;
 
@@ -188,12 +188,12 @@ public class Chat extends CustomActivity {
         FirebaseDatabase.getInstance().getReference("messages").addChildEventListener(new ChildEventListener() {
             @Override
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                //current user
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
                 if (user != null) {
 
                     Conversation conversation = dataSnapshot.getValue(Conversation.class);
-                    if ((conversation.getReceiver().contentEquals(user.getUid()) && conversation.getSender().contentEquals(buddy.getuid()))
-                            || (conversation.getSender().contentEquals(user.getUid()) && conversation.getReceiver().contentEquals(buddy.getuid()))) {
+                    if ((conversation.getReceiver().contentEquals(user.getUid()) && conversation.getSender().contentEquals(buddy.getuid()))) {
                         convList.add(conversation);
 
                         if (lastMsgDate == null
