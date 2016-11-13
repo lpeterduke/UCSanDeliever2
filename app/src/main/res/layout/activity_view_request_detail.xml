@@ -27,7 +27,8 @@
         android:id="@+id/View_User"
         android:layout_marginTop="133dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:background="@android:drawable/editbox_background_normal" />
 
     <TextView
         android:text="From: Tapioca"

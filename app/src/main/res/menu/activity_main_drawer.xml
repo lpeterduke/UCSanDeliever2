@@ -1,33 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android">
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
 
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/nav_home"
+            android:icon="@android:drawable/btn_star_big_on"
             android:title="View Orders" />
 
         <item
             android:id="@+id/nav_request"
-            android:icon="@drawable/nav_home"
+            android:icon="@android:drawable/ic_input_add"
             android:title="Request A Delivery" />
-
 
 
         <item
             android:id="@+id/order_history_layout"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@android:drawable/ic_lock_idle_alarm"
             android:title="Order History" />
+
+        <item
+            android:id="@+id/order_status_layout"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="order Status" />
 
 
         <item
             android:id="@+id/Account"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@android:drawable/ic_secure"
             android:title="Balance" />
 
         <item
             android:id="@+id/log_out"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="?android:attr/alertDialogIcon"
             android:title="log out" />
 
     </group>

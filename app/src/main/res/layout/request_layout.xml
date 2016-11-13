@@ -3,30 +3,6 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-    <TextView
-        android:text="Restaurant"
-        android:textSize="13dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="32dp"
-        android:layout_marginStart="32dp"
-        android:id="@+id/textView21"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginTop="88dp"
-        android:textAlignment="center" />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner_restaurant"
-        android:layout_alignTop="@+id/textView21"
-        android:layout_toRightOf="@+id/textView21"
-        android:layout_marginLeft="26dp"
-        android:layout_marginStart="26dp" />
-
-
     <Button
         android:text="make my order!"
         android:layout_width="wrap_content"
@@ -45,55 +21,7 @@
         android:hint="   "
         android:background="@android:drawable/editbox_background_normal"
         android:layout_alignTop="@+id/textView22"
-        android:layout_alignLeft="@+id/spinner_restaurant"
-        android:layout_alignStart="@+id/spinner_restaurant" />
-
-    <TextView
-        android:text="Delivery Destination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView24"
-        android:textSize="12dp"
-        android:textAlignment="center"
-        android:layout_above="@+id/button2"
-        android:layout_alignLeft="@+id/textView23"
-        android:layout_alignStart="@+id/textView23"
-        android:layout_marginBottom="66dp" />
-
-    <Spinner
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/spinner_building"
-        android:layout_alignTop="@+id/textView24"
-        android:layout_toRightOf="@+id/textView24"
-        android:layout_alignRight="@+id/timePicker"
-        android:layout_alignEnd="@+id/timePicker" />
-
-    <TextView
-        android:text="Delivery Time"
-        android:textSize="12dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView23"
-        android:textAlignment="center"
-        android:layout_marginTop="63dp"
-        android:layout_below="@+id/editText8"
-        android:layout_alignLeft="@+id/textView21"
-        android:layout_alignStart="@+id/textView21" />
-
-    <TextView
-        android:text="Items"
-        android:textSize="13dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView22"
-        android:textAlignment="center"
-        android:layout_marginTop="31dp"
-        android:layout_below="@+id/spinner_restaurant"
-        android:layout_alignLeft="@+id/textView21"
-        android:layout_alignStart="@+id/textView21"
-        android:layout_toLeftOf="@+id/spinner_restaurant"
-        android:layout_toStartOf="@+id/spinner_restaurant" />
+        android:layout_toRightOf="@+id/textView24" />
 
     <Button
         android:text=" Pick A Time"
@@ -105,8 +33,8 @@
         android:layout_alignTop="@+id/textView23"
         android:layout_alignRight="@+id/editText8"
         android:layout_alignEnd="@+id/editText8"
-        android:layout_alignLeft="@+id/editText8"
-        android:layout_alignStart="@+id/editText8" />
+        android:layout_toRightOf="@+id/textView24"
+        android:layout_toEndOf="@+id/textView24" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -115,10 +43,78 @@
         android:id="@+id/editText3"
         android:singleLine="false"
         android:background="@android:drawable/editbox_background_normal"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/editText8"
-        android:layout_alignEnd="@+id/editText8"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/timePicker"
+        android:layout_alignRight="@+id/timePicker"
+        android:layout_alignEnd="@+id/timePicker"
         android:layout_alignLeft="@+id/timePicker"
         android:layout_alignStart="@+id/timePicker" />
+
+    <Spinner
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_restaurant"
+        android:layout_alignTop="@+id/textView21"
+        android:layout_alignRight="@+id/editText8"
+        android:layout_alignEnd="@+id/editText8"
+        android:layout_alignLeft="@+id/button2"
+        android:layout_alignStart="@+id/button2" />
+
+    <Spinner
+        android:layout_height="wrap_content"
+        android:id="@+id/spinner_building"
+        android:layout_width="match_parent"
+        android:layout_alignTop="@+id/textView24"
+        android:layout_alignRight="@+id/editText3"
+        android:layout_alignEnd="@+id/editText3"
+        android:layout_toEndOf="@+id/textView24" />
+
+    <TextView
+        android:text="Delivery Destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView24"
+        android:textSize="12dp"
+        android:textAlignment="center"
+        android:layout_marginBottom="44dp"
+        android:layout_above="@+id/button2"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Delivery Time"
+        android:textSize="12dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView23"
+        android:textAlignment="center"
+        android:layout_marginTop="63dp"
+        android:layout_below="@+id/editText8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Items"
+        android:textSize="13dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView22"
+        android:textAlignment="center"
+        android:layout_marginTop="47dp"
+        android:layout_below="@+id/spinner_restaurant"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:text="Restaurant"
+        android:textSize="13dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView21"
+        android:layout_marginTop="91dp"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 
 </RelativeLayout>

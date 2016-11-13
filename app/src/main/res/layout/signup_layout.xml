@@ -102,20 +102,6 @@
         android:layout_alignParentLeft="false"
         android:layout_alignParentStart="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textEmailAddress"
-        android:ems="8"
-        android:id="@+id/editText5"
-        android:hint="Use for Login"
-        android:background="@android:drawable/editbox_background_normal"
-        android:layout_alignBaseline="@+id/textView7"
-        android:layout_alignBottom="@+id/textView7"
-        android:layout_alignLeft="@+id/editText4"
-        android:layout_alignStart="@+id/editText4"
-        android:textColorLink="@android:color/holo_blue_light" />
-
     <TextView
         android:text="Your Password"
         android:layout_width="wrap_content"
@@ -125,5 +111,19 @@
         android:layout_below="@+id/editText5"
         android:layout_alignLeft="@+id/textView7"
         android:layout_alignStart="@+id/textView7" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textEmailAddress"
+        android:ems="8"
+        android:id="@+id/editText5"
+        android:hint="Used for Login"
+        android:background="@android:drawable/editbox_background_normal"
+        android:textColorLink="@android:color/holo_blue_light"
+        android:layout_alignBaseline="@+id/textView7"
+        android:layout_alignBottom="@+id/textView7"
+        android:layout_alignLeft="@+id/editText4"
+        android:layout_alignStart="@+id/editText4" />
 
 </RelativeLayout>
