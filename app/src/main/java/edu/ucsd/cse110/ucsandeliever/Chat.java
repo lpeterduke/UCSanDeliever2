@@ -96,6 +96,12 @@ public class Chat extends CustomActivity {
 
     }
 
+    @Override
+    protected void onStart() {
+        loadmessage();
+        super.onStart();
+    }
+
     /* (non-Javadoc)
      * @see android.support.v4.app.FragmentActivity#onResume()
      */
@@ -161,6 +167,7 @@ public class Chat extends CustomActivity {
                                                    } else {
                                                        convList.get(convList.indexOf(conversation)).setStatus(Conversation.STATUS_FAILED);
                                                    }
+
                                                    FirebaseDatabase.getInstance()
                                                            .getReference("messages")
                                                            .child(key).setValue(convList.get(convList.indexOf(conversation)))
@@ -180,6 +187,34 @@ public class Chat extends CustomActivity {
         txt.setText(null);
     }
 
+    private void loadmessage() {
+        FirebaseDatabase.getInstance().getReference("messages").addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        Conversation conversation = ds.getValue(Conversation.class);
+                        if ((conversation.getReceiver().contentEquals(user.getUid()) && conversation.getSender().contentEquals(buddy.getuid()))
+                                || (conversation.getSender().contentEquals(user.getUid()) && conversation.getReceiver().contentEquals(buddy.getuid()))) {
+                            convList.add(conversation);
+                            if (lastMsgDate == null
+                                    || lastMsgDate.before(conversation.getDate()))
+                                lastMsgDate = conversation.getDate();
+
+                            adp.notifyDataSetChanged();
+
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+    }
     /**
      * Load the conversation list from Parse server and save the date of last
      * message that will be used to load only recent new messages
@@ -229,37 +264,6 @@ public class Chat extends CustomActivity {
             }
         });
 
-
-
-        /*
-        FirebaseDatabase.getInstance().getReference("messages").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if(user != null) {
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        Conversation conversation = new Conversation();
-                        conversation = ds.getValue(Conversation.class);
-                        if ((conversation.getReceiver().contentEquals(user.getUid()) && conversation.getSender().contentEquals(buddy.getuid()))
-                                || (conversation.getSender().contentEquals(user.getUid())&& conversation.getReceiver().contentEquals(buddy.getuid()))) {
-                            convList.add(conversation);
-                            if (lastMsgDate == null
-                                    || lastMsgDate.before(conversation.getDate()))
-                                lastMsgDate = conversation.getDate();
-
-                            adp.notifyDataSetChanged();
-
-                        }
-                    }
-                }
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-        */
 
     }
 
