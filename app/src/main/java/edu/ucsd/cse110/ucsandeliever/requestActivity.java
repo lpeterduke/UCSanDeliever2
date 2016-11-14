@@ -179,7 +179,7 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
         final String des = etDestinations;
 
         final String  item= etItemName.getText().toString();
-        final String time = etTime.getText().toString();
+        final String time = orderingTime;
 
         final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
 
@@ -225,14 +225,25 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
         int month = calendar.get(java.util.Calendar.MONTH);
         int day = calendar.get(java.util.Calendar.DAY_OF_MONTH);
 
-        String dayS="";
+        String dayS=Integer.toString(day);
         if(day<10){
              dayS = "0"+Integer.toString(day);
         }
-        System.out.println("创建时间是："+year+month+dayS+hourOfDay+minute);
 
-        timeFromClock.setText(""+year+month+dayS+hourOfDay+minute);
+        String hourS = Integer.toString(hourOfDay);
+        if(hourOfDay<10){
+            hourS = "0"+Integer.toString(hourOfDay);
+        }
+
+
+        System.out.println("新建Order的创建时间是："+year+month+dayS+hourS+minute);
+
+         orderingTime = ""+year+month+dayS+hourS+minute;
+
+        timeFromClock.setText(""+hourS+": "+minute);
 
     }
+
+    private String orderingTime="";
 
 }

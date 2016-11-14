@@ -24,6 +24,7 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -57,7 +58,7 @@ public class Chat extends CustomActivity {
     private EditText txt;
 
     /**
-     * The user name of buddy.
+     * The user name of buddy   receiver.
      */
     private Student buddy;
 
@@ -93,6 +94,12 @@ public class Chat extends CustomActivity {
         if(actionBar != null)
             actionBar.setTitle(buddy.getName());
 
+    }
+
+    @Override
+    protected void onStart() {
+        loadmessage();
+        super.onStart();
     }
 
     /* (non-Javadoc)
@@ -160,6 +167,7 @@ public class Chat extends CustomActivity {
                                                    } else {
                                                        convList.get(convList.indexOf(conversation)).setStatus(Conversation.STATUS_FAILED);
                                                    }
+
                                                    FirebaseDatabase.getInstance()
                                                            .getReference("messages")
                                                            .child(key).setValue(convList.get(convList.indexOf(conversation)))
@@ -179,22 +187,16 @@ public class Chat extends CustomActivity {
         txt.setText(null);
     }
 
-    /**
-     * Load the conversation list from Parse server and save the date of last
-     * message that will be used to load only recent new messages
-     */
-    private void loadConversationList() {
-
+    private void loadmessage() {
         FirebaseDatabase.getInstance().getReference("messages").addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-                if(user != null) {
+                if (user != null) {
                     for (DataSnapshot ds : dataSnapshot.getChildren()) {
-                        Conversation conversation = new Conversation();
-                        conversation = ds.getValue(Conversation.class);
+                        Conversation conversation = ds.getValue(Conversation.class);
                         if ((conversation.getReceiver().contentEquals(user.getUid()) && conversation.getSender().contentEquals(buddy.getuid()))
-                                || (conversation.getSender().contentEquals(user.getUid())&& conversation.getReceiver().contentEquals(buddy.getuid()))) {
+                                || (conversation.getSender().contentEquals(user.getUid()) && conversation.getReceiver().contentEquals(buddy.getuid()))) {
                             convList.add(conversation);
                             if (lastMsgDate == null
                                     || lastMsgDate.before(conversation.getDate()))
@@ -212,6 +214,56 @@ public class Chat extends CustomActivity {
 
             }
         });
+    }
+    /**
+     * Load the conversation list from Parse server and save the date of last
+     * message that will be used to load only recent new messages
+     */
+    private void loadConversationList() {
+        FirebaseDatabase.getInstance().getReference("messages").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                //current user
+                FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+                if (user != null) {
+
+                    Conversation conversation = dataSnapshot.getValue(Conversation.class);
+                    if ((conversation.getReceiver().contentEquals(user.getUid()) && conversation.getSender().contentEquals(buddy.getuid()))) {
+                        convList.add(conversation);
+
+                        if (lastMsgDate == null
+                                || lastMsgDate.before(conversation.getDate()))
+                            lastMsgDate = conversation.getDate();
+
+                        //sent to the layout
+                        adp.notifyDataSetChanged();
+
+                    }
+
+                }
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 

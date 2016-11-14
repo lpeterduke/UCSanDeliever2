@@ -131,6 +131,10 @@ public class homeActivity extends Fragment {
                 orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
                 System.out.println("剩下的OrderInfo: "+orderInfo);
 
+                String requestor = orderInfo.substring(0,orderInfo.indexOf('='));
+                orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
+                System.out.println("剩下的OrderInfo: "+orderInfo);
+
                 String orderNum = orderInfo;
 
                 System.out.println("提取出来的item"+item);
@@ -141,7 +145,7 @@ public class homeActivity extends Fragment {
 
 
 
-                mSelectInterface.onTitleSelect(item,res,dest,time,orderNum);
+                mSelectInterface.onTitleSelect(item,res,dest,time,orderNum,requestor);
 
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
@@ -191,6 +195,10 @@ public class homeActivity extends Fragment {
                 orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
                 System.out.println("剩下的OrderInfo: "+orderInfo);
 
+                String requestor = orderInfo.substring(0,orderInfo.indexOf('='));
+                orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
+                System.out.println("剩下的OrderInfo: "+orderInfo);
+
                 String orderNum = orderInfo;
 
                 System.out.println("提取出来的item"+item);
@@ -198,15 +206,31 @@ public class homeActivity extends Fragment {
                 System.out.println("提取出来的item"+dest);
                 System.out.println("提取出来的item"+time);
                 System.out.println("提取出来的item"+orderNum);
+                System.out.println("提取出来的item"+requestor);
 
 
 
-                mSelectInterface.onTitleSelect(item,res,dest,time,orderNum);
-
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
+                mSelectInterface.onTitleSelect(item,res,dest,time,orderNum,requestor);
 
 
+
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                String uid = null;
+                if(auth !=null)
+                {
+                    uid = auth.getCurrentUser().getUid().toString();
+                }
+
+                if(uid.contentEquals(requestor)){
+
+System.out.println("Your Own Order");
+                }else {
+
+
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
+
+                }
 
 
             }
@@ -220,7 +244,7 @@ public class homeActivity extends Fragment {
     //回调Function
     titleSelectInterface mSelectInterface = new titleSelectInterface() {
         @Override
-        public void onTitleSelect(String item, String res, String dest, String time, String orderNum) {
+        public void onTitleSelect(String item, String res, String dest, String time, String orderNum, String requestorId) {
 
         }
 
@@ -228,7 +252,7 @@ public class homeActivity extends Fragment {
 
 
     public interface titleSelectInterface{
-        public void onTitleSelect(String item, String res, String dest, String time, String orderNum);
+        public void onTitleSelect(String item, String res, String dest, String time, String orderNum,String requestorId);
     }
 
 

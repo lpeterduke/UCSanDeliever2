@@ -111,7 +111,12 @@ public class UserList extends CustomActivity
 				}
                 uList = new ArrayList<Student>();
                 for(DataSnapshot ds : dataSnapshot.getChildren()) {
+
                     Student user = ds.getValue(Student.class);
+
+				 //	System.out.println("崩溃前的最后一步： "+ds.getValue(Student.class).getName());
+
+
                     Logger.getLogger(UserList.class.getName()).log(Level.ALL,user.getName());
                     if(!user.getuid().contentEquals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
                         uList.add(user);
