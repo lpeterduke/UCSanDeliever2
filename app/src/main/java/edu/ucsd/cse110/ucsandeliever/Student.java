@@ -13,7 +13,7 @@ public class Student implements Serializable {
     private String studentId;
     private String emai;
     private String password;
-    private int bal;
+    private String balance;
 
 
 
@@ -64,9 +64,9 @@ public class Student implements Serializable {
 
     public void setuid(String uid){this.uid=uid;}
     public String getuid(){return this.uid;}
-    public void setBalance(int balance){this.bal= balance;}
-    public int getBalance(){
-        return bal;
+    public void setBalance(String balance){this.balance= balance;}
+    public String getBalance(){
+        return balance;
     }
 
     public Student(){
@@ -75,7 +75,7 @@ public class Student implements Serializable {
     public Student(String uid, String name, String emai){
         this.uid = uid;
         this.name = name;
-        this.bal=2000;
+        this.balance= "2000";
 
     }
 }
