@@ -203,7 +203,7 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
 
             myFirebaseRef.child("orders").child(order.getOrderNumber()).setValue(order);
             
-            myFirebaseRef.child("users").child(order.getRequestor()).child("requesting").setValue(true);
+            myFirebaseRef.child("users").child(order.getRequestorUid()).child("requesting").setValue(true);
 
 
             FragmentManager fragmentManager = getFragmentManager();
@@ -225,6 +225,12 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
         int month = calendar.get(java.util.Calendar.MONTH);
         int day = calendar.get(java.util.Calendar.DAY_OF_MONTH);
 
+        String monthS=Integer.toString(month);
+        if(month<10){
+            monthS = "0"+Integer.toString(month);
+        }
+
+
         String dayS=Integer.toString(day);
         if(day<10){
              dayS = "0"+Integer.toString(day);
@@ -235,12 +241,16 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
             hourS = "0"+Integer.toString(hourOfDay);
         }
 
+        String minS = Integer.toString(minute);
+        if(minute<10){
+            minS = "0"+Integer.toString(minute);
+        }
 
-        System.out.println("新建Order的创建时间是："+year+month+dayS+hourS+minute);
+        System.out.println("新建Order的创建时间是："+year+monthS+dayS+hourS+minS);
 
-         orderingTime = ""+year+month+dayS+hourS+minute;
+         orderingTime = ""+year+monthS+dayS+hourS+minS;
 
-        timeFromClock.setText(""+hourS+": "+minute);
+        timeFromClock.setText(""+hourS+": "+minS);
 
     }
 

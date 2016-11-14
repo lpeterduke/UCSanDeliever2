@@ -91,22 +91,21 @@ public class drawerActivity extends AppCompatActivity
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
 
-        final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
-
-        final String userID = userEmail.substring(0,userEmail.indexOf('@'));
+        final  String userEmail = mAuth.getCurrentUser().getUid().toString();
 
 
-        DatabaseReference ref =FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("balance");
+
+        DatabaseReference ref =FirebaseDatabase.getInstance().getReference().child("users").child(userEmail).child("balance");
 
         ref.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
 
                 System.out.println("余额变更");
-                Integer msg = dataSnapshot.getValue(Integer.class);
+                String msg = dataSnapshot.getValue(String.class);
 
                 System.out.println("msg: " + msg);
-                balance = Integer.toString(msg);
+                balance = msg;
 
 
             }
@@ -150,14 +149,11 @@ public class drawerActivity extends AppCompatActivity
                 //     System.out.println("当下小时"+ hourS);
                 //     System.out.println("当下分钟"+ minutes);
 
-
                 String cday = Integer.toString(year)+
                         Integer.toString(month)+ dayS;
 
                 String ctime =hourS +
                         Integer.toString(minutes);
-
-
                 //  System.out.println("当下1"+ cday);
                 //    System.out.println("当下2"+ ctime);
 
@@ -165,23 +161,13 @@ public class drawerActivity extends AppCompatActivity
                 int currTime = Integer.parseInt(ctime);
                 System.out.println("当下时间"+ cday+currTime);
 
-
-
-
-
-
                 String  orderTime = dataSnapshot.getValue(Order.class).getTime();
                 String orderDate = orderTime.substring(0,8);
                 String orderT = orderTime.substring(8);
-
                 //    System.out.println("创建时间："+orderTime);
 
                 int orderTimeint = Integer.parseInt(orderT);
                 int orderDay = Integer.parseInt(orderDate);
-
-
-
-
 
                 FirebaseAuth auth = FirebaseAuth.getInstance();
                 String uid = null;
@@ -190,7 +176,6 @@ public class drawerActivity extends AppCompatActivity
                     uid = auth.getCurrentUser().getUid().toString();
                 }
 
-
                 if(uid.contentEquals(dataSnapshot.getValue(Order.class).getRequestorUid()))
                 {
                     orderHistory.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
@@ -198,40 +183,23 @@ public class drawerActivity extends AppCompatActivity
                             dataSnapshot.getValue(Order.class).getDestination() + "\nNeed it by the time at: " +
                             orderT.substring(0,2)+": "+orderT.substring(2) );
                 }
-
-
-
-
                 System.out.println("双判定：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) );
-
-
                 if(((orderTimeint > currTime) && (orderDay == currDay)) || orderDay > currDay) {
-
-
                     System.out.println("注入Request");
                     ouput.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
                             dataSnapshot.getValue(Order.class).getDestination() + "\nNeed it by the time at: " +
                             orderT.substring(0,2)+": "+orderT.substring(2) );
 
-
                     requestMaps.put(i,dataSnapshot.getValue(Order.class).getOrderNumber());
                     i++;
-
-
-
-
-
                     requests.add(dataSnapshot.getValue(Order.class).getItem() + "=" +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "=" +
                             dataSnapshot.getValue(Order.class).getDestination() + "=" +
                             dataSnapshot.getValue(Order.class).getTime()+ "=" +
                             dataSnapshot.getValue(Order.class).getRequestorUid()+ "=" +
                             dataSnapshot.getValue(Order.class).getOrderNumber());
-
                 }
-
-
             }
 
             @Override
@@ -302,11 +270,10 @@ public class drawerActivity extends AppCompatActivity
 
                 if(orderTimeint<1000){
 
-
                 }
 
-              //  System.out.println("用来做对比的日期： "+ orderDay);
-             //   System.out.println("用来做对比的时间： "+ orderTimeint);
+                System.out.println("用来做对比的日期： "+ orderDay);
+                System.out.println("用来做对比的时间： "+ orderTimeint);
 
 
                 //得到需要删除的Index然后删除这个order
@@ -330,14 +297,8 @@ public class drawerActivity extends AppCompatActivity
                     System.out.println("数据更改的order现在没有显示");
 
                 }
-
-
                 // System.out.println("三判定2：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) + "|" +(requestMaps.contains(oD)));
-
-
-
                 if(((orderTimeint > currTime) && (orderDay == currDay)) || orderDay > currDay) {
-
 
                     System.out.println("通过日期判定，注入Order");
                     ouput.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
@@ -348,24 +309,18 @@ public class drawerActivity extends AppCompatActivity
                     requestMaps.put(i,dataSnapshot.getValue(Order.class).getOrderNumber());
                     i++;
 
-
                     requests.add(dataSnapshot.getValue(Order.class).getItem() + "=" +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "=" +
                             dataSnapshot.getValue(Order.class).getDestination() + "=" +
                             dataSnapshot.getValue(Order.class).getTime()+ "=" +
                             dataSnapshot.getValue(Order.class).getRequestorUid()+ "=" +
                             dataSnapshot.getValue(Order.class).getOrderNumber());
-
                 }
 
                 System.out.println("新的OrderList："+requests);
 
                 FragmentManager fragmentManager = getFragmentManager();
                 fragmentManager.beginTransaction().replace(R.id.home_main, new homeActivity()).commit();
-
-
-
-
             }
 
             @Override

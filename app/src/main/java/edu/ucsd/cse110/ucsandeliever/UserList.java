@@ -80,7 +80,7 @@ public class UserList extends CustomActivity
 
 	/**
 	 * Update user status.
-	 * 
+	 *
 	 * @param online
 	 *            true if user is online
 	 **/
@@ -88,7 +88,7 @@ public class UserList extends CustomActivity
 	private void updateUserStatus(boolean online)
 	{
 		//TODO: Add user status updates
-    }
+	}
 
 	/**
 	 * Load list of users.
@@ -98,47 +98,47 @@ public class UserList extends CustomActivity
 		final ProgressDialog dia = ProgressDialog.show(this, null,
 				getString(R.string.alert_loading));
 
-        // Pull the users list once no sync required.
-        database.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {dia.dismiss();
-                long size  = dataSnapshot.getChildrenCount();
-                if(size == 0) {
+		// Pull the users list once no sync required.
+		database.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+			@Override
+			public void onDataChange(DataSnapshot dataSnapshot) {dia.dismiss();
+				long size  = dataSnapshot.getChildrenCount();
+				if(size == 0) {
 					Toast.makeText(UserList.this,
 							R.string.msg_no_user_found,
 							Toast.LENGTH_SHORT).show();
 					return;
 				}
-                uList = new ArrayList<Student>();
-                for(DataSnapshot ds : dataSnapshot.getChildren()) {
+				uList = new ArrayList<Student>();
+				for(DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                    Student user = ds.getValue(Student.class);
+					Student user = ds.getValue(Student.class);
 
-				 //	System.out.println("崩溃前的最后一步： "+ds.getValue(Student.class).getName());
+					//	System.out.println("崩溃前的最后一步： "+ds.getValue(Student.class).getName());
 
 
-                    Logger.getLogger(UserList.class.getName()).log(Level.ALL,user.getName());
-                    if(!user.getuid().contentEquals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
-                        uList.add(user);
-                }
-                ListView list = (ListView) findViewById(R.id.list);
-                list.setAdapter(new UserAdapter());
-                list.setOnItemClickListener(new OnItemClickListener() {
+					Logger.getLogger(UserList.class.getName()).log(Level.ALL,user.getName());
+					if(!user.getuid().contentEquals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+						uList.add(user);
+				}
+				ListView list = (ListView) findViewById(R.id.list);
+				list.setAdapter(new UserAdapter());
+				list.setOnItemClickListener(new OnItemClickListener() {
 
-                    @Override
-                    public void onItemClick(AdapterView<?> arg0,
-                                            View arg1, int pos, long arg3)
-                    {
-                        startActivity(new Intent(UserList.this, Chat.class).putExtra(Const.EXTRA_DATA, uList.get(pos)));
-                    }
-                });
-            }
+					@Override
+					public void onItemClick(AdapterView<?> arg0,
+											View arg1, int pos, long arg3)
+					{
+						startActivity(new Intent(UserList.this, Chat.class).putExtra(Const.EXTRA_DATA, uList.get(pos)));
+					}
+				});
+			}
 
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
+			@Override
+			public void onCancelled(DatabaseError databaseError) {
 
-            }
-        });
+			}
+		});
 	}
 
 	/**
