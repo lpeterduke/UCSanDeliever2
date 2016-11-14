@@ -99,7 +99,6 @@ public class homeActivity extends Fragment {
         System.out.println("刷新主界面");
 
 
-
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),
                 android.R.layout.simple_list_item_1, ouputList);
 
@@ -142,15 +141,33 @@ public class homeActivity extends Fragment {
                 System.out.println("提取出来的item"+dest);
                 System.out.println("提取出来的item"+time);
                 System.out.println("提取出来的item"+orderNum);
+                System.out.println("提取出来的item"+requestor);
 
 
 
                 mSelectInterface.onTitleSelect(item,res,dest,time,orderNum,requestor);
 
-                FragmentManager fragmentManager = getFragmentManager();
-                fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
 
 
+                FirebaseAuth auth = FirebaseAuth.getInstance();
+                String uid = null;
+                if(auth !=null)
+                {
+                    uid = auth.getCurrentUser().getUid().toString();
+                }
+
+                if(uid.contentEquals(requestor)){
+
+
+                    Toast.makeText(getActivity(),"This is Your Own Order",Toast.LENGTH_SHORT).show();
+                    System.out.println("Your Own Order");
+                }else {
+
+
+                    FragmentManager fragmentManager = getFragmentManager();
+                    fragmentManager.beginTransaction().replace(R.id.content_main, new ViewRequestDetailActivity()).commit();
+
+                }
 
 
             }
@@ -223,7 +240,9 @@ public class homeActivity extends Fragment {
 
                 if(uid.contentEquals(requestor)){
 
-System.out.println("Your Own Order");
+
+                    Toast.makeText(getActivity(),"This is Your Own Order",Toast.LENGTH_SHORT).show();
+                    System.out.println("Your Own Order");
                 }else {
 
 
