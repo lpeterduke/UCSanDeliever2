@@ -46,11 +46,13 @@ public class Chat extends CustomActivity {
      * The Conversation list.
      */
     private ArrayList<Conversation> convList;
+    private ArrayList<Conversation> loadList;
 
     /**
      * The chat adapter.
      */
     private ChatAdapter adp;
+
 
     /**
      * The Editext to compose the message.
@@ -76,6 +78,7 @@ public class Chat extends CustomActivity {
         setContentView(R.layout.chat);
 
         convList = new ArrayList<Conversation>();
+        loadList = new ArrayList<Conversation>();
         ListView list = (ListView) findViewById(R.id.list);
         adp = new ChatAdapter();
         list.setAdapter(adp);
@@ -94,11 +97,13 @@ public class Chat extends CustomActivity {
         if(actionBar != null)
             actionBar.setTitle(buddy.getName());
 
+        // loadmessage();
+
     }
 
     @Override
     protected void onStart() {
-        loadmessage();
+
         super.onStart();
     }
 
@@ -153,7 +158,7 @@ public class Chat extends CustomActivity {
                     buddy.getuid(),
                     "");
             conversation.setStatus(Conversation.STATUS_SENDING);
-            convList.add(conversation);
+            loadList.add(conversation);
             final String key = FirebaseDatabase.getInstance()
                     .getReference("messages")
                     .push().getKey();
@@ -163,14 +168,14 @@ public class Chat extends CustomActivity {
                                                @Override
                                                public void onComplete(@NonNull Task<Void> task) {
                                                    if (task.isSuccessful()) {
-                                                       convList.get(convList.indexOf(conversation)).setStatus(Conversation.STATUS_SENT);
+                                                       loadList.get(loadList.indexOf(conversation)).setStatus(Conversation.STATUS_SENT);
                                                    } else {
-                                                       convList.get(convList.indexOf(conversation)).setStatus(Conversation.STATUS_FAILED);
+                                                       loadList.get(loadList.indexOf(conversation)).setStatus(Conversation.STATUS_FAILED);
                                                    }
 
                                                    FirebaseDatabase.getInstance()
                                                            .getReference("messages")
-                                                           .child(key).setValue(convList.get(convList.indexOf(conversation)))
+                                                           .child(key).setValue(loadList.get(loadList.indexOf(conversation)))
                                                            .addOnCompleteListener(new
                                                                                           OnCompleteListener<Void>() {
                                                                                               @Override
@@ -198,6 +203,7 @@ public class Chat extends CustomActivity {
                         if ((conversation.getReceiver().contentEquals(user.getUid()) && conversation.getSender().contentEquals(buddy.getuid()))
                                 || (conversation.getSender().contentEquals(user.getUid()) && conversation.getReceiver().contentEquals(buddy.getuid()))) {
                             convList.add(conversation);
+
                             if (lastMsgDate == null
                                     || lastMsgDate.before(conversation.getDate()))
                                 lastMsgDate = conversation.getDate();
@@ -228,7 +234,11 @@ public class Chat extends CustomActivity {
                 if (user != null) {
 
                     Conversation conversation = dataSnapshot.getValue(Conversation.class);
-                    if ((conversation.getReceiver().contentEquals(user.getUid()) && conversation.getSender().contentEquals(buddy.getuid()))) {
+                    if (
+                            (conversation.getReceiver().contentEquals(user.getUid()) && conversation.getSender().contentEquals(buddy.getuid()))
+                                    ||
+                                    (conversation.getSender().contentEquals(user.getUid()) && conversation.getReceiver().contentEquals(buddy.getuid()))
+                            ) {
                         convList.add(conversation);
 
                         if (lastMsgDate == null
@@ -281,6 +291,7 @@ public class Chat extends CustomActivity {
             return convList.size();
         }
 
+
         /* (non-Javadoc)
          * @see android.widget.Adapter#getItem(int)
          */
@@ -304,6 +315,7 @@ public class Chat extends CustomActivity {
         @Override
         public View getView(int pos, View v, ViewGroup arg2) {
             Conversation c = getItem(pos);
+
             if (c.isSent())
                 v = getLayoutInflater().inflate(R.layout.chat_item_sent, null);
             else
@@ -323,7 +335,7 @@ public class Chat extends CustomActivity {
                     lbl.setText(R.string.delivered_text);
                 else {
                     if (c.getStatus() == Conversation.STATUS_SENDING)
-                        lbl.setText(R.string.sending_text);
+                        lbl.setText(R.string.delivered_text);
                     else {
                         lbl.setText(R.string.failed_text);
                     }
@@ -336,6 +348,7 @@ public class Chat extends CustomActivity {
 
     }
 
+
     /* (non-Javadoc)
      * @see android.app.Activity#onOptionsItemSelected(android.view.MenuItem)
      */
@@ -346,4 +359,7 @@ public class Chat extends CustomActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+
 }
+
