@@ -91,18 +91,21 @@ public class drawerActivity extends AppCompatActivity
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
 
-        final  String userEmail = mAuth.getCurrentUser().getUid().toString();
+        final  String userUID = mAuth.getCurrentUser().getUid().toString();
 
 
-
-        DatabaseReference ref =FirebaseDatabase.getInstance().getReference().child("users").child(userEmail).child("balance");
+        DatabaseReference ref =FirebaseDatabase.getInstance().getReference().child("users").child(userUID).child("balance");
 
         ref.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+                System.out.println("userUID : " + userUID);
 
                 System.out.println("余额变更");
                 String msg = dataSnapshot.getValue(String.class);
+                String ky = dataSnapshot.getKey();
+                System.out.println("/////////////////////////////");
+                System.out.println("balance is  " + msg + " key: " + ky);
 
                 System.out.println("msg: " + msg);
                 balance = msg;

@@ -78,16 +78,16 @@ public class bSetActivity extends Activity {
 
         String balance = etBalance.getText().toString();
 
-
+        System.out.println("********* new Balance ***********");
+        System.out.println(balance);
 
         mAuth = FirebaseAuth.getInstance();
         currentUser = mAuth.getCurrentUser();
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
 
-        final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
+        final  String userID = mAuth.getCurrentUser().getUid().toString();
 
-        final String userID = userEmail.substring(0,userEmail.indexOf('@'));
 
 
         DatabaseReference ref =FirebaseDatabase.getInstance().getReference().child("users").child(userID).child("balance");
