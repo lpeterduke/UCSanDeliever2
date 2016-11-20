@@ -33,20 +33,19 @@
         <activity android:name=".bSetActivity" />
         <activity android:name=".PlaceBidActivity" />
         <activity android:name=".balanceActivity" />
-
-        <activity android:name=".userRunnerWaitingActivity"></activity>
-
+        <activity android:name=".userRunnerWaitingActivity" />
         <activity
             android:name=".UserList"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity
             android:name=".Chat"
             android:label="@string/app_name"
             android:screenOrientation="portrait"
-            android:windowSoftInputMode="stateHidden|adjustResize"></activity>
-        <activity android:name=".confirmPickingBidActivity"></activity>
+            android:windowSoftInputMode="stateHidden|adjustResize" />
+        <activity android:name=".confirmPickingBidActivity" />
+        <activity android:name=".LeaveCommentActivity"></activity>
     </application>
 
 </manifest>

@@ -8,6 +8,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -49,6 +53,21 @@ public class confirmPickingBidActivity extends AppCompatActivity {
         String button_text;
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Yes, choose this runner")){
+
+            // look for runner from firebase using runFromStatus
+            // change that runner's status to true
+            DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+            DatabaseReference usersRef = mRootRef.child("users");
+            DatabaseReference runnerRef = usersRef.child(runFromStatus);
+            DatabaseReference indicatorRef = runnerRef.child("runnerStatusIndicator");
+            indicatorRef.setValue(true);
+
+            //change the user's status to already pick to true
+            String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+            DatabaseReference requesterRef = usersRef.child(currUid);
+            DatabaseReference alreadyPickRef = requesterRef.child("alreadyPick");
+            alreadyPickRef.setValue(true);
+
 
             // to change because chat needs to get done first - Zihan
             Intent intent = new Intent(this,Chat.class);

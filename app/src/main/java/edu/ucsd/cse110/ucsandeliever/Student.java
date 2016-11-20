@@ -15,6 +15,10 @@ public class Student implements Serializable {
     private String password;
     private String balance;
 
+    // 0 for default, 1 for selected by requester, 2 for rejected by requester
+    private Boolean runnerStatusIndicator;
+    private Boolean alreadyPick;
+
 
 
     private Boolean requesting;
@@ -69,6 +73,18 @@ public class Student implements Serializable {
         return balance;
     }
 
+    public Boolean getRunnerStatusIndicator(){return this.runnerStatusIndicator;}
+    public void setRunnerStatusIndicator(Boolean newStatus){this.runnerStatusIndicator = newStatus;}
+
+    public Boolean getAlreadyPick() {
+        return alreadyPick;
+    }
+
+    public void setAlreadyPick(Boolean alreadyPick) {
+
+        this.alreadyPick = alreadyPick;
+    }
+
     public Student(){
 
     }
@@ -76,7 +92,8 @@ public class Student implements Serializable {
         this.uid = uid;
         this.name = name;
         this.balance= "2000";
-
+        this.runnerStatusIndicator = false;
+        this.alreadyPick = false;
     }
 }
 

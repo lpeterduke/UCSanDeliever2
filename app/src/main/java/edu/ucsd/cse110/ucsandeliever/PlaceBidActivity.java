@@ -25,6 +25,8 @@ public class PlaceBidActivity extends android.app.Fragment implements TimePicker
     Firebase ref = new Firebase("https://uc-student-deliver.firebaseio.com/");
 
     FirebaseAuth mAuth = FirebaseAuth.getInstance();
+    private String orderNumb;
+    private String requestorUid;
 
 
     @Nullable
@@ -54,7 +56,13 @@ public class PlaceBidActivity extends android.app.Fragment implements TimePicker
             @Override
             public void onClick(View v) {
                 updateDataBase1();
+
                 Intent intent = new Intent(getActivity(), userRunnerWaitingActivity.class);
+
+                Bundle b = new Bundle();
+                b.putString("requestorGet", requestorUid);
+                intent.putExtras(b);
+
                 startActivity(intent);
             }
         });
@@ -88,8 +96,7 @@ public class PlaceBidActivity extends android.app.Fragment implements TimePicker
         timeFromClock.setText("" + h + "" + minute);
     }
 
-    private String orderNumb;
-    private String requestorUid;
+
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

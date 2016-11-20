@@ -220,15 +220,14 @@ public class orderStatus extends AppCompatActivity {
             }
         });
 
-        // refersh button. Better if it can update in real time
         refresh = (Button)findViewById(R.id.StatusRefresh);
         refresh.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 refresh();
-
             }
         });
+
     }
 
     public void refresh(){

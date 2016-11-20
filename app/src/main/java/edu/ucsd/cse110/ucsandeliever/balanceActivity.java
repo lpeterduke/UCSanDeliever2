@@ -116,10 +116,4 @@ public class balanceActivity extends Fragment {
 
 
     }
-
-
-
-
-
-
-    }
+}
