@@ -36,18 +36,7 @@ public class requestor_contactActivity extends Activity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Contact the Runner")){
 
-            Intent i = getIntent();
-            Bundle data = i.getExtras();
 
-            String runFromStatus = data.getString("runnerGet");
-
-
-            Intent k = new Intent(this, Chat.class);
-            Bundle b = new Bundle();
-
-            b.putString("runnerGet", runFromStatus);
-            k.putExtras(b);
-            startActivity(k);
             // chatting page for Pan
 
         }else if(button_text.equals("I have received the order!")){
