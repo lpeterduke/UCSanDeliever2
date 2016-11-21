@@ -3,49 +3,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/account_main">
-
-    <TextView
-        android:text="Balance"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="140dp"
-        android:id="@+id/textView2"
-        android:textSize="20sp"
-        android:layout_below="@+id/accountView"
-
-        />
+    android:id="@+id/account_main"><![CDATA[
 
 
 
 
-    <TextView
-        android:text=" Account Information"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/accountView"
-        android:layout_marginTop="136dp"
-        android:textSize="30sp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="35dp"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/Balance"
-        style="@android:style/Widget.DeviceDefault.Light.EditText"
-
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:layout_alignBaseline="@+id/textView2"
-        android:layout_alignBottom="@+id/textView2"
-        android:layout_toRightOf="@+id/textView2"
-        android:layout_marginLeft="17dp"
-        android:layout_marginStart="17dp"
-        android:layout_alignRight="@+id/accountView"
-        android:layout_alignEnd="@+id/accountView" />
     //android:layout_toEndOf="@+id/textView2" />
         android:layout_toEndOf="@+id/textView2" />
     //android:layout_toRightOf="@+id/textView2"
@@ -54,13 +16,59 @@
         android:layout_alignRight="@+id/accountView"
         android:layout_alignEnd="@+id/accountView" />
 
+
+
+
+
+
+
+
+
+
+
+    ]]>
+
+    <TextView
+        android:text=" Account Information"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/accountView"
+        android:layout_marginTop="94dp"
+        android:textSize="30sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:textSize="35dp"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/Balance"
+        style="@android:style/Widget.DeviceDefault.Light.EditText"
+
+        android:background="@android:drawable/editbox_dropdown_light_frame"
+        android:layout_width="250dp"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:layout_height="40dp" />
+
+    <TextView
+        android:text="Your Balance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView2"
+        android:textSize="25sp"
+
+        android:layout_above="@+id/Balance"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="35dp" />
+
     <Button
         android:text="Set Balance"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:id="@+id/balanceSetting"
+        android:layout_marginTop="71dp"
         android:layout_below="@+id/Balance"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="49dp"
-        android:id="@+id/balanceSetting" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>
