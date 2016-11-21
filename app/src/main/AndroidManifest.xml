@@ -33,6 +33,11 @@
         <activity android:name=".bSetActivity" />
         <activity android:name=".PlaceBidActivity" />
         <activity android:name=".balanceActivity" />
+        <activity android:name=".requestor_finishActivity" />
+        <activity android:name=".requestor_contactActivity" />
+        <activity android:name=".runner_finishActivity" />
+        <activity android:name=".runner_contactActivity" />
+
         <activity android:name=".userRunnerWaitingActivity" />
         <activity
             android:name=".UserList"
