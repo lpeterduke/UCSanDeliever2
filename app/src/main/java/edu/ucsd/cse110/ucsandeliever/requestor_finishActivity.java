@@ -42,7 +42,7 @@ public class requestor_finishActivity extends Activity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Done")){
 
-            // change the done of order
+            // change the done of order to be true
             final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
             final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
