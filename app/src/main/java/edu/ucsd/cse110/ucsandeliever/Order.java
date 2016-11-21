@@ -20,6 +20,7 @@ public class Order {
     private String runner;
     private String requestorUid;
     private String runnerUid;
+    private Boolean done = false;
 
     private Random random = new Random();
 
@@ -104,6 +105,13 @@ public class Order {
 
     public void setRunnerUid(String runnerUid) {
         this.runnerUid = runnerUid;
+    }
+
+    public boolean getDone(){
+        return this.done;
+    }
+    public void changeDone(boolean done){
+        this.done = done;
     }
 
 
