@@ -90,7 +90,7 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
             public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
                 if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
-                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
+                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator() == true) {
                         System.out.println("!!!!!!!haha");
 
                         // to change because chat needs to get done first - Zihan
@@ -115,7 +115,7 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
             public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
                 if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
-                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
+                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator() == true) {
                         System.out.println("!!!!!!!haha");
 
                         // to change because chat needs to get done first - Zihan
