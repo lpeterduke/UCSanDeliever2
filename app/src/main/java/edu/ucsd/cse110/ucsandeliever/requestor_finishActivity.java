@@ -42,13 +42,13 @@ public class requestor_finishActivity extends Activity {
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Done")){
 
-            // change the done of order
+            // change the done of order to be true
             final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
             final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
             final DatabaseReference usersRef = mRootRef.child("orders");
 
-            usersRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
