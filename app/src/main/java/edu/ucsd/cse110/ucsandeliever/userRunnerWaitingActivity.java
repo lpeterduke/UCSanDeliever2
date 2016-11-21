@@ -94,7 +94,11 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                         System.out.println("!!!!!!!haha");
 
                         // to change because chat needs to get done first - Zihan
-                        Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
+                       // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
+                       // startActivity(intent);
+                        //
+                        //go to runner_contact page - he chang
+                        Intent intent = new Intent(userRunnerWaitingActivity.this,runner_contactActivity.class);
                         startActivity(intent);
                     } else {
                         System.out.println("datachange not related to current user");
@@ -115,7 +119,7 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                         System.out.println("!!!!!!!haha");
 
                         // to change because chat needs to get done first - Zihan
-                        Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
+                        Intent intent = new Intent(userRunnerWaitingActivity.this,runner_contactActivity.class);
                         startActivity(intent);
                     } else {
                         System.out.println("datachange not related to current user");
