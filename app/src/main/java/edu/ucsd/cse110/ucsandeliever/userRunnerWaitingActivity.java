@@ -86,16 +86,17 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
         DatabaseReference currRef = usersRef.child(currUid);
         usersRef.addChildEventListener(new ChildEventListener() {
 
-        boolean isChosen = false;
+        boolean runnerChecked = false;
             @Override
             public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
                 if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
 
+                    runnerChecked = true;
                     if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator() == true) {
                         System.out.println("!!!!!!!haha");
 
-                        isChosen = true;
+
                         // to change because chat needs to get done first - Zihan
                        // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
                        // startActivity(intent);
@@ -111,22 +112,25 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                         System.out.println("datachange not related to current user");
                     }
                 } else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
-                    if (dataSnapshot.getValue(Student.class).getAlreadyPick() && isChosen == false){
+                    if (dataSnapshot.getValue(Student.class).getAlreadyPick() && runnerChecked == true){
                         Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
                         startActivity(intent);
                     }
                 }
+
+                runnerChecked = false;
             }
 
             @Override
             public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
                 if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
+                    runnerChecked = true;
                     if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator() == true) {
                         System.out.println("!!!!!!!haha");
 
                         // to change because chat needs to get done first - Zihan
-                        isChosen = true;
+
                         Intent intent = new Intent(userRunnerWaitingActivity.this,runner_contactActivity.class);
                         Bundle b = new Bundle();
                         b.putString("requestorGet", requester);
@@ -136,11 +140,13 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                         System.out.println("datachange not related to current user");
                     }
                 } else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
-                    if (dataSnapshot.getValue(Student.class).getAlreadyPick()&& isChosen == false){
+                    if (dataSnapshot.getValue(Student.class).getAlreadyPick() && runnerChecked == true){
                         Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
                         startActivity(intent);
                     }
                 }
+
+                runnerChecked = false;
             }
 
             @Override
