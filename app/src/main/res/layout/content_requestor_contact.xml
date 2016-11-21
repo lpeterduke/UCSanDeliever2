@@ -10,7 +10,7 @@
 
 
     <Button
-        android:text="I have receieved the order"
+        android:text="I have received the order"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView14"
