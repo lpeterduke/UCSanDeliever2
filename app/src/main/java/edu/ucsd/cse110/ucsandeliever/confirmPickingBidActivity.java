@@ -81,7 +81,7 @@ public class confirmPickingBidActivity extends AppCompatActivity {
             Intent k = new Intent(confirmPickingBidActivity.this, requestor_contactActivity.class);
             Bundle b = new Bundle();
 
-            b.putString("runnerGet", runFromStatus);
+            b.putString("runner", runFromStatus);
             k.putExtras(b);
             startActivity(k);
 
