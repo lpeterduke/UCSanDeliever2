@@ -18,23 +18,57 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class runner_contactActivity extends Activity {
 
+    Button contact;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_runner_contact);
 
-    }
+        contact = (Button) findViewById(R.id.button12);
+        contact.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+                Intent i = getIntent();
+                Bundle data = i.getExtras();
+                String requestor = data.getString("requestorGet");
+
+
+
+                System.out.println("runnerContact 界面：" +currUid+requestor);
+
+
+                Bundle b = new Bundle();
+                b.putString("runner", currUid);
+                b.putString("requestor", requestor);
+                // chatting page for Pan
+                // to change because chat needs to get done first - Zihan
+                Intent intent = new Intent(runner_contactActivity.this, UserList.class);
+                intent.putExtras(b);
+                startActivity(intent);
+            }
+        });
+    }
+/*
     public void welcomeSystem(View view){
 
         // go to chatting
         String button_text;
         button_text = ((Button) view).getText().toString();
         if(button_text.equals("Contact the Requester")){
+            String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
+            Intent i = getIntent();
+            Bundle data = i.getExtras();
+            String requestor = data.getString("requestorGet");
+
+            Bundle b = new Bundle();
+            b.putString("runner", currUid);
+            b.putString("requestor", requestor);
             // chatting page for Pan
             // to change because chat needs to get done first - Zihan
-            Intent intent = new Intent(this,UserList.class);
+            Intent intent = new Intent(runner_contactActivity.this, UserList.class);
             startActivity(intent);
         }
 
@@ -58,7 +92,17 @@ public class runner_contactActivity extends Activity {
                     // startActivity(intent);
                     //
                     //go to runner_contact page - he chang
-                    Intent intent = new Intent(runner_contactActivity.this, runner_finishActivity.class);
+
+                    String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+                    Intent i = getIntent();
+                    Bundle data = i.getExtras();
+                    String requestor = data.getString("requestorGet");
+
+                    Bundle b = new Bundle();
+                    b.putString("runnerGet", currUid);
+                    b.putString("currRe", requestor);
+                    Intent intent = new Intent(runner_contactActivity.this, UserList.class);
                     startActivity(intent);
                 }
 
@@ -81,7 +125,7 @@ public class runner_contactActivity extends Activity {
                     // startActivity(intent);
                     //
                     //go to runner_contact page - he chang
-                    Intent intent = new Intent(runner_contactActivity.this, runner_finishActivity.class);
+                    Intent intent = new Intent(runner_contactActivity.this, UserList.class);
                     startActivity(intent);
                 }
 
@@ -111,6 +155,7 @@ public class runner_contactActivity extends Activity {
 
 
     }
+    */
 
     @Override
     public void onBackPressed() {

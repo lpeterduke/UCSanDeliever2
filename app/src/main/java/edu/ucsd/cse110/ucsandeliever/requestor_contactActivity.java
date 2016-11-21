@@ -123,11 +123,13 @@ public class requestor_contactActivity extends Activity {
                 // chatting page for Pan
                 Intent i = getIntent();
                 Bundle data = i.getExtras();
-                String Runneuid = data.getString("runnerGet");
+                String Runneuid = data.getString("runner");
+                String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                 Intent k = new Intent(requestor_contactActivity.this,UserList.class);
                 Bundle b = new Bundle();
                 b.putString("runnerGet", Runneuid);
+                b.putString("currRe", currUid);
                 k.putExtras(b);
                 startActivity(k);
             }

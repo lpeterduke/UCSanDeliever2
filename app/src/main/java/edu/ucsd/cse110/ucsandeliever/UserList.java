@@ -56,8 +56,18 @@ public class UserList extends CustomActivity
 
 		Intent i = getIntent();
 		Bundle data = i.getExtras();
-		runnerUid = data.getString("runnerGet");
-		requesterUid = data.getString("currRe");
+
+
+		String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+		runnerUid = data.getString("runner");
+		requesterUid = data.getString("requestor");
+
+		if(currUid.equals(runnerUid)){
+			requesterUid = data.getString("runner");
+			runnerUid = data.getString("requestor");
+		}
+
 
 		// Get reference to the Firebase database
 		database  = FirebaseDatabase.getInstance().getReference();
