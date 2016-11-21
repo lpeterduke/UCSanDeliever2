@@ -10,7 +10,7 @@
     <string name="action_settings">Settings</string>
     <string name="select_restaurant"></string>
     <string-array name="restaurant_names">
-
+        <item>    </item>
         <item>Tapioca</item>
         <item>Burger King</item>
         <item>Panda Express</item>
@@ -18,8 +18,16 @@
         <item>Cafe Vetanas</item>
     </string-array>
 
+    <string-array name="SortingOptions">
+        <item>Sorting by</item>
+        <item>by Item Desired</item>
+        <item>by Restaurants</item>
+        <item>by Destination</item>
+        <item>by Time Needed</item>
+    </string-array>
 
     <string-array name="building_names">
+        <item>    </item>
 
         <item>ERC Europe Hall</item>
         <item>CSE Building</item>

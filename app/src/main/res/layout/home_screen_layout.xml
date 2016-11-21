@@ -9,39 +9,38 @@
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="37dp"
         android:id="@+id/Request_List"
-        android:layout_below="@+id/textView9"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
+        android:layout_marginTop="100dp"
 
+        android:layout_marginLeft="@dimen/pad_15dp"
+        android:layout_marginRight="@dimen/pad_15dp"
+        android:layout_marginBottom="@dimen/pad_15dp"
 
         android:divider = "@android:color/holo_blue_light"
         android:dividerHeight="@dimen/txt_12sp"
         android:listSelector="@android:color/holo_blue_dark"
-        android:background="@android:color/holo_blue_bright"
-        />
+        android:background="@android:color/holo_blue_bright" />
 
-    <Button
-        android:text="Refresh "
+
+    <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/HomeRefresh"
-
-
-        android:layout_alignTop="@+id/textView9"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:id="@+id/homeSort"
+        android:layout_marginTop="77dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignRight="@+id/Request_List"
+        android:layout_alignEnd="@+id/Request_List" />
 
     <TextView
-        android:text="Orders Available Now "
+        android:text="These Orders need a Runner!"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView9"
-
-
-        android:layout_marginTop="60dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:textAllCaps="false"
+        android:fontFamily="casual"
+        android:layout_marginBottom="23dp"
+        android:layout_alignBottom="@+id/homeSort"
+        android:layout_alignLeft="@+id/Request_List"
+        android:layout_alignStart="@+id/Request_List" />
 
 </RelativeLayout>
