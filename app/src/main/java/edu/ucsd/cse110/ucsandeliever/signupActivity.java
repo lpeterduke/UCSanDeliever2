@@ -123,6 +123,7 @@ public class signupActivity extends Activity {
                                     student.setEmail2(email8);
                                     student.setPassword(password);
                                     student.setuid(currentUid);
+                                    student.setAlreadyPick(false);
                                     student.setBalance("2000");
 
                                     student.setRequesting(false);

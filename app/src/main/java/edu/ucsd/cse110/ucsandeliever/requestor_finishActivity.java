@@ -48,7 +48,7 @@ public class requestor_finishActivity extends Activity {
             final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
             final DatabaseReference usersRef = mRootRef.child("orders");
 
-            usersRef.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+            usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
 
