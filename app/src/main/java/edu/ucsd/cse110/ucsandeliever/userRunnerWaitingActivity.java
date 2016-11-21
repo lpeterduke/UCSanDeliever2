@@ -105,7 +105,7 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                     }
                 } else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
                     if (dataSnapshot.getValue(Student.class).getAlreadyPick()){
-                        Intent intent = new Intent(userRunnerWaitingActivity.this, homeActivity.class);
+                        Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
                         startActivity(intent);
                     }
                 }
@@ -126,7 +126,7 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                     }
                 } else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
                     if (dataSnapshot.getValue(Student.class).getAlreadyPick()){
-                        Intent intent = new Intent(userRunnerWaitingActivity.this, homeActivity.class);
+                        Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
                         startActivity(intent);
                     }
                 }
