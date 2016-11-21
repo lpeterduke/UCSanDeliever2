@@ -47,7 +47,7 @@ public class requestor_contactActivity extends Activity {
             b.putString("runnerGet", Runneuid);
             k.putExtras(b);
             startActivity(k);
-        }else if(button_text.equals("I have received the order!")){
+        }else if(button_text.equals("I have received the order")){
 
             // finishing page
             DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
@@ -68,8 +68,11 @@ public class requestor_contactActivity extends Activity {
             final String runner = data.getString("runnerGet");;
             int changedValue = 0;
             DatabaseReference ref1 =FirebaseDatabase.getInstance().getReference().child("users").child(runner).child("balance");
-            DatabaseReference ref2 =FirebaseDatabase.getInstance().getReference().child("users").child(requester).child("balance");
+            FirebaseDatabase.getInstance().getReference().child("users").child(runner).child("runnerStatusIndicator").setValue(false);
 
+            DatabaseReference ref2 =FirebaseDatabase.getInstance().getReference().child("users").child(requester).child("balance");
+            FirebaseDatabase.getInstance().getReference().child("users").child(requester).child("alreadyPick").setValue(false);
+            FirebaseDatabase.getInstance().getReference().child("users").child(requester).child("requesting").setValue(false);
 
             ref1.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
                 @Override
