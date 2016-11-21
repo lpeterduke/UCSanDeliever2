@@ -47,14 +47,6 @@ public class confirmPickingBidActivity extends AppCompatActivity {
         timeShow.setText(timFromStatus);
         runnerShow.setText(runFromStatus);
 
-        // for chatting info
-        Intent k = new Intent(confirmPickingBidActivity.this, UserList.class);
-        Bundle b = new Bundle();
-
-        b.putString("runnerGet", runFromStatus);
-        k.putExtras(b);
-        startActivity(k);
-
         //
 
     }
