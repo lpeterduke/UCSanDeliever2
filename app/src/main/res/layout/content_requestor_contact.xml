@@ -15,7 +15,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/textView14"
         android:layout_marginTop="65dp"
-        android:id="@+id/button8"
+        android:id="@+id/buttonReceived"
         android:layout_alignRight="@+id/button12"
         android:layout_alignEnd="@+id/button12"
         android:layout_alignLeft="@+id/button12"
@@ -24,9 +24,8 @@
     <Button
         android:text="contact the runner"
         android:layout_height="wrap_content"
-        android:id="@+id/button12"
+        android:id="@+id/buttonContRunner"
         android:layout_width="250dp"
-        android:layout_below="@+id/button8"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="46dp" />
 
