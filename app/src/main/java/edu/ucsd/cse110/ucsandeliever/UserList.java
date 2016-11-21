@@ -52,13 +52,14 @@ public class UserList extends CustomActivity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.user_list);
+
 		Intent i = getIntent();
 		Bundle data = i.getExtras();
 		runnerUid = data.getString("runnerGet");
-// Get reference to the Firebase database
+		// Get reference to the Firebase database
 		database  = FirebaseDatabase.getInstance().getReference();
 
-//getActionBar().setDisplayHomeAsUpEnabled(false);
+		//getActionBar().setDisplayHomeAsUpEnabled(false);
 
 		updateUserStatus(true);
 	}
@@ -93,7 +94,7 @@ public class UserList extends CustomActivity
 
 	private void updateUserStatus(boolean online)
 	{
-//TODO: Add user status updates
+
 	}
 
 	/**
@@ -104,7 +105,7 @@ public class UserList extends CustomActivity
 		final ProgressDialog dia = ProgressDialog.show(this, null,
 				getString(R.string.alert_loading));
 
-// Pull the users list once no sync required.
+		// Pull the users list once no sync required.
 		database.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
 			@Override
 			public void onDataChange(DataSnapshot dataSnapshot) {dia.dismiss();
@@ -120,12 +121,11 @@ public class UserList extends CustomActivity
 
 					Student user = ds.getValue(Student.class);
 
-//	System.out.println("崩溃前的最后一步： "+ds.getValue(Student.class).getName());
+				//	System.out.println("崩溃前的最后一步： "+ds.getValue(Student.class).getName());
 
 
 					Logger.getLogger(UserList.class.getName()).log(Level.ALL,user.getName());
 					if(!user.getuid().contentEquals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
-						if (runnerUid.contentEquals(user.getuid()))
 							uList.add(user);
 				}
 				ListView list = (ListView) findViewById(R.id.list);
