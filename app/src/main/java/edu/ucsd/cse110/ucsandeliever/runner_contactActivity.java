@@ -41,7 +41,7 @@ public class runner_contactActivity extends Activity {
         final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
         DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-        final DatabaseReference usersRef = mRootRef.child("users");
+        final DatabaseReference usersRef = mRootRef.child("orders");
         DatabaseReference currRef = usersRef.child(currUid);
         usersRef.addChildEventListener(new ChildEventListener() {
 

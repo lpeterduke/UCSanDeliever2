@@ -60,6 +60,7 @@ public class signupActivity extends Activity {
 
         etID.requestFocus();
 
+
         signUpBtn.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){
