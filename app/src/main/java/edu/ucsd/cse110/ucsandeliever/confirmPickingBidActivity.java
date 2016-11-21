@@ -77,7 +77,7 @@ public class confirmPickingBidActivity extends AppCompatActivity {
 
             // now go to the requestor_contact page - he chang
             // for chatting info
-            Intent k = new Intent(confirmPickingBidActivity.this, UserList.class);
+            Intent k = new Intent(confirmPickingBidActivity.this, requestor_contactActivity.class);
             Bundle b = new Bundle();
 
             b.putString("runnerGet", runFromStatus);

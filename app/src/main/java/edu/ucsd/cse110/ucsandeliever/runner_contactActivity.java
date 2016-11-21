@@ -27,6 +27,16 @@ public class runner_contactActivity extends Activity {
 
     public void welcomeSystem(View view){
 
+        // go to chatting
+        String button_text;
+        button_text = ((Button) view).getText().toString();
+        if(button_text.equals("Contact the Requester")){
+
+            // chatting page for Pan
+            // to change because chat needs to get done first - Zihan
+            Intent intent = new Intent(this,UserList.class);
+            startActivity(intent);
+        }
 
         final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
@@ -96,18 +106,6 @@ public class runner_contactActivity extends Activity {
 
             }
         });
-
-
-        // go to chatting
-        String button_text;
-        button_text = ((Button) view).getText().toString();
-        if(button_text.equals("Contact the Requester")){
-
-            // chatting page for Pan
-            // to change because chat needs to get done first - Zihan
-            Intent intent = new Intent(this,UserList.class);
-            startActivity(intent);
-        }
 
 
 
