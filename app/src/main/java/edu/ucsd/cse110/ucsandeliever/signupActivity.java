@@ -125,8 +125,8 @@ public class signupActivity extends Activity {
                                     student.setuid(currentUid);
                                     student.setAlreadyPick(false);
                                     student.setBalance("2000");
-
                                     student.setRequesting(false);
+                                    student.setRunnerStatusIndicator(false);
                                     final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
 
                                     final String userID = userEmail.substring(0,userEmail.indexOf('@'));
