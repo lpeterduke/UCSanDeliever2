@@ -38,7 +38,15 @@ public class requestor_contactActivity extends Activity {
 
 
             // chatting page for Pan
+            Intent i = getIntent();
+            Bundle data = i.getExtras();
+            String Runneuid = data.getString("runnerGet");
 
+            Intent k = new Intent(this,UserList.class);
+            Bundle b = new Bundle();
+            b.putString("runnerGet", Runneuid);
+            k.putExtras(b);
+            startActivity(k);
         }else if(button_text.equals("I have received the order!")){
 
             // finishing page

@@ -48,7 +48,7 @@ public class confirmPickingBidActivity extends AppCompatActivity {
         runnerShow.setText(runFromStatus);
 
         // for chatting info
-        Intent k = new Intent(confirmPickingBidActivity.this, Chat.class);
+        Intent k = new Intent(confirmPickingBidActivity.this, UserList.class);
         Bundle b = new Bundle();
 
         b.putString("runnerGet", runFromStatus);
@@ -84,10 +84,13 @@ public class confirmPickingBidActivity extends AppCompatActivity {
             //startActivity(intent);
 
             // now go to the requestor_contact page - he chang
-            Intent intent = new Intent(this,requestor_contactActivity.class);
+            // for chatting info
+            Intent k = new Intent(confirmPickingBidActivity.this, UserList.class);
+            Bundle b = new Bundle();
 
-
-            startActivity(intent);
+            b.putString("runnerGet", runFromStatus);
+            k.putExtras(b);
+            startActivity(k);
 
         }else if(button_text.equals("No, go back to last page")){
 
