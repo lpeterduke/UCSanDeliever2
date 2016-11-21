@@ -60,7 +60,7 @@ public class Chat extends CustomActivity {
     private EditText txt;
 
     /**
-     * The user name of buddy   receiver.
+     * The user name of buddy   = receiver.
      */
     private Student buddy;
 

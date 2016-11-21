@@ -89,7 +89,8 @@ public class Conversation
 	 */
 	public boolean isSent()
 	{
-		return UserList.user.getuid().contentEquals(sender);
+		return true;
+		//UserList.user.getuid().contentEquals(sender);
 	}
 
 	/**

@@ -41,7 +41,8 @@ public class UserList extends CustomActivity
 	/** The user. */
 	public static Student user;
 
-	public String runnerUid;
+	private String runnerUid;
+	private String requesterUid;
 
 
 	/* (non-Javadoc)
@@ -56,6 +57,8 @@ public class UserList extends CustomActivity
 		Intent i = getIntent();
 		Bundle data = i.getExtras();
 		runnerUid = data.getString("runnerGet");
+		requesterUid = data.getString("currRe");
+
 		// Get reference to the Firebase database
 		database  = FirebaseDatabase.getInstance().getReference();
 
@@ -81,7 +84,10 @@ public class UserList extends CustomActivity
 	protected void onResume()
 	{
 		super.onResume();
-		loadUserList();
+		if (FirebaseAuth.getInstance().getCurrentUser().getUid().contentEquals(runnerUid))
+			loadUserListforRunner();
+		else
+			loadUserListforRequestor();
 
 	}
 
@@ -100,7 +106,7 @@ public class UserList extends CustomActivity
 	/**
 	 * Load list of users.
 	 */
-	private void loadUserList()
+	private void loadUserListforRequestor()
 	{
 		final ProgressDialog dia = ProgressDialog.show(this, null,
 				getString(R.string.alert_loading));
@@ -123,13 +129,15 @@ public class UserList extends CustomActivity
 
 				//	System.out.println("崩溃前的最后一步： "+ds.getValue(Student.class).getName());
 
-
 					Logger.getLogger(UserList.class.getName()).log(Level.ALL,user.getName());
-					if(!user.getuid().contentEquals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+					if (runnerUid.contentEquals(user.getuid()))
+						if(!user.getuid().contentEquals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
 							uList.add(user);
 				}
 				ListView list = (ListView) findViewById(R.id.list);
 				list.setAdapter(new UserAdapter());
+
+
 				list.setOnItemClickListener(new OnItemClickListener() {
 
 					@Override
@@ -139,6 +147,9 @@ public class UserList extends CustomActivity
 						startActivity(new Intent(UserList.this, Chat.class).putExtra(Const.EXTRA_DATA, uList.get(pos)));
 					}
 				});
+
+
+
 			}
 
 			@Override
@@ -147,6 +158,66 @@ public class UserList extends CustomActivity
 			}
 		});
 	}
+
+
+
+
+
+	private void loadUserListforRunner()
+	{
+		final ProgressDialog dia = ProgressDialog.show(this, null,
+				getString(R.string.alert_loading));
+
+		// Pull the users list once no sync required.
+		database.child("users").addListenerForSingleValueEvent(new ValueEventListener() {
+			@Override
+			public void onDataChange(DataSnapshot dataSnapshot) {dia.dismiss();
+				long size  = dataSnapshot.getChildrenCount();
+				if(size == 0) {
+					Toast.makeText(UserList.this,
+							R.string.msg_no_user_found,
+							Toast.LENGTH_SHORT).show();
+					return;
+				}
+				uList = new ArrayList<Student>();
+				for(DataSnapshot ds : dataSnapshot.getChildren()) {
+
+					Student user = ds.getValue(Student.class);
+
+					//	System.out.println("崩溃前的最后一步： "+ds.getValue(Student.class).getName());
+
+
+					Logger.getLogger(UserList.class.getName()).log(Level.ALL,user.getName());
+					if (requesterUid.contentEquals(user.getuid()))
+						if(!user.getuid().contentEquals(FirebaseAuth.getInstance().getCurrentUser().getUid()))
+							uList.add(user);
+				}
+				ListView list = (ListView) findViewById(R.id.list);
+				list.setAdapter(new UserAdapter());
+
+
+				list.setOnItemClickListener(new OnItemClickListener() {
+
+					@Override
+					public void onItemClick(AdapterView<?> arg0,
+											View arg1, int pos, long arg3)
+					{
+						startActivity(new Intent(UserList.this, Chat.class).putExtra(Const.EXTRA_DATA, uList.get(pos)));
+					}
+				});
+
+
+
+			}
+
+			@Override
+			public void onCancelled(DatabaseError databaseError) {
+
+			}
+		});
+	}
+
+
 
 	/**
 	 * The Class UserAdapter is the adapter class for User ListView. This
