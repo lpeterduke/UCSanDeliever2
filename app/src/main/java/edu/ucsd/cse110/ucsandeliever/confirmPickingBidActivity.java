@@ -70,7 +70,11 @@ public class confirmPickingBidActivity extends AppCompatActivity {
 
 
             // to change because chat needs to get done first - Zihan
-            Intent intent = new Intent(this,Chat.class);
+           // Intent intent = new Intent(this,Chat.class);
+            //startActivity(intent);
+
+            // now go to the requestor_contact page - he chang
+            Intent intent = new Intent(this,requestor_contactActivity.class);
             startActivity(intent);
 
         }else if(button_text.equals("No, go back to last page")){

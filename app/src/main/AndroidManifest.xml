@@ -7,7 +7,7 @@
 
     <application
         android:allowBackup="true"
-        android:icon="@drawable/uc"
+        android:icon="@drawable/rosemary"
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
