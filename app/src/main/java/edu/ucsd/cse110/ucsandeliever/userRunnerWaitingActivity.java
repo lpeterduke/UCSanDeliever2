@@ -86,15 +86,12 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
         DatabaseReference currRef = usersRef.child(currUid);
         usersRef.addChildEventListener(new ChildEventListener() {
 
-        boolean runnerChecked = false;
             @Override
             public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
                 if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
-
-                    runnerChecked = true;
-                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator() == true) {
-                        System.out.println("!!!!!!!haha");
+                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
+                        System.out.println("indicator entered============================");
 
 
                         // to change because chat needs to get done first - Zihan
@@ -111,23 +108,25 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                     } else {
                         System.out.println("datachange not related to current user");
                     }
-                } else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
-                    if (dataSnapshot.getValue(Student.class).getAlreadyPick() && runnerChecked == true){
+                }
+                /*
+                else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
+                    if (dataSnapshot.getValue(Student.class).getAlreadyPick()){
+                        System.out.println("both entered===========================");
                         Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
                         startActivity(intent);
                     }
                 }
+                */
 
-                runnerChecked = false;
             }
 
             @Override
             public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
 
                 if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
-                    runnerChecked = true;
-                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator() == true) {
-                        System.out.println("!!!!!!!haha");
+                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
+                        System.out.println("indicator entered============================");
 
                         // to change because chat needs to get done first - Zihan
 
@@ -139,14 +138,17 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                     } else {
                         System.out.println("datachange not related to current user");
                     }
-                } else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
-                    if (dataSnapshot.getValue(Student.class).getAlreadyPick() && runnerChecked == true){
+                }
+/*
+                else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
+                    if (dataSnapshot.getValue(Student.class).getAlreadyPick()){
+                        System.out.println("both entered===========================");
                         Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
                         startActivity(intent);
+
                     }
                 }
-
-                runnerChecked = false;
+*/
             }
 
             @Override

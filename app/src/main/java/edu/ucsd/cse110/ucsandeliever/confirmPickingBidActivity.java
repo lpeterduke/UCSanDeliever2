@@ -50,6 +50,7 @@ public class confirmPickingBidActivity extends AppCompatActivity {
         //
 
     }
+
     public void confirmSystem(View view){
 
         String button_text;
