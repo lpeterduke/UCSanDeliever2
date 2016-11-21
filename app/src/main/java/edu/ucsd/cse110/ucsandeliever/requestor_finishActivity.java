@@ -57,7 +57,7 @@ public class requestor_finishActivity extends Activity {
                         Order order = ds.getValue(Order.class);
 
 
-                        if (order.getDone() == false || order.getRequestorUid() == currUid)
+                        if (order.getDone() == false && order.getRequestorUid() == currUid)
                             order.changeDone(true);
 
 
