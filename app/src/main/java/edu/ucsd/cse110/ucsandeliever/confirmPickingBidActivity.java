@@ -79,14 +79,12 @@ public class confirmPickingBidActivity extends AppCompatActivity {
             DatabaseReference alreadyPickRef = requesterRef.child("alreadyPick");
             alreadyPickRef.setValue(true);
             requesterID = requesterRef.getKey();
-
-            System.out.println("money money money: " + monFromStatus);
 /**
             System.out.println("runner id ----------- " + runFromStatus);
             int changedValue = 0;
             System.out.println("requester id ----------" + requesterRef.getKey());
  **/
-            usersRef.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+            usersRef.addListenerForSingleValueEvent( new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
                     //  System.out.println("userUID : " + userUID);
@@ -97,8 +95,6 @@ public class confirmPickingBidActivity extends AppCompatActivity {
                     System.out.println("balance1: " + balance1);
                     System.out.println("runFromStatus: " + runFromStatus);
                     System.out.println("requesterID: " + requesterID);
-                    DatabaseReference runnerRef;
-                    DatabaseReference requesterRef;
 
 
                     for (com.google.firebase.database.DataSnapshot snapshot : dataSnapshot.getChildren()) {
@@ -112,7 +108,7 @@ public class confirmPickingBidActivity extends AppCompatActivity {
                             System.out.println("balance 1: " + balance1);
                             int newBalanceForUser1 = Integer.parseInt(balance1) + Integer.parseInt(monFromStatus);
                             snapshot.getRef().child("balance").setValue(Integer.toString(newBalanceForUser1));
-                            break;
+
                         }
                         else if (student.getuid().equals(requesterID))
                         {
@@ -120,7 +116,6 @@ public class confirmPickingBidActivity extends AppCompatActivity {
                             System.out.println("balance 2: " + balance2);
                             int newBalanceForUser2 = Integer.parseInt(balance2) - Integer.parseInt(monFromStatus);
                             snapshot.getRef().child("balance").setValue(Integer.toString(newBalanceForUser2));
-                            break;
                         }
 
                     }
@@ -134,6 +129,14 @@ public class confirmPickingBidActivity extends AppCompatActivity {
             });
 
 
+
+
+          //  int newBalanceForUser1 = Integer.parseInt(balance1) + Integer.parseInt(monFromStatus);
+          //  int newBalanceForUser2 = Integer.parseInt(balance2) - Integer.parseInt(monFromStatus);
+
+            //runnerRef.child("balance").setValue(Integer.toString(newBalanceForUser1));
+            //requesterRef.child("balance").setValue(Integer.toString(newBalanceForUser2));
+
             // to change because chat needs to get done first - Zihan
            // Intent intent = new Intent(this,Chat.class);
             //startActivity(intent);
@@ -143,8 +146,15 @@ public class confirmPickingBidActivity extends AppCompatActivity {
             Intent k = new Intent(confirmPickingBidActivity.this, requestor_contactActivity.class);
             Bundle b = new Bundle();
 
+            System.out.println("Outer balance1: " + balance1);
+            System.out.println("Outer balance2: " + balance2);
+            System.out.println("Outer monFromStatus: " + monFromStatus);
+
+
+
             b.putString("runner", runFromStatus);
             k.putExtras(b);
+
             startActivity(k);
 
         }else if(button_text.equals("No, go back to last page")){
