@@ -179,11 +179,12 @@ public class drawerActivity extends AppCompatActivity
                     uid = auth.getCurrentUser().getUid().toString();
                 }
 
-                if(uid.contentEquals(dataSnapshot.getValue(Order.class).getRequestorUid()))
+                if(uid.contentEquals(dataSnapshot.getValue(Order.class).getRequestorUid())
+                        && dataSnapshot.getValue(Order.class).getDone() == true)
                 {
-                    orderHistory.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
-                            dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +
-                            dataSnapshot.getValue(Order.class).getDestination() + "\nNeed it by the time at: " +
+                    orderHistory.add("Item: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
+                            dataSnapshot.getValue(Order.class).getRestaurants() + "\nDelivered to: " +
+                            dataSnapshot.getValue(Order.class).getDestination() + "\nDelivered by the time at: " +
                             orderT.substring(0,2)+": "+orderT.substring(2) );
                 }
                 System.out.println("双判定：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) );

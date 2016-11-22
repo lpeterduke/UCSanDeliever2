@@ -45,6 +45,7 @@ public class runner_contactActivity extends Activity {
                 // chatting page for Pan
                 // to change because chat needs to get done first - Zihan
                 Intent intent = new Intent(runner_contactActivity.this, UserList.class);
+
                 intent.putExtras(b);
                 startActivity(intent);
             }

@@ -101,9 +101,6 @@ public class homeActivity extends Fragment {
                     homeActivity.sortList(4);
                 }
 
-
-
-
             }
 
             @Override

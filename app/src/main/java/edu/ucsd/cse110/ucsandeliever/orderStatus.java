@@ -45,6 +45,7 @@ public class orderStatus extends AppCompatActivity {
     private List<String> output = new ArrayList<>();
     private String runnerId;
     private Button refresh;
+    private Button cancel;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -227,6 +228,54 @@ public class orderStatus extends AppCompatActivity {
                 refresh();
             }
         });
+
+        cancel = (Button)findViewById(R.id.button6);
+        refresh.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                cancelIt();
+            }
+        });
+
+
+    }
+
+    public void cancelIt()
+    {
+        System.out.println("order cancelled");
+
+        DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference ordersRef = mRootRef.child("orders");
+
+        ordersRef.addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+
+            }
+
+            @Override
+            public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(com.google.firebase.database.DataSnapshot dataSnapshot) {
+
+
+            }
+
+            @Override
+            public void onChildMoved(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
 
     }
 

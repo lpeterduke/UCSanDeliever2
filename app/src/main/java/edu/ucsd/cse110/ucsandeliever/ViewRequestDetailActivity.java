@@ -59,6 +59,7 @@ public class ViewRequestDetailActivity extends Fragment implements Button.OnClic
 
 
         //裁剪从Drawer传输过来的数据
+        
 
         res.setText(resFromHome);
         dest.setText(destFromHomw);

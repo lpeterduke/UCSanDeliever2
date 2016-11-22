@@ -10,7 +10,7 @@
 
         android:divider = "@color/main_color_gray"
         android:dividerHeight="@dimen/txt_12sp"
-        android:listSelector="@android:color/holo_green_light"
+        android:listSelector="@android:color/holo_blue_light"
         android:background="@color/main_color_green"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"

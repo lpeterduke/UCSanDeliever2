@@ -21,28 +21,6 @@
         android:layout_centerHorizontal="true"
         android:textSize="18sp" />
 
-    <TextView
-        android:text="Enter the payment you want"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView19"
-        tools:ignore="HardcodedText"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="18sp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText12"
-        tools:ignore="HardcodedText"
-        android:layout_marginTop="40dp"
-        android:background="@android:drawable/editbox_background_normal"
-        android:layout_below="@+id/textView19"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:text="Place Bid!"
         android:layout_width="wrap_content"
@@ -63,15 +41,40 @@
         android:layout_below="@+id/textView13"
         android:layout_alignRight="@+id/button4"
         android:layout_alignEnd="@+id/button4"
-        android:layout_marginTop="54dp" />
+        android:layout_marginTop="54dp"
+        android:layout_alignLeft="@+id/editText12"
+        android:layout_alignStart="@+id/editText12" />
 
     <Button
         android:text="Pick a time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timePicker"
-        android:layout_alignBaseline="@+id/editText7"
-        android:layout_alignBottom="@+id/editText7"
         android:layout_toRightOf="@+id/editText7"
-        android:layout_toEndOf="@+id/editText7" />
+        android:layout_toEndOf="@+id/editText7"
+        android:layout_alignBottom="@+id/editText7"
+        android:layout_alignTop="@+id/editText7" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText12"
+        tools:ignore="HardcodedText"
+        android:layout_marginTop="22dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_below="@+id/textView19"
+        android:layout_centerHorizontal="true" />
+
+    <TextView
+        android:text="Enter the payment you want"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView19"
+        tools:ignore="HardcodedText"
+        android:textSize="18sp"
+        android:layout_centerVertical="true"
+        android:layout_alignRight="@+id/editText12"
+        android:layout_alignEnd="@+id/editText12" />
 </RelativeLayout>

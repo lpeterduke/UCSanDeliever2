@@ -22,7 +22,7 @@
         android:text="comment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/button6"
+        android:layout_alignTop="@+id/buttonDone"
         android:layout_alignRight="@+id/textView12"
         android:layout_alignEnd="@+id/textView12"
         android:id="@+id/button7" />
@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="180dp"
-        android:id="@+id/button6"
+        android:id="@+id/buttonDone"
         android:layout_below="@+id/textView12"
         android:layout_alignLeft="@+id/textView12"
         android:layout_alignStart="@+id/textView12" />

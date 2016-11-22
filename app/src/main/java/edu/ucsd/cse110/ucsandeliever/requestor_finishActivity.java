@@ -28,61 +28,57 @@ import java.util.logging.Logger;
 import edu.ucsd.cse110.ucsandeliever.utils.Const;
 
 public class requestor_finishActivity extends Activity {
-
+    Button done;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_requestor_finish);
 
-    }
 
-    public void welcomeSystem(View view){
+        done = (Button) findViewById(R.id.buttonDone);
+        done.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
 
-        String button_text;
-        button_text = ((Button) view).getText().toString();
-        if(button_text.equals("Done")){
+                // change the done of order to be true
+                final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-            // change the done of order to be true
-            final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+                final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+                final DatabaseReference usersRef = mRootRef.child("orders");
 
-            final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-            final DatabaseReference usersRef = mRootRef.child("orders");
+                usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
 
-            usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
-                @Override
-                public void onDataChange(DataSnapshot dataSnapshot) {
+                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
 
-                    for (DataSnapshot ds : dataSnapshot.getChildren()) {
-
-                        Order order = ds.getValue(Order.class);
+                            Order order = ds.getValue(Order.class);
 
 
-                        if (order.getDone() == false && order.getRequestorUid() == currUid)
-                            order.changeDone(true);
+                            if (order.getDone() == false && order.getRequestorUid() == currUid)
+                                order.changeDone(true);
 
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
 
                     }
-                }
+                });
 
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
+                // go to main page
+                Intent intent = new Intent(requestor_finishActivity.this,drawerActivity.class);
+                startActivity(intent);
 
-                }
-            });
+            }
 
-            // go to main page
-            Intent intent = new Intent(this,homeActivity.class);
-            startActivity(intent);
-
-        }
-
-
-        else if(button_text.equals("comment")){
-
-            // finishing page
-        }
-
+    });
     }
+
+
+
 
     @Override
     public void onBackPressed() {
