@@ -79,6 +79,8 @@ public class confirmPickingBidActivity extends AppCompatActivity {
             DatabaseReference alreadyPickRef = requesterRef.child("alreadyPick");
             alreadyPickRef.setValue(true);
             requesterID = requesterRef.getKey();
+
+            System.out.println("money money money: " + monFromStatus);
 /**
             System.out.println("runner id ----------- " + runFromStatus);
             int changedValue = 0;
@@ -95,6 +97,10 @@ public class confirmPickingBidActivity extends AppCompatActivity {
                     System.out.println("balance1: " + balance1);
                     System.out.println("runFromStatus: " + runFromStatus);
                     System.out.println("requesterID: " + requesterID);
+                    DatabaseReference runnerRef;
+                    DatabaseReference requesterRef;
+
+
                     for (com.google.firebase.database.DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Student student = snapshot.getValue(Student.class);
                         System.out.println("StudentID : " + student.getuid());
@@ -104,16 +110,17 @@ public class confirmPickingBidActivity extends AppCompatActivity {
                         {
                             balance1 = student.getBalance();
                             System.out.println("balance 1: " + balance1);
-                            int newBalanceForUser1 = Integer.parseInt(balance1) + changedValue;
-                            student.setBalance(Integer.toString(newBalanceForUser1));
+                            int newBalanceForUser1 = Integer.parseInt(balance1) + Integer.parseInt(monFromStatus);
+                            snapshot.getRef().child("balance").setValue(Integer.toString(newBalanceForUser1));
+                            break;
                         }
                         else if (student.getuid().equals(requesterID))
                         {
                             balance2 = student.getBalance();
                             System.out.println("balance 2: " + balance2);
-                            int newBalanceForUser2 = Integer.parseInt(balance2) - changedValue;
-                            student.setBalance(Integer.toString(newBalanceForUser2));
-
+                            int newBalanceForUser2 = Integer.parseInt(balance2) - Integer.parseInt(monFromStatus);
+                            snapshot.getRef().child("balance").setValue(Integer.toString(newBalanceForUser2));
+                            break;
                         }
 
                     }
