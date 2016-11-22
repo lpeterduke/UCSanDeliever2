@@ -51,24 +51,26 @@ public class requestor_contactActivity extends Activity {
 
                 Intent i = getIntent();
                 Bundle data = i.getExtras();
-                final String runner = data.getString("runnerGet");;
+                final String runner = data.getString("runnerGet");
+                System.out.print("runner id ----------- " + runner);
                 int changedValue = 0;
-                DatabaseReference ref1 =FirebaseDatabase.getInstance().getReference().child("users").child(runner).child("balance");
+                //DatabaseReference ref1 =FirebaseDatabase.getInstance().getReference().child("users").child(runner).child("balance");
                 FirebaseDatabase.getInstance().getReference().child("users").child(runner).child("runnerStatusIndicator").setValue(false);
 
                 DatabaseReference ref2 =FirebaseDatabase.getInstance().getReference().child("users").child(requester).child("balance");
                 FirebaseDatabase.getInstance().getReference().child("users").child(requester).child("alreadyPick").setValue(false);
                 FirebaseDatabase.getInstance().getReference().child("users").child(requester).child("requesting").setValue(false);
 
-                ref1.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+               /**ref1.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
                     @Override
                     public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
 
                         System.out.println("余额变更");
-                        String msg = dataSnapshot.getValue(String.class);
-                        System.out.println("msg: " + msg);
+                        String msg1 = dataSnapshot.getValue(String.class);
+                        System.out.println("msg1: " + msg1);
 
-                        balance1 = msg;
+                        balance1 = msg1;
+                        System.out.println("balance1: " + balance1);
 
 
                     }
@@ -79,15 +81,16 @@ public class requestor_contactActivity extends Activity {
                     }
                 });
 
-
+**/
                 ref2.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
                     @Override
                     public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
 
                         System.out.println("余额变更");
-                        String msg = dataSnapshot.getValue(String.class);
-                        System.out.println("msg: " + msg);
-                        balance2 = msg;
+                        String msg2 = dataSnapshot.getValue(String.class);
+                        System.out.println("msg2: " + msg2);
+                        balance2 = msg2;
+                        System.out.println("balance2: " + balance2);
 
 
                     }
@@ -100,7 +103,7 @@ public class requestor_contactActivity extends Activity {
                 //这段代码有问题 comment掉就可以 进到下一页
 
                // int newBalanceForUser1 = Integer.parseInt(balance1) + changedValue;
-            //    int newBalanceForUser2 = Integer.parseInt(balance2) - changedValue;
+                int newBalanceForUser2 = Integer.parseInt(balance2) - changedValue;
                // ref1.setValue(Integer.toString(newBalanceForUser1));
               //  ref2.setValue(Integer.toString(newBalanceForUser2));
 

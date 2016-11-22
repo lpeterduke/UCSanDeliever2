@@ -9,6 +9,8 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
@@ -20,10 +22,14 @@ public class confirmPickingBidActivity extends AppCompatActivity {
     private String monFromStatus;
     private String timFromStatus;
     private String runFromStatus;
+    private String requesterID;
 
     private TextView moneyShow;
     private TextView timeShow;
     private TextView runnerShow;
+
+    String balance1 = "";
+    String balance2 = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,7 +61,9 @@ public class confirmPickingBidActivity extends AppCompatActivity {
 
         String button_text;
         button_text = ((Button) view).getText().toString();
+        System.out.println("AAAAAAAAAAAAAAAAA");
         if(button_text.equals("Yes, choose this runner")){
+            System.out.println("BBBBBBBBBBBBBBBBB");
 
             // look for runner from firebase using runFromStatus
             // change that runner's status to true
@@ -70,6 +78,88 @@ public class confirmPickingBidActivity extends AppCompatActivity {
             DatabaseReference requesterRef = usersRef.child(currUid);
             DatabaseReference alreadyPickRef = requesterRef.child("alreadyPick");
             alreadyPickRef.setValue(true);
+            requesterID = requesterRef.getKey();
+/**
+            System.out.println("runner id ----------- " + runFromStatus);
+            int changedValue = 0;
+            System.out.println("requester id ----------" + requesterRef.getKey());
+ **/
+            usersRef.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+                @Override
+                public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+                    //  System.out.println("userUID : " + userUID);
+
+                    System.out.println("余额变更");
+                    System.out.println("/////////////////////////////");
+                    balance1 = dataSnapshot.getValue(Student.class).getBalance();
+                    System.out.println("balance1: " + balance1);
+                    System.out.println("runFromStatus: " + runFromStatus);
+                    System.out.println("requesterID: " + requesterID);
+                    for (com.google.firebase.database.DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                        Student student = snapshot.getValue(Student.class);
+                        System.out.println("StudentID : " + student.getuid());
+
+
+                        if (student.getuid().equals(runFromStatus))
+                        {
+                            balance1 = student.getBalance();
+                            System.out.println("balance 1: " + balance1);
+                        }
+                        else if (student.getuid().equals(requesterID))
+                        {
+                            balance2 = student.getBalance();
+                            System.out.println("balance 2: " + balance2);
+
+                        }
+
+                    }
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+/**
+            requesterRef.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
+                @Override
+                public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+                    //  System.out.println("userUID : " + userUID);
+
+                    System.out.println("余额变更");
+                    System.out.println("/////////////////////////////");
+                    balance1 = dataSnapshot.getValue(Student.class).getBalance();
+                    System.out.println("balance2: " + balance2);
+
+                }
+
+                @Override
+                public void onCancelled(DatabaseError databaseError) {
+
+                }
+            });
+**/
+            //这段代码有问题 comment掉就可以 进到下一页
+
+            // int newBalanceForUser1 = Integer.parseInt(balance1) + changedValue;
+            //int newBalanceForUser2 = Integer.parseInt(balance2) - changedValue;
+            // ref1.setValue(Integer.toString(newBalanceForUser1));
+            //  ref2.setValue(Integer.toString(newBalanceForUser2));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
             // to change because chat needs to get done first - Zihan

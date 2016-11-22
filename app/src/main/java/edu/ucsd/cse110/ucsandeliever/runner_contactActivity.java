@@ -81,9 +81,11 @@ public class runner_contactActivity extends Activity {
 
             @Override
             public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
-
+                int c = 0;
+                System.out.println("Step: " + (c++));
                 if(dataSnapshot.getValue(Order.class).getRunnerUid().contentEquals(currUid)
                         || dataSnapshot.getValue(Order.class).getDone() == true) {
+                    System.out.println("Step: " + (c++));
 
                     System.out.println("!!!!!!!haha");
 
@@ -107,13 +109,16 @@ public class runner_contactActivity extends Activity {
                 }
 
                     else {
-                        System.out.println("runners are not done the job yet");
+                    System.out.println("Step: " + (c++));
+
+                    System.out.println("runners are not done the job yet");
                     }
                 }
 
 
             @Override
             public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+                System.out.println("Step2");
 
                 if(dataSnapshot.getValue(Order.class).getRunnerUid().contentEquals(currUid)
                         || dataSnapshot.getValue(Order.class).getDone() == true) {

@@ -99,7 +99,7 @@ public class drawerActivity extends AppCompatActivity
         ref.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
             @Override
             public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
-                System.out.println("userUID : " + userUID);
+              //  System.out.println("userUID : " + userUID);
 
                 System.out.println("余额变更");
                 String msg = dataSnapshot.getValue(String.class);
