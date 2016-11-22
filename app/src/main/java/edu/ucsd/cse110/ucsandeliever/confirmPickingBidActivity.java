@@ -27,7 +27,7 @@ public class confirmPickingBidActivity extends AppCompatActivity {
     private TextView moneyShow;
     private TextView timeShow;
     private TextView runnerShow;
-
+    int changedValue = 0;
     String balance1 = "";
     String balance2 = "";
 
@@ -104,11 +104,15 @@ public class confirmPickingBidActivity extends AppCompatActivity {
                         {
                             balance1 = student.getBalance();
                             System.out.println("balance 1: " + balance1);
+                            int newBalanceForUser1 = Integer.parseInt(balance1) + changedValue;
+                            student.setBalance(Integer.toString(newBalanceForUser1));
                         }
                         else if (student.getuid().equals(requesterID))
                         {
                             balance2 = student.getBalance();
                             System.out.println("balance 2: " + balance2);
+                            int newBalanceForUser2 = Integer.parseInt(balance2) - changedValue;
+                            student.setBalance(Integer.toString(newBalanceForUser2));
 
                         }
 
@@ -121,45 +125,6 @@ public class confirmPickingBidActivity extends AppCompatActivity {
 
                 }
             });
-/**
-            requesterRef.addValueEventListener(new com.google.firebase.database.ValueEventListener() {
-                @Override
-                public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
-                    //  System.out.println("userUID : " + userUID);
-
-                    System.out.println("余额变更");
-                    System.out.println("/////////////////////////////");
-                    balance1 = dataSnapshot.getValue(Student.class).getBalance();
-                    System.out.println("balance2: " + balance2);
-
-                }
-
-                @Override
-                public void onCancelled(DatabaseError databaseError) {
-
-                }
-            });
-**/
-            //这段代码有问题 comment掉就可以 进到下一页
-
-            // int newBalanceForUser1 = Integer.parseInt(balance1) + changedValue;
-            //int newBalanceForUser2 = Integer.parseInt(balance2) - changedValue;
-            // ref1.setValue(Integer.toString(newBalanceForUser1));
-            //  ref2.setValue(Integer.toString(newBalanceForUser2));
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
             // to change because chat needs to get done first - Zihan
