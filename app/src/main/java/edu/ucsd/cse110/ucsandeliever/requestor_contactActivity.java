@@ -131,7 +131,7 @@ public class requestor_contactActivity extends Activity {
 
                 Intent k = new Intent(requestor_contactActivity.this,UserList.class);
                 Bundle b = new Bundle();
-                b.putString("runnerGet", Runneuid);
+                b.putString("runner", Runneuid);
                 b.putString("currRe", currUid);
                 k.putExtras(b);
                 startActivity(k);

@@ -11,19 +11,6 @@
     tools:context="edu.ucsd.cse110.ucsandeliever.confirmPickingBidActivity">
 
 
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="35dp"
-        android:layout_marginStart="35dp"
-        android:id="@+id/moneyText"
-        android:layout_marginTop="79dp"
-        android:layout_below="@+id/textView11"
-        android:layout_alignLeft="@+id/buttonPlaceBid"
-        android:layout_alignStart="@+id/buttonPlaceBid"
-        android:textSize="18sp" />
-
     <Button
         android:text="No, go back to last page"
         android:layout_width="wrap_content"
@@ -45,35 +32,79 @@
         android:layout_marginBottom="47dp" />
 
     <TextView
-        android:text="TextView"
+        android:text="Money Paid:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/runnerText"
-        android:layout_marginTop="37dp"
         android:textSize="18sp"
-        android:layout_below="@+id/timeText"
-        android:layout_alignLeft="@+id/timeText"
-        android:layout_alignStart="@+id/timeText" />
+        android:id="@+id/textView18"
+        android:layout_below="@+id/textView11"
+        android:layout_alignLeft="@+id/textView27"
+        android:layout_alignStart="@+id/textView27"
+        android:layout_marginTop="29dp" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/timeText"
-        android:layout_marginTop="49dp"
         android:textSize="18sp"
-        android:layout_below="@+id/moneyText"
-        android:layout_alignLeft="@+id/moneyText"
-        android:layout_alignStart="@+id/moneyText" />
+        android:layout_alignBaseline="@+id/textView26"
+        android:layout_alignBottom="@+id/textView26"
+        android:layout_alignRight="@+id/buttonGoBack"
+        android:layout_alignEnd="@+id/buttonGoBack" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/moneyText"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/textView18"
+        android:layout_alignBottom="@+id/textView18"
+        android:layout_alignLeft="@+id/timeText"
+        android:layout_alignStart="@+id/timeText" />
+
+    <TextView
+        android:text="Runner's name:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/textView27"
+        android:layout_below="@+id/textView26"
+        android:layout_alignLeft="@+id/buttonPlaceBid"
+        android:layout_alignStart="@+id/buttonPlaceBid"
+        android:layout_marginTop="49dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/runnerText"
+        android:textSize="18sp"
+        android:layout_alignBaseline="@+id/textView27"
+        android:layout_alignBottom="@+id/textView27"
+        android:layout_alignLeft="@+id/timeText"
+        android:layout_alignStart="@+id/timeText" />
+
+    <TextView
+        android:text="Estimate Time:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:id="@+id/textView26"
+        android:layout_marginTop="43dp"
+        android:layout_below="@+id/textView18"
+        android:layout_alignLeft="@+id/buttonGoBack"
+        android:layout_alignStart="@+id/buttonGoBack" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Are you picking this runner?"
-        android:textSize="18sp"
-        android:layout_marginTop="34dp"
+        android:textSize="20sp"
+        android:id="@+id/textView11"
+        android:layout_marginTop="47dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:id="@+id/textView11" />
+        android:layout_centerHorizontal="true" />
 
 </RelativeLayout>

@@ -8,6 +8,5 @@
     android:text="TextView"
     android:textColor="@color/main_color_gray_dk"
     android:textSize="@dimen/txt_18sp"
-    android:drawableLeft="@drawable/ic_online"
     android:drawablePadding="@dimen/pad_10dp"
      />

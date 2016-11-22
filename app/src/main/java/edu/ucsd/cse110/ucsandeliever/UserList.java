@@ -87,6 +87,18 @@ public class UserList extends CustomActivity
 		updateUserStatus(false);
 	}
 
+	@Override
+	protected void onStart(){
+		String self = FirebaseAuth.getInstance().getCurrentUser().getUid();
+		if (self.contentEquals(runnerUid))
+			loadUserListforRunner();
+		else
+			loadUserListforRequestor();
+
+		super.onStart();
+
+	}
+
 	/* (non-Javadoc)
     * @see android.support.v4.app.FragmentActivity#onResume()
     */
@@ -94,7 +106,10 @@ public class UserList extends CustomActivity
 	protected void onResume()
 	{
 		super.onResume();
-		if (FirebaseAuth.getInstance().getCurrentUser().getUid().contentEquals(runnerUid))
+
+		System.out.println("现在的runner：" + runnerUid);
+		String self = FirebaseAuth.getInstance().getCurrentUser().getUid();
+		if (self.contentEquals(runnerUid))
 			loadUserListforRunner();
 		else
 			loadUserListforRequestor();

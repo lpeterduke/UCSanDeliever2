@@ -10,52 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.ucsd.cse110.ucsandeliever.PlaceBidActivity">
 
-    <Button
-        android:text="Place Bid!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="78dp"
-        android:id="@+id/button4"
-        android:layout_below="@+id/editText12"
-        android:layout_centerHorizontal="true"
-        tools:ignore="HardcodedText" />
-
-    <Button
-        android:text="Pick a time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker"
-        android:layout_marginTop="28dp"
-        android:layout_below="@+id/textView13"
-        android:layout_toRightOf="@+id/button4"
-        android:layout_toEndOf="@+id/button4"
-        android:layout_marginLeft="34dp"
-        android:layout_marginStart="34dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText7"
-        android:background="@android:drawable/editbox_background_normal"
-        android:layout_alignBottom="@+id/timePicker"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignTop="@+id/timePicker" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText12"
-        tools:ignore="HardcodedText"
-        android:layout_marginTop="48dp"
-        android:layout_below="@+id/textView19"
-        android:layout_centerHorizontal="true"
-        android:background="@android:drawable/editbox_background_normal" />
-
     <TextView
         android:text="Enter your delivery time"
         android:layout_width="wrap_content"
@@ -64,15 +18,60 @@
         tools:ignore="HardcodedText"
         android:layout_marginTop="37dp"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp" />
 
     <TextView
         android:text="Enter the payment you want"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="51dp"
         android:id="@+id/textView19"
         tools:ignore="HardcodedText"
-        android:layout_below="@+id/timePicker"
+        android:layout_centerVertical="true"
+        android:layout_centerHorizontal="true"
+        android:textSize="18sp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText12"
+        tools:ignore="HardcodedText"
+        android:layout_marginTop="40dp"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_below="@+id/textView19"
         android:layout_centerHorizontal="true" />
+
+    <Button
+        android:text="Place Bid!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button4"
+        tools:ignore="HardcodedText"
+        android:layout_below="@+id/editText12"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText7"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_below="@+id/textView13"
+        android:layout_alignRight="@+id/button4"
+        android:layout_alignEnd="@+id/button4"
+        android:layout_marginTop="54dp" />
+
+    <Button
+        android:text="Pick a time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:layout_alignBaseline="@+id/editText7"
+        android:layout_alignBottom="@+id/editText7"
+        android:layout_toRightOf="@+id/editText7"
+        android:layout_toEndOf="@+id/editText7" />
 </RelativeLayout>
