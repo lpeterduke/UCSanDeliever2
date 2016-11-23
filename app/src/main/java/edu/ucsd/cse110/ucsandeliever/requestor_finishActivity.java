@@ -58,7 +58,8 @@ public class requestor_finishActivity extends Activity {
                             if (order.getDone() == false && order.getRequestorUid().equals(currUid))
                                 System.out.println("change the done to be true and requestor ready to finish");
 
-                                order.changeDone(true);
+                            snapshot.getRef().child("done").setValue(true);
+
 
                             Intent intent = new Intent(requestor_finishActivity.this,drawerActivity.class);
                             startActivity(intent);

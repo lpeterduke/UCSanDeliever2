@@ -108,9 +108,10 @@ public class runner_contactActivity extends Activity {
                         // startActivity(intent);
                         //
                         //go to runner_contact page - he chang
-
+                        Bundle o = new Bundle();
+                        o.putString("requestor", requestor);
                         Intent intent = new Intent(runner_contactActivity.this,runner_finishActivity.class);
-
+                        intent.putExtras(o);
                         startActivity(intent);
                     }
                 }

@@ -25,13 +25,22 @@ public class runner_finishActivity extends Activity {
         setContentView(R.layout.content_runner_finish);
 
         done = (Button) findViewById(R.id.button5);
-        done.setOnClickListener(new View.OnClickListener(){
+        done.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
+            public void onClick(View view) {
 
+
+                Intent intent = new Intent(runner_finishActivity.this, drawerActivity.class);
+                startActivity(intent);
+
+            }
+
+        });
+    }
+}
                 // change the done of order to be true
                 //final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
+       /*
                 Intent i = getIntent();
                 Bundle data = i.getExtras();
                 final String requester = data.getString("requestor");
@@ -67,9 +76,7 @@ public class runner_finishActivity extends Activity {
                     }
                 });
 
-                // go to main page
-                Intent intent = new Intent(runner_finishActivity.this,drawerActivity.class);
-                startActivity(intent);
+
 
             }
 
@@ -81,4 +88,6 @@ public class runner_finishActivity extends Activity {
     public void onBackPressed() {
 
     }
-}
+    */
+
+
