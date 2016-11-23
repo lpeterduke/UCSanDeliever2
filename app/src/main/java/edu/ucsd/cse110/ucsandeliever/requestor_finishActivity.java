@@ -44,19 +44,24 @@ public class requestor_finishActivity extends Activity {
                 final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                 final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-                final DatabaseReference usersRef = mRootRef.child("orders");
+                final DatabaseReference ordersRef = mRootRef.child("orders");
 
-                usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                ordersRef.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
 
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        for (com.google.firebase.database.DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                            Order order = ds.getValue(Order.class);
+                            Order order = snapshot.getValue(Order.class);
 
 
-                            if (order.getDone() == false && order.getRequestorUid() == currUid)
+                            if (order.getDone() == false && order.getRequestorUid().equals(currUid))
+                                System.out.println("change the done to be true and requestor ready to finish");
+
                                 order.changeDone(true);
+
+                            Intent intent = new Intent(requestor_finishActivity.this,drawerActivity.class);
+                            startActivity(intent);
 
 
                         }
@@ -69,8 +74,7 @@ public class requestor_finishActivity extends Activity {
                 });
 
                 // go to main page
-                Intent intent = new Intent(requestor_finishActivity.this,drawerActivity.class);
-                startActivity(intent);
+
 
             }
 

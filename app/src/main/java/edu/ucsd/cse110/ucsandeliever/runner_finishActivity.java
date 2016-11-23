@@ -37,23 +37,29 @@ public class runner_finishActivity extends Activity {
                 final String requester = data.getString("requestor");
 
                 final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-                final DatabaseReference usersRef = mRootRef.child("orders");
+                final DatabaseReference ordersRef = mRootRef.child("orders");
 
-                usersRef.addListenerForSingleValueEvent(new ValueEventListener() {
+                ordersRef.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
                     @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
 
-                        for (DataSnapshot ds : dataSnapshot.getChildren()) {
+                        for (com.google.firebase.database.DataSnapshot snapshot : dataSnapshot.getChildren()) {
 
-                            Order order = ds.getValue(Order.class);
+                            Order order = snapshot.getValue(Order.class);
 
 
-                            if (order.getDone() == false && order.getRequestorUid() == requester )
-                                order.changeDone(true);
+                            if (order.getDone() == true && order.getRequestorUid().equals(requester))
+
+                                System.out.println("ready to finish on the runner side");
+
+
+                                Intent intent = new Intent(runner_finishActivity.this,drawerActivity.class);
+                                startActivity(intent);
 
 
                         }
                     }
+
 
                     @Override
                     public void onCancelled(DatabaseError databaseError) {

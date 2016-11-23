@@ -12,6 +12,7 @@ import android.widget.Button;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -50,6 +51,91 @@ public class runner_contactActivity extends Activity {
                 startActivity(intent);
             }
         });
+
+
+        DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+        final DatabaseReference usersRef = mRootRef.child("users");
+        //DatabaseReference currRef = usersRef.child(currUid);
+        usersRef.addChildEventListener(new ChildEventListener() {
+
+            @Override
+            public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+
+                    Intent i = getIntent();
+                    Bundle data = i.getExtras();
+                    String requestor = data.getString("requestorGet");
+
+                    // make sure that the requstor is not requesting anymore
+                    if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requestor)) {
+                        if (dataSnapshot.getValue(Student.class).getRequesting() == false) {
+                            System.out.println("requester is not requesting");
+
+
+                            // to change because chat needs to get done first - Zihan
+                            // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
+                            // startActivity(intent);
+                            //
+                            //go to runner_contact page - he chang
+                            Bundle o = new Bundle();
+                            o.putString("requestor", requestor);
+                            Intent intent = new Intent(runner_contactActivity.this,runner_finishActivity.class);
+                            intent.putExtras(o);
+                            startActivity(intent);
+                        }
+                    }
+
+
+                }
+
+
+
+
+            @Override
+            public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+                Intent i = getIntent();
+                Bundle data = i.getExtras();
+                String requestor = data.getString("requestorGet");
+
+                // make sure that the requstor is not requesting anymore
+                if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requestor)) {
+                    if (dataSnapshot.getValue(Student.class).getRequesting() == false) {
+                        System.out.println("requester is not requesting");
+
+
+                        // to change because chat needs to get done first - Zihan
+                        // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
+                        // startActivity(intent);
+                        //
+                        //go to runner_contact page - he chang
+
+                        Intent intent = new Intent(runner_contactActivity.this,runner_finishActivity.class);
+
+                        startActivity(intent);
+                    }
+                }
+
+
+
+            }
+
+            @Override
+            public void onChildRemoved(com.google.firebase.database.DataSnapshot dataSnapshot) {
+
+
+            }
+
+            @Override
+            public void onChildMoved(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 /*
     public void welcomeSystem(View view){
