@@ -9,37 +9,46 @@
     tools:context="edu.ucsd.cse110.ucsandeliever.requestor_contactActivity">
 
 
+    <Button
+        android:text="I have received the order"
+        android:layout_height="45dp"
+        android:id="@+id/buttonReceived"
+        android:layout_marginBottom="71dp"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_width="225dp" />
+
     <TextView
         android:text="Your orders are on the way!"
         android:gravity="center"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/textView14"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="76dp"
+        android:textSize="18sp"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:textSize="18sp" />
-
-    <Button
-        android:text="I have received the order"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:id="@+id/buttonReceived"
-        android:layout_below="@+id/buttonContRunner"
-        android:layout_centerHorizontal="true" />
+        android:layout_alignParentStart="true" />
 
     <Button
         android:text="contact the runner"
-        android:layout_height="wrap_content"
         android:id="@+id/buttonContRunner"
-        android:layout_width="250dp"
-        android:layout_marginTop="90dp"
-        android:layout_below="@+id/textView14"
+        android:layout_alignBottom="@+id/buttonReceived"
         android:layout_alignLeft="@+id/buttonReceived"
         android:layout_alignStart="@+id/buttonReceived"
+        android:layout_marginBottom="83dp"
         android:layout_alignRight="@+id/buttonReceived"
-        android:layout_alignEnd="@+id/buttonReceived" />
+        android:layout_alignEnd="@+id/buttonReceived"
+        android:layout_height="45dp"
+        android:layout_width="225dp" />
+
+    <TextView
+        android:text="Order Informatiom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView14"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        android:id="@+id/textView28" />
 
 </RelativeLayout>
