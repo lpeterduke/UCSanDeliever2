@@ -1,27 +1,17 @@
 package edu.ucsd.cse110.ucsandeliever;
 
-import android.app.Activity;
-import android.app.DatePickerDialog;
 import android.app.Fragment;
 import android.app.FragmentManager;
 import android.app.TimePickerDialog;
 import android.content.Intent;
-import android.icu.util.Calendar;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatAutoCompleteTextView;
-import android.support.v7.widget.Toolbar;
-import android.support.v7.widget.helper.ItemTouchHelper;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -29,17 +19,8 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 import android.widget.Button;
 
-import android.widget.Toast;
-
-import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.Query;
-import com.firebase.client.ValueEventListener;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-
-import org.w3c.dom.Text;
 
 /**
  * Created by Administrator on 2016/10/8.
@@ -58,10 +39,10 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
     private String etRestaurants;
     private String etDestinations;
     private EditText etItemName;
-    private EditText etTime;
+    private TextView etTime;
     private Button makeOrder;
     private   EditText etPid;
-    private EditText timeFromClock;
+    private TextView timeFromClock;
 
     final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
 
@@ -74,7 +55,7 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.request_layout, container, false);
-        timeFromClock = (EditText)myView.findViewById(R.id.editText3);
+        timeFromClock = (TextView)myView.findViewById(R.id.requestTime);
         b_pick = (Button) myView.findViewById(R.id.timePicker);
         b_pick.setOnClickListener( new View.OnClickListener(){
             @Override

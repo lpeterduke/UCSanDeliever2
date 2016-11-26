@@ -50,7 +50,7 @@ public class ViewRequestDetailActivity extends Fragment implements Button.OnClic
 
         myView = inflater.inflate(R.layout.activity_view_request_detail, container, false);
 
-        userName = (TextView) myView.findViewById(R.id.View_User);
+        //userName = (TextView) myView.findViewById(R.id.View_User);
         res = (TextView) myView.findViewById(R.id.View_Res);
         dest = (TextView) myView.findViewById(R.id.View_dest);
         item = (TextView) myView.findViewById(R.id.View_item);
@@ -65,7 +65,7 @@ public class ViewRequestDetailActivity extends Fragment implements Button.OnClic
         dest.setText(destFromHomw);
         item.setText(itemFromHome);
         time.setText(timeFromHome);
-        userName.setText(orderNumberInterested);
+        //userName.setText(orderNumberInterested);
 
 
 

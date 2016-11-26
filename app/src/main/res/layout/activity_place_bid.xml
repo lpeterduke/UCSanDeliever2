@@ -10,17 +10,6 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="edu.ucsd.cse110.ucsandeliever.PlaceBidActivity">
 
-    <TextView
-        android:text="Enter your delivery time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView13"
-        tools:ignore="HardcodedText"
-        android:layout_marginTop="37dp"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:textSize="18sp" />
-
     <Button
         android:text="Place Bid!"
         android:layout_width="wrap_content"
@@ -30,20 +19,6 @@
         android:layout_below="@+id/editText12"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText7"
-        android:background="@android:drawable/editbox_background_normal"
-        android:layout_below="@+id/textView13"
-        android:layout_alignRight="@+id/button4"
-        android:layout_alignEnd="@+id/button4"
-        android:layout_marginTop="54dp"
-        android:layout_alignLeft="@+id/editText12"
-        android:layout_alignStart="@+id/editText12" />
 
     <Button
         android:text="Pick a time"
@@ -68,13 +43,36 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
+        android:text="Enter your delivery time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView13"
+        tools:ignore="HardcodedText"
+        android:layout_marginTop="60dp"
+        android:textSize="18sp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText7"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_marginTop="15dp"
+        android:layout_below="@+id/textView13"
+        android:layout_alignRight="@+id/button4"
+        android:layout_alignEnd="@+id/button4" />
+
+    <TextView
         android:text="Enter the payment you want"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView19"
         tools:ignore="HardcodedText"
         android:textSize="18sp"
-        android:layout_centerVertical="true"
-        android:layout_alignRight="@+id/editText12"
-        android:layout_alignEnd="@+id/editText12" />
+        android:layout_below="@+id/timePicker"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="54dp" />
 </RelativeLayout>

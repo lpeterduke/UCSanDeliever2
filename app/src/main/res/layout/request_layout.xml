@@ -4,52 +4,6 @@
     android:layout_width="match_parent" android:layout_height="match_parent">
 
 
-    <Button
-        android:text="make my order!"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/button2"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginBottom="80dp" />
-
-    <TextView
-        android:text="Restaurant"
-        android:textSize="18dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView21"
-        android:layout_marginTop="92dp"
-        android:textAlignment="center"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/textView23"
-        android:layout_alignStart="@+id/textView23" />
-
-    <TextView
-        android:text="Delivery Destination"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView24"
-        android:textSize="18dp"
-        android:textAlignment="center"
-        android:layout_below="@+id/editText3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="14dp"
-        android:layout_marginStart="14dp"
-        android:layout_marginTop="42dp" />
-
-    <TextView
-        android:text="Delivery Time"
-        android:textSize="18dp"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/textView23"
-        android:textAlignment="center"
-        android:layout_centerVertical="true"
-        android:layout_toLeftOf="@+id/button2"
-        android:layout_toStartOf="@+id/button2" />
-
     <Spinner
         android:layout_height="wrap_content"
         android:id="@+id/spinner_building"
@@ -60,29 +14,29 @@
         android:layout_marginLeft="20dp"
         android:layout_marginStart="20dp" />
 
-    <EditText
+    <TextView
         android:layout_height="wrap_content"
         android:ems="5"
-        android:id="@+id/editText3"
+        android:id="@+id/requestTime"
         android:singleLine="false"
         android:background="@android:drawable/editbox_background_normal"
-        android:layout_marginTop="17dp"
-        android:layout_below="@+id/timePicker"
-        android:layout_alignLeft="@+id/spinner_building"
-        android:layout_alignStart="@+id/spinner_building"
-        android:layout_width="130dp" />
-
-    <Button
-        android:text=" Pick A Time"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker"
-        android:background="@color/colorPrimary"
-        style="@style/btn_white_large"
-        android:layout_width="120dp"
-        android:layout_alignBaseline="@+id/textView23"
+        android:layout_width="130dp"
         android:layout_alignBottom="@+id/textView23"
-        android:layout_alignLeft="@+id/editText3"
-        android:layout_alignStart="@+id/editText3" />
+        android:layout_alignRight="@+id/spinner_building"
+        android:layout_alignEnd="@+id/spinner_building" />
+
+    <EditText
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText8"
+        android:hint=""
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_width="130dp"
+        android:layout_alignBaseline="@+id/textView22"
+        android:layout_alignBottom="@+id/textView22"
+        android:layout_alignLeft="@+id/requestTime"
+        android:layout_alignStart="@+id/requestTime" />
 
     <Spinner
         android:layout_width="140dp"
@@ -93,6 +47,64 @@
         android:layout_alignLeft="@+id/editText8"
         android:layout_alignStart="@+id/editText8" />
 
+    <Button
+        android:text=" Pick A Time"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:background="@color/colorPrimary"
+        style="@style/btn_white_large"
+        android:layout_width="130dp"
+        android:layout_below="@+id/requestTime"
+        android:layout_alignRight="@+id/requestTime"
+        android:layout_alignEnd="@+id/requestTime" />
+
+    <TextView
+        android:text="Delivery Time"
+        android:textSize="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView23"
+        android:textAlignment="center"
+        android:layout_marginTop="33dp"
+        android:layout_below="@+id/editText8"
+        android:layout_toLeftOf="@+id/button2"
+        android:layout_toStartOf="@+id/button2" />
+
+    <TextView
+        android:text="Delivery Destination"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView24"
+        android:textSize="18dp"
+        android:textAlignment="center"
+
+
+        android:layout_marginTop="37dp"
+        android:layout_below="@+id/timePicker"
+        android:layout_alignLeft="@+id/textView23"
+        android:layout_alignStart="@+id/textView23" />
+
+    <Button
+        android:text="make my order!"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/button2"
+        android:layout_below="@+id/spinner_building"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp" />
+
+    <TextView
+        android:text="Restaurant"
+        android:textSize="18dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView21"
+        android:layout_marginTop="98dp"
+        android:textAlignment="center"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/textView23"
+        android:layout_alignStart="@+id/textView23" />
+
     <TextView
         android:text="Items You want"
         android:textSize="18dp"
@@ -100,22 +112,9 @@
         android:layout_height="wrap_content"
         android:id="@+id/textView22"
         android:textAlignment="center"
-        android:layout_marginTop="64dp"
+        android:layout_marginTop="33dp"
         android:layout_below="@+id/spinner_restaurant"
         android:layout_alignLeft="@+id/textView21"
         android:layout_alignStart="@+id/textView21" />
-
-    <EditText
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText8"
-        android:hint=""
-        android:background="@android:drawable/editbox_background_normal"
-        android:layout_alignBaseline="@+id/textView22"
-        android:layout_alignBottom="@+id/textView22"
-        android:layout_alignLeft="@+id/timePicker"
-        android:layout_alignStart="@+id/timePicker"
-        android:layout_width="130dp" />
 
 </RelativeLayout>

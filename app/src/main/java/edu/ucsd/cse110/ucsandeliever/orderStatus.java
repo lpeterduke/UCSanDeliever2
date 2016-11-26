@@ -388,6 +388,9 @@ public class orderStatus extends AppCompatActivity {
     // need modify end
 
     public void onBackPressed() {
+        Intent intent = new Intent(orderStatus.this,drawerActivity.class);
+        startActivity(intent);
+        finish();
     }
 
     // String moneySelected;

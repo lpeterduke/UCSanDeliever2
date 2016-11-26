@@ -2,19 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent" android:layout_height="match_parent">
 
-        <TextView
-            android:text="Wait for your bids"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/textView25"
-            android:textSize="18sp"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentLeft="true"
-            android:layout_alignParentStart="true"
-            android:layout_marginLeft="58dp"
-            android:layout_marginStart="58dp"
-            android:layout_marginTop="18dp" />
-
     <ListView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -23,7 +10,17 @@
             android:layout_below="@+id/textView25"
             android:layout_alignParentLeft="true"
             android:layout_alignParentStart="true"
-            android:layout_marginTop="20dp" />
+            android:layout_marginTop="20dp"
+
+
+        android:layout_marginLeft="@dimen/pad_15dp"
+        android:layout_marginRight="@dimen/pad_15dp"
+        android:layout_marginBottom="@dimen/pad_15dp"
+
+        android:divider = "@android:color/holo_blue_light"
+        android:dividerHeight="@dimen/txt_12sp"
+        android:listSelector="@android:color/holo_blue_dark"
+        />
 
     <Button
         android:text="Refresh"
@@ -36,6 +33,18 @@
         android:layout_alignBottom="@+id/textView25"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:text="You are waiting for your bids"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView25"
+        android:textSize="18sp"
+        android:layout_marginTop="11dp"
+        android:textAllCaps="false"
+        android:layout_alignParentTop="true"
+        android:layout_alignLeft="@+id/Bid_List"
+        android:layout_alignStart="@+id/Bid_List" />
 
 
 </RelativeLayout>

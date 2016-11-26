@@ -2,6 +2,7 @@ package edu.ucsd.cse110.ucsandeliever;
 
 import android.app.Activity;
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
@@ -61,7 +62,10 @@ public class orderHistroyActivity extends Fragment {
         System.out.println("History从Server接受了");
     }
 
-
+    public void onBackPressed() {
+        Intent intent = new Intent(getActivity(),drawerActivity.class);
+        startActivity(intent);
+    }
 
 
 }

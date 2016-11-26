@@ -3,10 +3,13 @@ package edu.ucsd.cse110.ucsandeliever;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -27,6 +30,13 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_runner_waiting);
 
 
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+
+        getWindow().setLayout((int )(width*0.9),(int)(height* 0.35));
+
         // could be deleted
 
         // get the requestor for this bid
@@ -41,20 +51,86 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
         final DatabaseReference usersRef = mRootRef.child("users");
         DatabaseReference currRef = usersRef.child(currUid);
         usersRef.addChildEventListener(new ChildEventListener() {
+
             @Override
             public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+                if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
+                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
+                        System.out.println("indicator entered============================");
+
+
+                        // to change because chat needs to get done first - Zihan
+                        // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
+                        // startActivity(intent);
+                        //
+                        //go to runner_contact page - he chang
+
+                        Intent intent = new Intent(userRunnerWaitingActivity.this,runner_contactActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("requestorGet", requester);
+                        intent.putExtras(b);
+                        startActivity(intent);
+                    } else {
+                        System.out.println("datachange not related to current user");
+                    }
+                }
+                /*
+                else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
+                    if (dataSnapshot.getValue(Student.class).getAlreadyPick()){
+                        System.out.println("both entered===========================");
+                        Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
+                        startActivity(intent);
+                    }
+                }
+                */
+
             }
+
             @Override
             public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
+                if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
+                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
+                        System.out.println("indicator entered============================");
+
+                        // to change because chat needs to get done first - Zihan
+
+                        Intent intent = new Intent(userRunnerWaitingActivity.this,runner_contactActivity.class);
+                        Bundle b = new Bundle();
+                        b.putString("requestorGet", requester);
+                        intent.putExtras(b);
+                        startActivity(intent);
+                    } else {
+                        System.out.println("datachange not related to current user");
+                    }
+                }
+/*
+                else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
+                    if (dataSnapshot.getValue(Student.class).getAlreadyPick()){
+                        System.out.println("both entered===========================");
+                        Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
+                        startActivity(intent);
+
+                    }
+                }
+*/
             }
+
             @Override
             public void onChildRemoved(com.google.firebase.database.DataSnapshot dataSnapshot) {
+
+
             }
+
             @Override
             public void onChildMoved(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
+
             }
+
             @Override
             public void onCancelled(DatabaseError databaseError) {
+
             }
         });
 
@@ -106,6 +182,7 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                         intent.putExtras(b);
                         startActivity(intent);
                     } else {
+                        Toast.makeText(userRunnerWaitingActivity.this,"Oopsr!",Toast.LENGTH_SHORT).show();
                         System.out.println("datachange not related to current user");
                     }
                 }

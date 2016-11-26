@@ -73,9 +73,6 @@ public class drawerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
-
-
-
     }
 
     @Override
@@ -368,6 +365,10 @@ public class drawerActivity extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
+                Intent intent = new Intent(drawerActivity.this,drawerActivity.class);
+                startActivity(intent);
+                finish();
+
 
         }
     }
@@ -403,9 +404,7 @@ public class drawerActivity extends AppCompatActivity
 
             fragmentManager.beginTransaction().replace(R.id.content_main, new requestActivity()).commit();
 
-        } else if (id == R.id.Chat) {
-            startActivity(new Intent(this, UserList.class));
-        } else if (id == R.id.log_out) {
+        }  else if (id == R.id.log_out) {
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
 
@@ -413,13 +412,6 @@ public class drawerActivity extends AppCompatActivity
         else if (id == R.id.Account) {
             fragmentManager.beginTransaction().replace(R.id.content_main, new balanceActivity()).commit();
 
-
-        }else if (id == R.id.orderStatus) {
-
-            Intent intent = new Intent(drawerActivity.this,orderStatus.class);
-            startActivity(intent);
-
-        } else if (id == R.id.nav_send) {
 
         }
 

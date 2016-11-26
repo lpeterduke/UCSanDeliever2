@@ -38,7 +38,12 @@
         <activity android:name=".runner_finishActivity" />
         <activity android:name=".runner_contactActivity" />
 
-        <activity android:name=".userRunnerWaitingActivity" />
+        <activity android:name=".userRunnerWaitingActivity"
+            android:theme="@style/AppTheme.CustomTheme"
+
+            />
+
+
         <activity
             android:name=".UserList"
             android:label="@string/app_name"

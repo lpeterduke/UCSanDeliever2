@@ -109,8 +109,7 @@ public class loginActivity extends Activity  {
                         //means user is loged in
                     }else{
 
-                        Toast.makeText(loginActivity.this, "Invalid Id or Password",
-                                Toast.LENGTH_SHORT).show();
+                        Toast.makeText(loginActivity.this, "Invalid Id or Password", Toast.LENGTH_SHORT).show();
 
                     }
 
