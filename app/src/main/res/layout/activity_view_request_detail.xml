@@ -41,17 +41,6 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:text="Food: Combo E"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/View_item"
-        android:textSize="18sp"
-        android:layout_marginTop="36dp"
-        android:layout_below="@+id/View_Res"
-        android:layout_alignLeft="@+id/View_Res"
-        android:layout_alignStart="@+id/View_Res" />
-
-    <TextView
         android:text="To: ERC Europe Hall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -71,5 +60,16 @@
         android:layout_below="@+id/View_dest"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="34dp" />
+
+    <TextView
+        android:text="Food: Combo E"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/View_item"
+        android:textSize="18sp"
+        android:layout_marginTop="24dp"
+        android:layout_below="@+id/View_Res"
+        android:layout_alignLeft="@+id/View_Res"
+        android:layout_alignStart="@+id/View_Res" />
 
 </RelativeLayout>

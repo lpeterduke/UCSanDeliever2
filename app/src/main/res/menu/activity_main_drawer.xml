@@ -20,11 +20,6 @@
             android:title="Order History" />
 
         <item
-            android:id="@+id/Chat"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Chat" />
-
-        <item
         android:id="@+id/orderStatus"
         android:icon="@drawable/ic_menu_gallery"
         android:title="Order Status" />
