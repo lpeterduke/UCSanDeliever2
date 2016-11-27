@@ -9,15 +9,6 @@
 
     >
 
-    <TextView
-        android:text="Thank you for using UC Student Delivery"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="116dp"
-        android:id="@+id/textView12"
-        android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true" />
-
     <Button
         android:text="comment"
         android:layout_width="wrap_content"
@@ -31,9 +22,18 @@
         android:text="Done"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="180dp"
+        android:layout_marginTop="15dp"
         android:id="@+id/buttonDone"
         android:layout_below="@+id/textView12"
         android:layout_alignLeft="@+id/textView12"
         android:layout_alignStart="@+id/textView12" />
+
+    <TextView
+        android:text="Thank you for using UC Student Delivery"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="207dp"
+        android:id="@+id/textView12"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 </RelativeLayout>

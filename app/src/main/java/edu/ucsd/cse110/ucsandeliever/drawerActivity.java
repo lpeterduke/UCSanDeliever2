@@ -408,6 +408,10 @@ public class drawerActivity extends AppCompatActivity
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
 
+        }else if (id == R.id.nav_finish) {
+            Intent intent = new Intent(this, requestor_finishActivity.class);
+            startActivity(intent);
+
         }
         else if (id == R.id.Account) {
             fragmentManager.beginTransaction().replace(R.id.content_main, new balanceActivity()).commit();

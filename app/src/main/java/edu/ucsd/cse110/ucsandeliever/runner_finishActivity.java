@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 
@@ -19,16 +20,24 @@ import com.google.firebase.database.ValueEventListener;
 
 public class runner_finishActivity extends Activity {
     Button done;
+    Button comment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_runner_finish);
 
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+
+        getWindow().setLayout((int )(width*0.9),(int)(height* 0.35));
+
         done = (Button) findViewById(R.id.button5);
         done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
 
                 Intent intent = new Intent(runner_finishActivity.this, drawerActivity.class);
                 startActivity(intent);
@@ -36,58 +45,18 @@ public class runner_finishActivity extends Activity {
             }
 
         });
-    }
-}
-                // change the done of order to be true
-                //final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-       /*
-                Intent i = getIntent();
-                Bundle data = i.getExtras();
-                final String requester = data.getString("requestor");
-
-                final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-                final DatabaseReference ordersRef = mRootRef.child("orders");
-
-                ordersRef.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
-                    @Override
-                    public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
-
-                        for (com.google.firebase.database.DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                            Order order = snapshot.getValue(Order.class);
 
 
-                            if (order.getDone() == true && order.getRequestorUid().equals(requester))
+        comment = (Button) findViewById(R.id.button7);
+        comment.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-                                System.out.println("ready to finish on the runner side");
-
-
-                                Intent intent = new Intent(runner_finishActivity.this,drawerActivity.class);
-                                startActivity(intent);
-
-
-                        }
-                    }
-
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
-
-
+                Intent intent = new Intent(runner_finishActivity.this, comment.class);
+                startActivity(intent);
 
             }
 
         });
-
     }
-
-    @Override
-    public void onBackPressed() {
-
-    }
-    */
-
-
+}
