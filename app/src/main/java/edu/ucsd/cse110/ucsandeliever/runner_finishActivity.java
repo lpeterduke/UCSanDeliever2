@@ -27,12 +27,6 @@ public class runner_finishActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_runner_finish);
 
-        DisplayMetrics dm = new DisplayMetrics();
-        getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
-
-        getWindow().setLayout((int )(width*0.9),(int)(height* 0.35));
 
         done = (Button) findViewById(R.id.button5);
         done.setOnClickListener(new View.OnClickListener() {
@@ -47,16 +41,8 @@ public class runner_finishActivity extends Activity {
         });
 
 
-        comment = (Button) findViewById(R.id.button7);
-        comment.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
 
-                Intent intent = new Intent(runner_finishActivity.this, comment.class);
-                startActivity(intent);
 
-            }
 
-        });
     }
 }

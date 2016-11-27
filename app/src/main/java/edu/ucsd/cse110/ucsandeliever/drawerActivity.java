@@ -73,6 +73,8 @@ public class drawerActivity extends AppCompatActivity
         navigationView.setNavigationItemSelectedListener(this);
 
 
+        FragmentManager fragmentManager = getFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.content_main, new WelcomScreen()).commit();
     }
 
     @Override
@@ -141,9 +143,14 @@ public class drawerActivity extends AppCompatActivity
                 //   System.out.println("当下月"+ month);
                 //    System.out.println("当下天"+ day);
 
-                String hourS = Integer.toString(day);
+                String hourS = Integer.toString(hour);
                 if(hour<10){
                     hourS = "0"+Integer.toString(hour);
+                }
+
+                String minuteS = Integer.toString(minutes);
+                if(minutes<10){
+                    minuteS = "0"+Integer.toString(minutes);
                 }
 
                 //     System.out.println("当下小时"+ hourS);
@@ -152,10 +159,12 @@ public class drawerActivity extends AppCompatActivity
                 String cday = Integer.toString(year)+
                         Integer.toString(month)+ dayS;
 
-                String ctime =hourS +
-                        Integer.toString(minutes);
-                //  System.out.println("当下1"+ cday);
-                //    System.out.println("当下2"+ ctime);
+                String ctime =hourS + minuteS;
+
+
+
+                  System.out.println("当下1 "+ hourS);
+                    System.out.println("当下2 "+ ctime);
 
                 int currDay=Integer.parseInt(cday);
                 int currTime = Integer.parseInt(ctime);
@@ -185,7 +194,7 @@ public class drawerActivity extends AppCompatActivity
                             orderT.substring(0,2)+": "+orderT.substring(2) );
                 }
                 System.out.println("双判定：" +(orderTimeint > currTime) + "|" + (orderDay >= currDay) );
-                if(((orderTimeint > currTime) && (orderDay == currDay)) || orderDay > currDay) {
+                if((((orderTimeint > currTime) && (orderDay == currDay)) || orderDay > currDay) && dataSnapshot.getValue(Order.class).getDone() == false) {
                     System.out.println("注入Request");
                     ouput.add("Getting: "+ dataSnapshot.getValue(Order.class).getItem() + "\nFrom: " +
                             dataSnapshot.getValue(Order.class).getRestaurants() + "\nDeliver to: " +

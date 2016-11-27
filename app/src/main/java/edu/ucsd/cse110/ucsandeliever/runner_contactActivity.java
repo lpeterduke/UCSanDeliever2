@@ -25,6 +25,10 @@ public class runner_contactActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_runner_contact);
 
+
+        System.out.println("Runner进入Contact");
+
+
         contact = (Button) findViewById(R.id.button12);
         contact.setOnClickListener(new View.OnClickListener(){
             @Override

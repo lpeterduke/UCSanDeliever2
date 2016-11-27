@@ -30,6 +30,9 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_user_runner_waiting);
 
 
+
+
+
         DisplayMetrics dm = new DisplayMetrics();
         getWindowManager().getDefaultDisplay().getMetrics(dm);
         int width = dm.widthPixels;
@@ -138,14 +141,7 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
 
 
         // Cancel button to cancel a bid
-        refresh = (Button)findViewById(R.id.buttonCancelBid);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-                refresh();
-            }
-        });
     }
     public void refresh(){
 

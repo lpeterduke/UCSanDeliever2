@@ -131,8 +131,6 @@ public class orderStatus extends AppCompatActivity {
                 // get the current uid
                 String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-
-
                 if(currUid.contentEquals(dataSnapshot.getKey())){
                     //需要更新bid list
                     //need more testing over here!!!!!!
@@ -167,7 +165,7 @@ public class orderStatus extends AppCompatActivity {
 
                 }
 
-
+                System.out.println("需要更新");
             }
 
             @Override
@@ -349,7 +347,6 @@ public class orderStatus extends AppCompatActivity {
 
 
                 }
-
 
             }
 

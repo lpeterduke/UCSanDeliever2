@@ -37,6 +37,7 @@
         <activity android:name=".requestor_contactActivity" />
         <activity android:name=".runner_finishActivity" />
         <activity android:name=".runner_contactActivity" />
+        <activity android:name=".WelcomScreen" />
 
         <activity android:name=".userRunnerWaitingActivity"
             android:theme="@style/AppTheme.CustomTheme"
