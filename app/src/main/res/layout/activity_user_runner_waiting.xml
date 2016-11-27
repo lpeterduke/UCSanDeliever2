@@ -21,7 +21,7 @@
         android:layout_marginTop="10dp" />
 
     <TextView
-        android:text="You Are Waiting For the Requester's response"
+        android:text="You Are Waiting For the Requester's response\n Check Back Frequently!"
         android:layout_height="wrap_content"
         android:id="@+id/textView20"
         android:textSize="@dimen/txt_20sp"

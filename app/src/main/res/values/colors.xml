@@ -8,6 +8,8 @@
     <color name="white">#ffffff</color>
     <color name="black">#000000</color>
     <color name="transparent">#00000000</color>
+    <color name="littlePur">#90CFF0</color>
+
 
     <color name="main_color_green">#2271d2</color>
     <color name="main_color_gray_dk">#3b3b3b</color>

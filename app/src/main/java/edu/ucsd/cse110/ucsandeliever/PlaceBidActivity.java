@@ -20,7 +20,8 @@ public class PlaceBidActivity extends android.app.Fragment implements TimePicker
 
     int hour, minute;
     Button bPick, bPlace;
-    EditText money, timeFromClock;
+    EditText money;
+TextView timeFromClock;
     View myView;
     Firebase ref = new Firebase("https://uc-student-deliver.firebaseio.com/");
 
@@ -37,7 +38,7 @@ public class PlaceBidActivity extends android.app.Fragment implements TimePicker
         bPick = (Button) myView.findViewById(R.id.timePicker);
         bPlace = (Button) myView.findViewById(R.id.button4);
         money = (EditText) myView.findViewById(R.id.editText12);
-        timeFromClock = (EditText) myView.findViewById(R.id.editText7);
+        timeFromClock = (TextView) myView.findViewById(R.id.editText7);
 
         bPick.setOnClickListener(new View.OnClickListener() {
             @Override

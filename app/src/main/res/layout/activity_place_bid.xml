@@ -20,16 +20,6 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="36dp" />
 
-    <Button
-        android:text="Pick a time"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/timePicker"
-        android:layout_toRightOf="@+id/editText7"
-        android:layout_toEndOf="@+id/editText7"
-        android:layout_alignBottom="@+id/editText7"
-        android:layout_alignTop="@+id/editText7" />
-
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -53,18 +43,6 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true" />
 
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/editText7"
-        android:background="@android:drawable/editbox_background_normal"
-        android:layout_marginTop="15dp"
-        android:layout_below="@+id/textView13"
-        android:layout_alignRight="@+id/button4"
-        android:layout_alignEnd="@+id/button4" />
-
     <TextView
         android:text="Enter the payment you want"
         android:layout_width="wrap_content"
@@ -75,4 +53,28 @@
         android:layout_below="@+id/timePicker"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="54dp" />
+
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/editText7"
+        android:background="@android:drawable/editbox_background_normal"
+        android:layout_marginTop="16dp"
+        android:layout_below="@+id/textView13"
+        android:layout_alignLeft="@+id/textView13"
+        android:layout_alignStart="@+id/textView13"
+        android:layout_marginLeft="10dp"
+        android:layout_marginStart="10dp" />
+
+    <Button
+        android:text="Pick a time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/timePicker"
+        android:layout_alignBaseline="@+id/editText7"
+        android:layout_alignBottom="@+id/editText7"
+        android:layout_toRightOf="@+id/button4"
+        android:layout_toEndOf="@+id/button4" />
 </RelativeLayout>

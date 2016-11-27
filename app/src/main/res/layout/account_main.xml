@@ -39,36 +39,33 @@
         android:layout_centerHorizontal="true" />
 
     <TextView
-        android:textSize="35dp"
-        android:inputType="textPersonName"
-        android:ems="10"
-        android:id="@+id/Balance"
-        style="@android:style/Widget.DeviceDefault.Light.EditText"
-
-        android:background="@android:drawable/editbox_dropdown_light_frame"
-        android:layout_width="250dp"
-        android:layout_centerVertical="true"
-        android:layout_centerHorizontal="true"
-        android:layout_height="40dp" />
-
-    <TextView
-        android:text="Your Balance"
+        android:text="Your Current Balance:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView2"
         android:textSize="25sp"
-
-        android:layout_above="@+id/Balance"
+        android:layout_below="@+id/accountView"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="35dp" />
+        android:layout_marginTop="70dp" />
+
+    <TextView
+        android:inputType="textPersonName"
+        android:ems="10"
+        android:id="@+id/Balance"
+        android:layout_width="250dp"
+        android:layout_height="40dp"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true" />
 
     <Button
-        android:text="Set Balance"
+        android:text="You Can Set Your Balance Here"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/balanceSetting"
-        android:layout_marginTop="71dp"
         android:layout_below="@+id/Balance"
-        android:layout_centerHorizontal="true" />
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="106dp" />
 
 </RelativeLayout>
