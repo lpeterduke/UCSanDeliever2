@@ -96,9 +96,9 @@ public class runner_contactActivity extends Activity {
 
                             Bundle o = new Bundle();
                             o.putString("requestor", requestor);
-                            Intent intent = new Intent(runner_contactActivity.this,runner_finishActivity.class);
-                            intent.putExtras(o);
-                            startActivity(intent);
+                            Intent newintent = new Intent(runner_contactActivity.this,runner_finishActivity.class);
+                            newintent.putExtras(o);
+                            startActivity(newintent);
                         }
                     }
 
@@ -142,9 +142,9 @@ public class runner_contactActivity extends Activity {
 
                         Bundle o = new Bundle();
                         o.putString("requestor", requestor);
-                        Intent intent = new Intent(runner_contactActivity.this,runner_finishActivity.class);
-                        intent.putExtras(o);
-                        startActivity(intent);
+                        Intent newintent = new Intent(runner_contactActivity.this,runner_finishActivity.class);
+                        newintent.putExtras(o);
+                        startActivity(newintent);
                     }
                 }
 
