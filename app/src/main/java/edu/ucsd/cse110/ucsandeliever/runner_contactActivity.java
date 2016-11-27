@@ -88,6 +88,7 @@ public class runner_contactActivity extends Activity {
                             String balance = oldData.getString("balance");
                             int newBalance = Integer.parseInt(balance) + Integer.parseInt(payment);
 
+                            System.out.println(payment+"!!!!!!!!!!!!!!!!!!!"+balance);
 
                             FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("balance").setValue(Integer.toString(newBalance));
 
@@ -129,6 +130,9 @@ public class runner_contactActivity extends Activity {
                         Bundle oldData = oldIntent.getExtras();
                         String payment = oldData.getString("payment");
                         String balance = oldData.getString("balance");
+
+                        System.out.println(payment+"!!!!!!!!!!!!!!!!!!!"+balance);
+
                         int newBalance = Integer.parseInt(balance) + Integer.parseInt(payment);
 
 
