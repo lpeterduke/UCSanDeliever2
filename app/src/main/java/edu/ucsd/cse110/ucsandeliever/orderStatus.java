@@ -45,7 +45,7 @@ public class orderStatus extends AppCompatActivity {
     private List<String> output = new ArrayList<>();
     private String runnerId;
     private Button refresh;
-
+    ArrayAdapter<String> adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,8 +61,8 @@ public class orderStatus extends AppCompatActivity {
                 // get the current uid
                 String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
-                System.out.println("登陆者是："+ currUid);
-                System.out.println("订单人是："+ dataSnapshot.getKey());
+                System.out.println("登陆者是on："+ currUid);
+                System.out.println("订单人是oncreate："+ dataSnapshot.getKey());
 
 
                 if(currUid.contentEquals(dataSnapshot.getKey())){
@@ -123,6 +123,10 @@ public class orderStatus extends AppCompatActivity {
 
 
                 }
+                System.out.println("应该更新");
+                adapter.notifyDataSetChanged();
+                ListView myFirstListView = (ListView)(findViewById(R.id.Bid_List));
+                myFirstListView.setAdapter(adapter);
 
             }
 
@@ -165,7 +169,6 @@ public class orderStatus extends AppCompatActivity {
 
                 }
 
-                System.out.println("需要更新");
             }
 
             @Override
@@ -187,7 +190,7 @@ public class orderStatus extends AppCompatActivity {
 
 
         //把bids里的东西展示在界面上
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, output);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, output);
 
         ListView myFirstListView = (ListView)(findViewById(R.id.Bid_List));
         myFirstListView.setAdapter(adapter);
@@ -369,7 +372,7 @@ public class orderStatus extends AppCompatActivity {
 
 
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, output);
+        adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, output);
         ListView myFirstListView = (ListView)(findViewById(R.id.Bid_List));
         myFirstListView.setAdapter(adapter);
     }

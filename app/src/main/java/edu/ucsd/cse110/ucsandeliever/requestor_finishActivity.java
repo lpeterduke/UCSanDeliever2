@@ -48,38 +48,9 @@ public class requestor_finishActivity extends Activity {
                 requesterRef.removeValue();
                 // Clean up finish, need test
 
+                Intent intent = new Intent(requestor_finishActivity.this,drawerActivity.class);
+                startActivity(intent);
 
-                // change the done of order to be true
-
-                final DatabaseReference ordersRef = mRootRef.child("orders");
-
-                ordersRef.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
-                    @Override
-                    public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
-
-                        for (com.google.firebase.database.DataSnapshot snapshot : dataSnapshot.getChildren()) {
-
-                            Order order = snapshot.getValue(Order.class);
-
-
-                            if (order.getDone() == false && order.getRequestorUid().equals(currUid))
-                                System.out.println("change the done to be true and requestor ready to finish");
-
-                            snapshot.getRef().child("done").setValue(true);
-
-
-                            Intent intent = new Intent(requestor_finishActivity.this,drawerActivity.class);
-                            startActivity(intent);
-
-
-                        }
-                    }
-
-                    @Override
-                    public void onCancelled(DatabaseError databaseError) {
-
-                    }
-                });
 
                 // go to main page
 

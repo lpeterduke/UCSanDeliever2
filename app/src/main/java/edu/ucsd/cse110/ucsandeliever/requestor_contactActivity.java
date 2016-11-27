@@ -62,7 +62,33 @@ public class requestor_contactActivity extends Activity {
                 FirebaseDatabase.getInstance().getReference().child("users").child(requester).child("requesting").setValue(false);
 
 
+                // change the done of order to be true
 
+                final DatabaseReference ordersRef2 = mRootRef.child("orders");
+
+                ordersRef2.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
+                    @Override
+                    public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
+
+                        for (com.google.firebase.database.DataSnapshot snapshot : dataSnapshot.getChildren()) {
+
+                            Order order = snapshot.getValue(Order.class);
+
+
+                            if (order.getDone() == false && order.getRequestorUid().equals(requester))
+                                System.out.println("change the done to be true and requestor ready to finish");
+
+                            snapshot.getRef().child("done").setValue(true);
+
+
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
 
 
 
