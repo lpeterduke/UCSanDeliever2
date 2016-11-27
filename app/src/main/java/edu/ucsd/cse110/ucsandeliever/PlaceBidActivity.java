@@ -62,6 +62,7 @@ TextView timeFromClock;
 
                 Bundle b = new Bundle();
                 b.putString("requestorGet", requestorUid);
+                b.putString("payment", money.toString());
                 intent.putExtras(b);
 
                 startActivity(intent);

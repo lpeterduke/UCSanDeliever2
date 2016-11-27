@@ -85,6 +85,7 @@ public class requestor_contactActivity extends Activity {
                 Intent i = getIntent();
                 Bundle data = i.getExtras();
                 String Runneuid = data.getString("runner");
+
                 String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
 
                 Intent k = new Intent(requestor_contactActivity.this,UserList.class);
