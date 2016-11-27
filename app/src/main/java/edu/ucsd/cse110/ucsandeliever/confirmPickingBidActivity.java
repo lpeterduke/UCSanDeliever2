@@ -120,6 +120,7 @@ public class confirmPickingBidActivity extends AppCompatActivity {
 
                     }
 
+
                 }
 
                 @Override

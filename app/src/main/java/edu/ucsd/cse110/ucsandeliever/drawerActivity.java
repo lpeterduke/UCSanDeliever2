@@ -421,6 +421,10 @@ public class drawerActivity extends AppCompatActivity
             Intent intent = new Intent(this, requestor_finishActivity.class);
             startActivity(intent);
 
+        }else if (id == R.id.nav_Status) {
+            Intent intent = new Intent(this, orderStatus.class);
+            startActivity(intent);
+
         }
         else if (id == R.id.Account) {
             fragmentManager.beginTransaction().replace(R.id.content_main, new balanceActivity()).commit();
