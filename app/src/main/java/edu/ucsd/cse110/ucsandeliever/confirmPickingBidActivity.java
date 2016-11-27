@@ -105,10 +105,6 @@ public class confirmPickingBidActivity extends AppCompatActivity {
                         if (student.getuid().equals(runFromStatus))
                         {
                             balance1 = student.getBalance();
-                            System.out.println("balance 1: " + balance1);
-                            int newBalanceForUser1 = Integer.parseInt(balance1) + Integer.parseInt(monFromStatus);
-                            snapshot.getRef().child("balance").setValue(Integer.toString(newBalanceForUser1));
-
                         }
                         else if (student.getuid().equals(requesterID))
                         {

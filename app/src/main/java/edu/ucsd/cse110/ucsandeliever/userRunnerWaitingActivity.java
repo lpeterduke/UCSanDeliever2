@@ -69,9 +69,18 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                         //
                         //go to runner_contact page - he chang
 
+                        Intent oldIntent = getIntent();
+                        Bundle oldData = oldIntent.getExtras();
+                        String payment = oldData.getString("payment");
+
+
                         Intent intent = new Intent(userRunnerWaitingActivity.this,runner_contactActivity.class);
                         Bundle b = new Bundle();
                         b.putString("requestorGet", requester);
+
+                        String balance = dataSnapshot.getValue(Student.class).getBalance();
+                        b.putString("payment", payment);
+                        b.putString("balance", balance);
                         intent.putExtras(b);
                         startActivity(intent);
                     } else {
@@ -97,11 +106,25 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                     if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
                         System.out.println("indicator entered============================");
 
+
                         // to change because chat needs to get done first - Zihan
+                        // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
+                        // startActivity(intent);
+                        //
+                        //go to runner_contact page - he chang
+
+                        Intent oldIntent = getIntent();
+                        Bundle oldData = oldIntent.getExtras();
+                        String payment = oldData.getString("payment");
+
 
                         Intent intent = new Intent(userRunnerWaitingActivity.this,runner_contactActivity.class);
                         Bundle b = new Bundle();
                         b.putString("requestorGet", requester);
+
+                        String balance = dataSnapshot.getValue(Student.class).getBalance();
+                        b.putString("payment", payment);
+                        b.putString("balance", balance);
                         intent.putExtras(b);
                         startActivity(intent);
                     } else {
@@ -167,14 +190,23 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
 
 
                         // to change because chat needs to get done first - Zihan
-                       // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
-                       // startActivity(intent);
+                        // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
+                        // startActivity(intent);
                         //
                         //go to runner_contact page - he chang
+
+                        Intent oldIntent = getIntent();
+                        Bundle oldData = oldIntent.getExtras();
+                        String payment = oldData.getString("payment");
+
 
                         Intent intent = new Intent(userRunnerWaitingActivity.this,runner_contactActivity.class);
                         Bundle b = new Bundle();
                         b.putString("requestorGet", requester);
+
+                        String balance = dataSnapshot.getValue(Student.class).getBalance();
+                        b.putString("payment", payment);
+                        b.putString("balance", balance);
                         intent.putExtras(b);
                         startActivity(intent);
                     } else {
@@ -201,11 +233,25 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                     if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
                         System.out.println("indicator entered============================");
 
+
                         // to change because chat needs to get done first - Zihan
+                        // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
+                        // startActivity(intent);
+                        //
+                        //go to runner_contact page - he chang
+
+                        Intent oldIntent = getIntent();
+                        Bundle oldData = oldIntent.getExtras();
+                        String payment = oldData.getString("payment");
+
 
                         Intent intent = new Intent(userRunnerWaitingActivity.this,runner_contactActivity.class);
                         Bundle b = new Bundle();
                         b.putString("requestorGet", requester);
+
+                        String balance = dataSnapshot.getValue(Student.class).getBalance();
+                        b.putString("payment", payment);
+                        b.putString("balance", balance);
                         intent.putExtras(b);
                         startActivity(intent);
                     } else {
