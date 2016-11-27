@@ -88,7 +88,10 @@ public class runner_contactActivity extends Activity {
                             String balance = oldData.getString("balance");
                             int newBalance = Integer.parseInt(balance) + Integer.parseInt(payment);
 
+
                             FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("balance").setValue(Integer.toString(newBalance));
+
+                            System.out.println(Integer.toString(newBalance)+"!!!!!!!!!!!!!!!!!!!");
 
                             Bundle o = new Bundle();
                             o.putString("requestor", requestor);
@@ -121,6 +124,18 @@ public class runner_contactActivity extends Activity {
                         // startActivity(intent);
                         //
                         //go to runner_contact page - he chang
+
+                        Intent oldIntent = getIntent();
+                        Bundle oldData = oldIntent.getExtras();
+                        String payment = oldData.getString("payment");
+                        String balance = oldData.getString("balance");
+                        int newBalance = Integer.parseInt(balance) + Integer.parseInt(payment);
+
+
+                        FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("balance").setValue(Integer.toString(newBalance));
+
+                        System.out.println(Integer.toString(newBalance)+"!!!!!!!!!!!!!!!!!!!");
+
                         Bundle o = new Bundle();
                         o.putString("requestor", requestor);
                         Intent intent = new Intent(runner_contactActivity.this,runner_finishActivity.class);
