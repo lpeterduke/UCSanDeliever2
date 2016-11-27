@@ -11,15 +11,6 @@
     tools:context="edu.ucsd.cse110.ucsandeliever.requestor_contactActivity">
 
 
-    <Button
-        android:text="contact the requester"
-        android:layout_height="wrap_content"
-        android:id="@+id/button12"
-        android:layout_marginBottom="92dp"
-        android:layout_width="250dp"
-        android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true" />
-
     <TextView
         android:text="You have been chosen to deliver!"
         android:layout_width="match_parent"
@@ -41,4 +32,81 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="31dp"
         android:id="@+id/textView18" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView29"
+        android:layout_alignRight="@+id/textView14"
+        android:layout_alignEnd="@+id/textView14"
+        android:layout_marginRight="26dp"
+        android:layout_marginEnd="26dp"
+        android:id="@+id/textView41" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView30"
+        android:layout_alignRight="@+id/textView41"
+        android:layout_alignEnd="@+id/textView41"
+        android:id="@+id/textView42" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView31"
+        android:layout_alignLeft="@+id/textView42"
+        android:layout_alignStart="@+id/textView42"
+        android:id="@+id/textView43" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@+id/textView32"
+        android:layout_alignLeft="@+id/textView43"
+        android:layout_alignStart="@+id/textView43"
+        android:id="@+id/textView44" />
+
+    <TextView
+        android:text="Destination:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView30"
+        android:layout_below="@+id/textView18"
+        android:layout_alignLeft="@+id/textView14"
+        android:layout_alignStart="@+id/textView14"
+        android:layout_marginTop="45dp" />
+
+    <TextView
+        android:text="Restaurant:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView31"
+        android:layout_below="@+id/textView30"
+        android:layout_alignLeft="@+id/textView30"
+        android:layout_alignStart="@+id/textView30"
+        android:layout_marginTop="28dp" />
+
+    <TextView
+        android:text="Item:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView32"
+        android:layout_marginTop="35dp"
+        android:layout_below="@+id/textView43"
+        android:layout_alignLeft="@+id/textView31"
+        android:layout_alignStart="@+id/textView31" />
+
+    <Button
+        android:text="contact the requester"
+        android:layout_height="wrap_content"
+        android:id="@+id/button12"
+        android:layout_width="250dp"
+        android:layout_below="@+id/textView32"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="58dp" />
 </RelativeLayout>

@@ -9,6 +9,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.ChildEventListener;
@@ -16,14 +17,50 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class runner_contactActivity extends Activity {
 
     Button contact;
+
+    private TextView to;
+    private TextView restaurant;
+    private TextView item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_runner_contact);
+
+        //order information
+
+        to = (TextView) findViewById(R.id.textView42);
+        restaurant = (TextView) findViewById(R.id.textView43);
+        item = (TextView) findViewById(R.id.textView44);
+        FirebaseDatabase.getInstance().getReference().child("orders").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Order order = snapshot.getValue(Order.class);
+                    Intent i = getIntent();
+                    Bundle data = i.getExtras();
+                    String requestor = data.getString("requestorGet");
+                    if (requestor.contentEquals(order.getRequestorUid())) {
+                        to.setText(order.getDestination());
+                        restaurant.setText(order.getRestaurants());
+                        item.setText(order.getItem());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
+
+
 
 
         System.out.println("Runner进入Contact");

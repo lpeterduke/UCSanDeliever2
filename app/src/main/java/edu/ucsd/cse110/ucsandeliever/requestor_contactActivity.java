@@ -9,12 +9,17 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import org.w3c.dom.Text;
 
 public class requestor_contactActivity extends Activity {
 
@@ -24,11 +29,38 @@ public class requestor_contactActivity extends Activity {
     private Button reveived;
     private Button contRunner;
 
+    private TextView to;
+    private TextView restaurant;
+    private TextView item;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_requestor_contact);
 
+
+        //order information
+        to = (TextView) findViewById(R.id.textView38);
+        restaurant = (TextView) findViewById(R.id.textView39);
+        item = (TextView) findViewById(R.id.textView40);
+        FirebaseDatabase.getInstance().getReference().child("orders").addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
+                    Order order = snapshot.getValue(Order.class);
+                    if (FirebaseAuth.getInstance().getCurrentUser().getUid().contentEquals(order.getRequestorUid())) {
+                        to.setText(order.getDestination());
+                        restaurant.setText(order.getRestaurants());
+                        item.setText(order.getItem());
+                    }
+                }
+
+            }
+
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
 
         reveived = (Button) findViewById(R.id.buttonReceived);
         reveived.setOnClickListener(new View.OnClickListener(){
@@ -60,6 +92,8 @@ public class requestor_contactActivity extends Activity {
                 DatabaseReference ref2 =FirebaseDatabase.getInstance().getReference().child("users").child(requester).child("balance");
                 FirebaseDatabase.getInstance().getReference().child("users").child(requester).child("alreadyPick").setValue(false);
                 FirebaseDatabase.getInstance().getReference().child("users").child(requester).child("requesting").setValue(false);
+
+
 
 
                 // change the done of order to be true
