@@ -7,6 +7,8 @@ import java.util.*;
 
 public class Bid {
     private String bidNum,money,runner,time,requestor;
+    private Boolean orderDone;
+
     private Random r=new Random();
 
     public Bid()

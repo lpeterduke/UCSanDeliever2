@@ -40,10 +40,17 @@ public class requestor_finishActivity extends Activity {
             @Override
             public void onClick(View view){
 
-                // change the done of order to be true
+                // Clean up bid list - Zihan
                 final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
                 final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
+                DatabaseReference bidListRef = mRootRef.child("bidList");
+                DatabaseReference requesterRef = bidListRef.child(currUid);
+                requesterRef.removeValue();
+                // Clean up finish, need test
+
+
+                // change the done of order to be true
+
                 final DatabaseReference ordersRef = mRootRef.child("orders");
 
                 ordersRef.addListenerForSingleValueEvent(new com.google.firebase.database.ValueEventListener() {
