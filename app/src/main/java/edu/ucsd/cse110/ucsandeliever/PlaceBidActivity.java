@@ -39,6 +39,7 @@ TextView timeFromClock;
         bPlace = (Button) myView.findViewById(R.id.button4);
         money = (EditText) myView.findViewById(R.id.editText12);
         timeFromClock = (TextView) myView.findViewById(R.id.editText7);
+        timeFromClock.setText("2359");
 
         bPick.setOnClickListener(new View.OnClickListener() {
             @Override
