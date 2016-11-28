@@ -179,6 +179,7 @@ public class runner_contactActivity extends Activity {
 
                         Bundle o = new Bundle();
                         o.putString("requestor", requestor);
+                        o.putString("payment",payment);
                         Intent newintent = new Intent(runner_contactActivity.this,runner_finishActivity.class);
                         newintent.putExtras(o);
                         startActivity(newintent);

@@ -19,6 +19,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.content.Intent;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -255,7 +256,7 @@ public class drawerActivity extends AppCompatActivity
             System.out.println("新的OrderList："+requests);
 
             FragmentManager fragmentManager = getFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.home_main, new homeActivity()).commit();
+            //fragmentManager.beginTransaction().replace(R.id.home_main, new homeActivity()).commit();
         }
 
         @Override
@@ -341,6 +342,7 @@ public class drawerActivity extends AppCompatActivity
 
                 System.out.println("msg: " + msg);
                 balance = msg;
+
 
 
             }

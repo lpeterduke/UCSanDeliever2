@@ -10,6 +10,7 @@ import android.support.v7.widget.Toolbar;
 import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -26,6 +27,14 @@ public class runner_finishActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_runner_finish);
+
+        Intent oldIntent = getIntent();
+        Bundle oldData = oldIntent.getExtras();
+        String payment = oldData.getString("payment");
+
+        TextView py = (TextView) findViewById(R.id.textView17);
+        py.setText(payment);
+
 
 
         done = (Button) findViewById(R.id.button5);
