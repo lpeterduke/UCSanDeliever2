@@ -35,6 +35,7 @@ public class signupActivity extends Activity {
     private EditText etEmail;
 
     private EditText etPassword;
+    private EditText etPasswordRe;
 
     private Button signUpBtn;
 
@@ -57,6 +58,7 @@ public class signupActivity extends Activity {
         etEmail = (EditText) findViewById(R.id.editText5); // get user Email
         etPassword  = (EditText) findViewById(R.id.editText4); // get user password
         signUpBtn = (Button) findViewById(R.id.button);
+        etPasswordRe  = (EditText) findViewById(R.id.editTextRePassWord); // get user password
 
         etID.requestFocus();
 
@@ -80,6 +82,7 @@ public class signupActivity extends Activity {
 
         String email = etEmail.getText().toString();
         String password = etPassword.getText().toString();
+        String passwordRe = etPasswordRe.getText().toString();
 
         if(TextUtils.isEmpty(email) || TextUtils.isEmpty(password)) {
 
@@ -89,80 +92,88 @@ public class signupActivity extends Activity {
 
         }else{
 
-            mAuth.createUserWithEmailAndPassword(email,password).addOnCompleteListener(
-                    new OnCompleteListener<AuthResult>() {
-                @Override
-                public void onComplete(@NonNull Task<AuthResult> task) {
-                    if (task.isSuccessful()) {
+            if(password.equals(passwordRe)) {
 
 
-                        EditText etName = (EditText) findViewById(R.id.SUName);
-                        EditText etPid = (EditText) findViewById(R.id.editText6);
-                        EditText etEmail = (EditText) findViewById(R.id.editText5);
-                        EditText etPassword = (EditText) findViewById(R.id.editText4);
-
-                        final String name = etName.getText().toString();
-                        final String id = etPid.getText().toString();
-                        final String email8 = etEmail.getText().toString();
-                        final String password = etPassword.getText().toString();
-                        final String currentUid = mAuth.getCurrentUser().getUid();
-                        final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
-
-                        // check if the id has been used
-                        Query queryRef1 = myFirebaseRef.orderByChild("studentId").equalTo(id);  // check id
-
-                        queryRef1.addListenerForSingleValueEvent(new ValueEventListener() {
-
-                            //Push到Data Space
+                mAuth.createUserWithEmailAndPassword(email, password).addOnCompleteListener(
+                        new OnCompleteListener<AuthResult>() {
                             @Override
-                            public void onDataChange(DataSnapshot snapshot) {
-                                if (snapshot == null || snapshot.getValue() == null)   // check if id exist.
-                                {
-                                    Student student = new Student();
-                                    student.setName(name);
-                                    student.setStudentId(id);
-                                    student.setEmail2(email8);
-                                    student.setPassword(password);
-                                    student.setuid(currentUid);
-                                    student.setAlreadyPick(false);
-                                    student.setBalance("2000");
-                                    student.setRequesting(false);
-                                    student.setRunnerStatusIndicator(false);
-                                    final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
-
-                                    final String userID = userEmail.substring(0,userEmail.indexOf('@'));
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()) {
 
 
-                                    myFirebaseRef.child("users").child(currentUid).setValue(student);
+                                    EditText etName = (EditText) findViewById(R.id.SUName);
+                                    EditText etPid = (EditText) findViewById(R.id.editText6);
+                                    EditText etEmail = (EditText) findViewById(R.id.editText5);
+                                    EditText etPassword = (EditText) findViewById(R.id.editText4);
 
+
+                                    final String name = etName.getText().toString();
+                                    final String id = etPid.getText().toString();
+                                    final String email8 = etEmail.getText().toString();
+                                    final String password = etPassword.getText().toString();
+                                    final String currentUid = mAuth.getCurrentUser().getUid();
+                                    final Firebase myFirebaseRef = new Firebase("https://uc-student-deliver.firebaseio.com/");
+
+                                    // check if the id has been used
+                                    Query queryRef1 = myFirebaseRef.orderByChild("studentId").equalTo(id);  // check id
+
+                                    queryRef1.addListenerForSingleValueEvent(new ValueEventListener() {
+
+                                        //Push到Data Space
+                                        @Override
+                                        public void onDataChange(DataSnapshot snapshot) {
+                                            if (snapshot == null || snapshot.getValue() == null)   // check if id exist.
+                                            {
+                                                Student student = new Student();
+                                                student.setName(name);
+                                                student.setStudentId(id);
+                                                student.setEmail2(email8);
+                                                student.setPassword(password);
+                                                student.setuid(currentUid);
+                                                student.setAlreadyPick(false);
+                                                student.setBalance("2000");
+                                                student.setRequesting(false);
+                                                student.setRunnerStatusIndicator(false);
+                                                final String userEmail = mAuth.getCurrentUser().getEmail().toString();
+
+                                                final String userID = userEmail.substring(0, userEmail.indexOf('@'));
+
+
+                                                myFirebaseRef.child("users").child(currentUid).setValue(student);
+
+                                            } else {
+
+                                                Toast.makeText(signupActivity.this, "ID already registered, please try another one",
+                                                        Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+
+                                        //没用
+                                        @Override
+                                        public void onCancelled(FirebaseError error) {
+                                        }
+                                    });
+
+
+                                    Intent intent = new Intent(signupActivity.this, drawerActivity.class);
+                                    startActivity(intent);
+
+                                    //means user is loged in
                                 } else {
 
-                                    Toast.makeText(signupActivity.this, "ID already registered, please try another one",
+                                    Toast.makeText(signupActivity.this, "Invalid Id or Password",
                                             Toast.LENGTH_SHORT).show();
-                                }
-                            }
 
-                            //没用
-                            @Override
-                            public void onCancelled(FirebaseError error) {
+                                }
+
+
                             }
                         });
-
-
-                        Intent intent = new Intent(signupActivity.this,drawerActivity.class);
-                        startActivity(intent);
-
-                        //means user is loged in
-                    }else{
-
-                        Toast.makeText(signupActivity.this, "Invalid Id or Password",
-                                Toast.LENGTH_SHORT).show();
-
-                    }
-
-
-                }
-            });
+            }else{
+                System.out.println("wrong pass");
+                Toast.makeText(signupActivity.this,"Your Passwords do not match",Toast.LENGTH_LONG).show();
+            }
 
         }
 

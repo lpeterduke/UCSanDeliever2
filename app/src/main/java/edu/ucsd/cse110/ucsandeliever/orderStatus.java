@@ -128,6 +128,8 @@ public class orderStatus extends AppCompatActivity {
                 ListView myFirstListView = (ListView)(findViewById(R.id.Bid_List));
                 myFirstListView.setAdapter(adapter);
 
+
+
             }
 
             @Override

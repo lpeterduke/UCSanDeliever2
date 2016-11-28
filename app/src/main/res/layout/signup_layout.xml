@@ -2,8 +2,6 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:background="@color/littlePur"
-
     android:layout_height="match_parent">
 
 
@@ -26,6 +24,16 @@
         android:layout_alignLeft="@+id/textView8"
         android:layout_alignStart="@+id/textView8"
         android:layout_marginTop="48dp" />
+
+    <TextView
+        android:text="Name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="46dp"
+        android:id="@+id/textView6"
+        android:layout_below="@+id/textView3"
+        android:layout_alignLeft="@+id/textView3"
+        android:layout_alignStart="@+id/textView3" />
 
     <EditText
         android:layout_width="wrap_content"
@@ -83,14 +91,17 @@
         android:textColorLink="@android:color/holo_blue_light" />
 
     <TextView
-        android:text="Your Password"
+        android:text=" "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:id="@+id/textView5"
-        android:layout_below="@+id/editText5"
-        android:layout_alignLeft="@+id/textView7"
-        android:layout_alignStart="@+id/textView7" />
+        android:id="@+id/textView3"
+        android:layout_marginLeft="40dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="false"
+        android:layout_alignParentStart="true" />
+
 
     <EditText
         android:layout_width="wrap_content"
@@ -107,27 +118,42 @@
         android:layout_alignStart="@+id/editText4" />
 
     <TextView
-        android:text="Name"
+        android:text="Enter Password Again"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="45dp"
-        android:id="@+id/textView6"
-        android:layout_below="@+id/textView3"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_marginLeft="34dp"
-        android:layout_marginStart="34dp" />
+        android:layout_marginTop="35dp"
+        android:id="@+id/textViewRePass"
+        android:layout_below="@+id/editText4"
+        android:layout_toLeftOf="@+id/editText5"
+        android:layout_toStartOf="@+id/editText5" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:inputType="textPassword"
+        android:hint="******"
+        android:layout_below="@+id/editText4"
+        android:layout_toEndOf="@+id/textViewRePass"
+        android:layout_marginTop="21dp"
+        android:id="@+id/editTextRePassWord"
+
+
+
+        android:ems="8"
+
+        android:background="@android:drawable/editbox_background_normal"
+        android:textColorLink="@android:color/holo_blue_light"
+
+        android:layout_toRightOf="@+id/textViewRePass" />
 
     <TextView
-        android:text="Information"
+        android:text="Your Password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textSize="24sp"
-        android:gravity="center"
-        android:id="@+id/textView3"
-        android:layout_marginTop="50dp"
-        android:layout_alignParentTop="true"
-        android:layout_alignLeft="@+id/button"
-        android:layout_alignStart="@+id/button" />
+        android:id="@+id/textView5"
+        android:layout_below="@+id/editText5"
+        android:layout_alignLeft="@+id/textViewRePass"
+        android:layout_alignStart="@+id/textViewRePass"
+        android:layout_marginTop="36dp" />
 
 </RelativeLayout>
