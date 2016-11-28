@@ -151,7 +151,7 @@ public class Chat extends CustomActivity {
         String s = txt.getText().toString();
 
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        System.out.println("\n"+user.getUid()+"++++"+ buddy.getuid());
+        //System.out.println("\n"+user.getUid()+"++++"+ buddy.getuid());
         if(user != null) {
             final Conversation conversation = new Conversation(s,
                     Calendar.getInstance().getTime(),
@@ -337,7 +337,7 @@ public class Chat extends CustomActivity {
                     lbl.setText(R.string.delivered_text);
                 else {
                     if (c.getStatus() == Conversation.STATUS_SENDING)
-                        lbl.setText(R.string.sending_text);
+                        lbl.setText(R.string.delivered_text);
                     else {
                         lbl.setText(R.string.failed_text);
                     }

@@ -89,7 +89,7 @@ public class Conversation
 	 */
 	public boolean isSent()
 	{
-		System.out.println("cccc"+UserList.user.getuid()+"....."+sender);
+		//System.out.println("cccc"+UserList.user.getuid()+"....."+sender);
 		return UserList.user.getuid().contentEquals(sender);
 	}
 
