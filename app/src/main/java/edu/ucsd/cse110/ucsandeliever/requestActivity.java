@@ -56,6 +56,8 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         myView = inflater.inflate(R.layout.request_layout, container, false);
         timeFromClock = (TextView)myView.findViewById(R.id.requestTime);
+        //timeFromClock.setText("23: 59");
+        orderingTime="201612312359";
         b_pick = (Button) myView.findViewById(R.id.timePicker);
         b_pick.setOnClickListener( new View.OnClickListener(){
             @Override
