@@ -54,84 +54,63 @@
         android:id="@+id/textView28" />
 
     <TextView
-        android:text="From:"
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/textView28"
-        android:layout_alignLeft="@+id/buttonContRunner"
-        android:layout_alignStart="@+id/buttonContRunner"
-        android:layout_marginLeft="12dp"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="34dp"
-        android:id="@+id/textView33" />
+        android:id="@+id/textView39"
+        android:layout_alignBaseline="@+id/textView36"
+        android:layout_alignBottom="@+id/textView36"
+        android:layout_alignLeft="@+id/textView38"
+        android:layout_alignStart="@+id/textView38" />
 
     <TextView
-        android:text="Item:"
+        android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView35"
-        android:layout_below="@+id/textView36"
-        android:layout_alignLeft="@+id/textView36"
-        android:layout_alignStart="@+id/textView36"
-        android:layout_marginTop="32dp" />
+        android:id="@+id/textView40"
+        android:layout_below="@+id/textView39"
+        android:layout_alignLeft="@+id/textView39"
+        android:layout_alignStart="@+id/textView39"
+        android:layout_marginTop="36dp" />
 
     <TextView
-        android:text="To:"
+        android:text="Destination:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:id="@+id/textView34"
-        android:layout_below="@+id/textView33"
-        android:layout_alignLeft="@+id/textView33"
-        android:layout_alignStart="@+id/textView33" />
+        android:layout_alignBaseline="@+id/textView38"
+        android:layout_alignBottom="@+id/textView38"
+        android:layout_alignLeft="@+id/buttonContRunner"
+        android:layout_alignStart="@+id/buttonContRunner" />
 
     <TextView
         android:text="Restaurant:"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView36"
+        android:layout_marginTop="38dp"
         android:layout_below="@+id/textView34"
         android:layout_alignLeft="@+id/textView34"
-        android:layout_alignStart="@+id/textView34"
-        android:layout_marginTop="21dp" />
+        android:layout_alignStart="@+id/textView34" />
+
+    <TextView
+        android:text="Item:"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView35"
+        android:layout_alignBaseline="@+id/textView40"
+        android:layout_alignBottom="@+id/textView40"
+        android:layout_alignLeft="@+id/textView36"
+        android:layout_alignStart="@+id/textView36" />
 
     <TextView
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/textView37"
-        android:layout_alignBaseline="@+id/textView33"
-        android:layout_alignBottom="@+id/textView33"
+        android:id="@+id/textView38"
+        android:layout_marginTop="40dp"
+        android:layout_below="@+id/textView28"
         android:layout_alignRight="@+id/buttonContRunner"
-        android:layout_alignEnd="@+id/buttonContRunner"
-        android:layout_marginRight="24dp"
-        android:layout_marginEnd="24dp" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView34"
-        android:layout_alignLeft="@+id/textView37"
-        android:layout_alignStart="@+id/textView37"
-        android:id="@+id/textView38" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView36"
-        android:layout_alignRight="@+id/textView38"
-        android:layout_alignEnd="@+id/textView38"
-        android:id="@+id/textView39" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView35"
-        android:layout_alignRight="@+id/textView39"
-        android:layout_alignEnd="@+id/textView39"
-        android:id="@+id/textView40" />
+        android:layout_alignEnd="@+id/buttonContRunner" />
 
 </RelativeLayout>
