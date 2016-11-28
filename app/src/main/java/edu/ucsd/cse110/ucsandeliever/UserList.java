@@ -150,7 +150,7 @@ public class UserList extends CustomActivity
 				uList = new ArrayList<Student>();
 				for(DataSnapshot ds : dataSnapshot.getChildren()) {
 
-					Student user = ds.getValue(Student.class);
+					user = ds.getValue(Student.class);
 
 				//	System.out.println("崩溃前的最后一步： "+ds.getValue(Student.class).getName());
 
@@ -207,7 +207,7 @@ public class UserList extends CustomActivity
 				uList = new ArrayList<Student>();
 				for(DataSnapshot ds : dataSnapshot.getChildren()) {
 
-					Student user = ds.getValue(Student.class);
+					 user = ds.getValue(Student.class);
 
 					//	System.out.println("崩溃前的最后一步： "+ds.getValue(Student.class).getName());
 
