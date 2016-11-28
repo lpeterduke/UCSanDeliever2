@@ -222,20 +222,13 @@ public class orderStatus extends AppCompatActivity {
             }
         });
 
-        refresh = (Button)findViewById(R.id.StatusRefresh);
-        refresh.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                refresh();
-            }
-        });
 
 
 
     }
 
 
-
+ /*
     public void refresh(){
         System.out.println("refresh order_status");
 
@@ -375,7 +368,7 @@ public class orderStatus extends AppCompatActivity {
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, output);
         ListView myFirstListView = (ListView)(findViewById(R.id.Bid_List));
         myFirstListView.setAdapter(adapter);
-    }
+    } */
 
 
     @Override

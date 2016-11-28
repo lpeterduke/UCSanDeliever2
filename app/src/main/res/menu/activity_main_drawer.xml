@@ -5,54 +5,32 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/lock"
+            android:icon="@android:drawable/btn_star_big_on"
             android:title="View Orders" />
 
         <item
             android:id="@+id/nav_request"
-            android:icon="@drawable/nav_home"
+            android:icon="@android:drawable/ic_input_add"
             android:title="Request A Delivery" />
 
 
 
         <item
             android:id="@+id/order_history_layout"
-            android:icon="@drawable/ic_menu_gallery"
+            android:icon="@android:drawable/ic_menu_recent_history"
             android:title="Order History" />
 
 
         <item
-            android:id="@+id/nav_Status"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="orderStatus" />
-
-        <item
-            android:id="@+id/nav_finish"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Finish" />
-
-
-
-        <item
             android:id="@+id/Account"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@android:drawable/ic_secure"
             android:title="Balance" />
-
+        <item
+            android:id="@+id/log_out"
+            android:icon="@android:drawable/ic_lock_power_off"
+            android:title="log out" />
 
 
     </group>
-
-    <item android:title="Communicate">
-        <menu>
-
-
-            <item
-                android:id="@+id/log_out"
-                android:icon="@drawable/ic_menu_slideshow"
-                android:title="log out" />
-
-
-        </menu>
-    </item>
 
 </menu>

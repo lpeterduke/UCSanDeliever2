@@ -424,18 +424,6 @@ public class drawerActivity extends AppCompatActivity
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
 
-        }else if (id == R.id.nav_finish) {
-            ordersRef.removeEventListener(childEventListener);
-
-            Intent intent = new Intent(this, requestor_finishActivity.class);
-            startActivity(intent);
-
-        }else if (id == R.id.nav_Status) {
-            ordersRef.removeEventListener(childEventListener);
-
-            Intent intent = new Intent(this, orderStatus.class);
-            startActivity(intent);
-
         }
         else if (id == R.id.Account) {
             ordersRef.removeEventListener(childEventListener);
