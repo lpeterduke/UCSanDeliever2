@@ -89,8 +89,6 @@ public class homeActivity extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
-                System.out.println("点击的是： "+position);
-
                 if(position == 1){
                     homeActivity.sortList(1);
                 }else if(position == 2){
@@ -128,42 +126,31 @@ public class homeActivity extends Fragment {
         @Override
         public int compare(Object o1, Object o2) {
 
-            System.out.println("sorting 信号："+order);
-
             if (order == 1){
                 if(o1.toString().compareTo(o2.toString())==0) return 0;
                 else if (o1.toString().compareTo(o2.toString())<0) {return -1;}
                 else return (1);
             }else if (order == 2){
-                //用地点
 
                 String dest1 = o1.toString().substring(o1.toString().indexOf("From: ")+6,o1.toString().indexOf("Deliver to: "));
                 String dest2 = o2.toString().substring(o2.toString().indexOf("From: ")+6,o2.toString().indexOf("Deliver to: "));
 
-                System.out.println("如果想用地点截取1："+dest1);
-                System.out.println("如果想用地点截取2："+dest2);
 
                 if(dest1.compareTo(dest2)==0) return 0;
                 else if (dest1.compareTo(dest2)<0)  return -1;
                 else return 1;
             }else if (order == 3){
-                //用目的地
 
                 String dest1 = o1.toString().substring(o1.toString().indexOf("Deliver to: ")+12,o1.toString().indexOf("Need it by"));
                 String dest2 = o2.toString().substring(o2.toString().indexOf("Deliver to: ")+12,o2.toString().indexOf("Need it by"));
-
-                System.out.println("如果想用地点截取1："+dest1);
-                System.out.println("如果想用地点截取2："+dest2);
 
                 if(dest1.compareTo(dest2)==0) return 0;
                 else if (dest1.compareTo(dest2)<0)  return -1;
                 else return 1;
             }else if (order == 4){
-                //用时间
                 String dest1 = o1.toString().substring(o1.toString().indexOf("Need it by the time at: ")+24);
                 String dest2 = o2.toString().substring(o2.toString().indexOf("Need it by the time at: ")+24);
-                System.out.println("如果想用地点截取1："+dest1);
-                System.out.println("如果想用地点截取2："+dest2);
+
                 if(dest1.compareTo(dest2)==0) return 0;
                 else if (dest1.compareTo(dest2)<0)  return -1;
                 else return 1;
@@ -192,39 +179,24 @@ public class homeActivity extends Fragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
 
-                System.out.println("试图从Home Queue传输的数据：" +requests.get(position));
-
                 String orderInfo = requests.get(position);
 
                 String item = orderInfo.substring(0,orderInfo.indexOf('='));
                 orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
-                System.out.println("剩下的OrderInfo: "+orderInfo);
 
                 String res = orderInfo.substring(0,orderInfo.indexOf('='));
                 orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
-                System.out.println("剩下的OrderInfo: "+orderInfo);
 
                 String dest = orderInfo.substring(0,orderInfo.indexOf('='));
                 orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
-                System.out.println("剩下的OrderInfo: "+orderInfo);
 
                 String time = orderInfo.substring(0,orderInfo.indexOf('='));
                 orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
-                System.out.println("剩下的OrderInfo: "+orderInfo);
 
                 String requestor = orderInfo.substring(0,orderInfo.indexOf('='));
                 orderInfo = orderInfo.substring(orderInfo.indexOf('=')+1);
-                System.out.println("剩下的OrderInfo: "+orderInfo);
 
                 String orderNum = orderInfo;
-
-                System.out.println("提取出来的item"+item);
-                System.out.println("提取出来的item"+res);
-                System.out.println("提取出来的item"+dest);
-                System.out.println("提取出来的item"+time);
-                System.out.println("提取出来的item"+orderNum);
-                System.out.println("提取出来的item"+requestor);
-
 
 
                 mSelectInterface.onTitleSelect(item,res,dest,time,orderNum,requestor);
@@ -242,7 +214,6 @@ public class homeActivity extends Fragment {
 
 
                     Toast.makeText(getActivity(),"This is Your Own Order",Toast.LENGTH_SHORT).show();
-                    System.out.println("Your Own Order");
                 }else {
 
 
@@ -282,7 +253,6 @@ public class homeActivity extends Fragment {
         ouputList=((drawerActivity) activity).getOuputArrayListFromDrawer();
         mSelectInterface = (titleSelectInterface) activity;
 
-        System.out.println("Orders从Server接受了");
     }
 
 

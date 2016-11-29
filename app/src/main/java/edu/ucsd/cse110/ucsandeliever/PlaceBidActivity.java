@@ -108,7 +108,6 @@ TextView timeFromClock;
         super.onAttach(activity);
         orderNumb = ((drawerActivity) activity).getOrderNumSelected();
         requestorUid =((drawerActivity) activity).getRequestorUid();
-        System.out.println("order 已接受");
 
     }
 }

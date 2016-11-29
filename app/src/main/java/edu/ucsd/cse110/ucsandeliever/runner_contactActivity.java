@@ -60,12 +60,6 @@ public class runner_contactActivity extends Activity {
         });
 
 
-
-
-
-        System.out.println("Runner进入Contact");
-
-
         contact = (Button) findViewById(R.id.button12);
         contact.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -75,10 +69,6 @@ public class runner_contactActivity extends Activity {
                 Intent i = getIntent();
                 Bundle data = i.getExtras();
                 String requestor = data.getString("requestorGet");
-
-
-
-                System.out.println("runnerContact 界面：" +currUid+requestor);
 
 
                 Bundle b = new Bundle();
@@ -125,11 +115,7 @@ public class runner_contactActivity extends Activity {
                             String balance = oldData.getString("balance");
                             int newBalance = Integer.parseInt(balance) + Integer.parseInt(payment);
 
-                            System.out.println(payment+"!!!!!!!!!!!!!!!!!!!"+balance);
-
                             FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("balance").setValue(Integer.toString(newBalance));
-
-                            System.out.println(Integer.toString(newBalance)+"!!!!!!!!!!!!!!!!!!!");
 
                             Bundle o = new Bundle();
                             o.putString("requestor", requestor);
@@ -168,14 +154,10 @@ public class runner_contactActivity extends Activity {
                         String payment = oldData.getString("payment");
                         String balance = oldData.getString("balance");
 
-                        System.out.println(payment+"!!!!!!!!!!!!!!!!!!!"+balance);
-
                         int newBalance = Integer.parseInt(balance) + Integer.parseInt(payment);
 
 
                         FirebaseDatabase.getInstance().getReference().child("users").child(FirebaseAuth.getInstance().getCurrentUser().getUid()).child("balance").setValue(Integer.toString(newBalance));
-
-                        System.out.println(Integer.toString(newBalance)+"!!!!!!!!!!!!!!!!!!!");
 
                         Bundle o = new Bundle();
                         o.putString("requestor", requestor);
@@ -208,117 +190,6 @@ public class runner_contactActivity extends Activity {
         });
 
     }
-/*
-    public void welcomeSystem(View view){
-
-        // go to chatting
-        String button_text;
-        button_text = ((Button) view).getText().toString();
-        if(button_text.equals("Contact the Requester")){
-            String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-            Intent i = getIntent();
-            Bundle data = i.getExtras();
-            String requestor = data.getString("requestorGet");
-
-            Bundle b = new Bundle();
-            b.putString("runner", currUid);
-            b.putString("requestor", requestor);
-            // chatting page for Pan
-            // to change because chat needs to get done first - Zihan
-            Intent intent = new Intent(runner_contactActivity.this, UserList.class);
-            startActivity(intent);
-        }
-
-        final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-        final DatabaseReference usersRef = mRootRef.child("orders");
-        DatabaseReference currRef = usersRef.child(currUid);
-        usersRef.addChildEventListener(new ChildEventListener() {
-
-            @Override
-            public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
-                int c = 0;
-                System.out.println("Step: " + (c++));
-                if(dataSnapshot.getValue(Order.class).getRunnerUid().contentEquals(currUid)
-                        || dataSnapshot.getValue(Order.class).getDone() == true) {
-                    System.out.println("Step: " + (c++));
-
-                    System.out.println("!!!!!!!haha");
-
-                    // to change because chat needs to get done first - Zihan
-                    // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
-                    // startActivity(intent);
-                    //
-                    //go to runner_contact page - he chang
-
-                    String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-                    Intent i = getIntent();
-                    Bundle data = i.getExtras();
-                    String requestor = data.getString("requestorGet");
-
-                    Bundle b = new Bundle();
-                    b.putString("runnerGet", currUid);
-                    b.putString("currRe", requestor);
-                    Intent intent = new Intent(runner_contactActivity.this, UserList.class);
-                    startActivity(intent);
-                }
-
-                    else {
-                    System.out.println("Step: " + (c++));
-
-                    System.out.println("runners are not done the job yet");
-                    }
-                }
-
-
-            @Override
-            public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
-                System.out.println("Step2");
-
-                if(dataSnapshot.getValue(Order.class).getRunnerUid().contentEquals(currUid)
-                        || dataSnapshot.getValue(Order.class).getDone() == true) {
-
-                    System.out.println("!!!!!!!haha");
-
-                    // to change because chat needs to get done first - Zihan
-                    // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
-                    // startActivity(intent);
-                    //
-                    //go to runner_contact page - he chang
-                    Intent intent = new Intent(runner_contactActivity.this, UserList.class);
-                    startActivity(intent);
-                }
-
-                else {
-                    System.out.println("runners are not done the job yet");
-                }
-            }
-
-            @Override
-            public void onChildRemoved(com.google.firebase.database.DataSnapshot dataSnapshot) {
-
-
-            }
-
-            @Override
-            public void onChildMoved(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-
-
-
-    }
-    */
 
     @Override
     public void onBackPressed() {

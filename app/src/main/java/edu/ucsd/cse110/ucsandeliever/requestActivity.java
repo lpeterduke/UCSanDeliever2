@@ -141,23 +141,12 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
         etItemName = (EditText) myView.findViewById(R.id.editText8); // get user Email
         etTime  =  timeFromClock; // get user password
 
-        // etPid = (EditText) myView.findViewById(R.id.editText6);
 
         FirebaseAuth mAuth = FirebaseAuth.getInstance();
 
 
         final  String userEmail = mAuth.getCurrentUser().getEmail().toString();
-        System.out.println("+++++++++++++++++++"+ userEmail+" ");
-
         final String userID = userEmail.substring(0,userEmail.indexOf('@'));
-        System.out.println("+++++++++++++++++++"+ userID+" ");
-
-
-
-
-
-
-
         final String res = etRestaurants;
         final String des = etDestinations;
 
@@ -198,9 +187,6 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
     @Override
     public void onTimeSet(TimePicker timePickerDialog, int hourOfDay, int minute) {
 
-        System.out.println("----------------------------------"+hourOfDay+minute+"---------");
-
-
         Toast.makeText(getActivity(),"Hour: "+hourOfDay + " Minute: " + minute,Toast.LENGTH_SHORT);
 
         java.util.Calendar calendar = java.util.Calendar.getInstance();
@@ -228,8 +214,6 @@ public class requestActivity extends Fragment implements TimePickerDialog.OnTime
         if(minute<10){
             minS = "0"+Integer.toString(minute);
         }
-
-        System.out.println("新建Order的创建时间是："+year+monthS+dayS+hourS+minS);
 
          orderingTime = ""+year+monthS+dayS+hourS+minS;
 

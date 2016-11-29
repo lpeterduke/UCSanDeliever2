@@ -149,7 +149,7 @@ public class signupActivity extends Activity {
                                             }
                                         }
 
-                                        //没用
+
                                         @Override
                                         public void onCancelled(FirebaseError error) {
                                         }

@@ -107,7 +107,6 @@ public class UserList extends CustomActivity
 	{
 		super.onResume();
 
-		System.out.println("现在的runner：" + runnerUid);
 		String self = FirebaseAuth.getInstance().getCurrentUser().getUid();
 		if (self.contentEquals(runnerUid))
 			loadUserListforRunner();
@@ -151,8 +150,6 @@ public class UserList extends CustomActivity
 				for(DataSnapshot ds : dataSnapshot.getChildren()) {
 
 					Student user = ds.getValue(Student.class);
-
-				//	System.out.println("崩溃前的最后一步： "+ds.getValue(Student.class).getName());
 
 					Logger.getLogger(UserList.class.getName()).log(Level.ALL,user.getName());
 					if (runnerUid.contentEquals(user.getuid()))
@@ -208,9 +205,6 @@ public class UserList extends CustomActivity
 				for(DataSnapshot ds : dataSnapshot.getChildren()) {
 
 					 Student user = ds.getValue(Student.class);
-
-					//	System.out.println("崩溃前的最后一步： "+ds.getValue(Student.class).getName());
-
 
 					Logger.getLogger(UserList.class.getName()).log(Level.ALL,user.getName());
 					if (requesterUid.contentEquals(user.getuid()))

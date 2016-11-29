@@ -40,7 +40,7 @@ public class requestor_finishActivity extends Activity {
             @Override
             public void onClick(View view){
 
-                // Clean up bid list - Zihan
+                // Clean up bid list
                 final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
                 final DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
                 DatabaseReference bidListRef = mRootRef.child("bidList");

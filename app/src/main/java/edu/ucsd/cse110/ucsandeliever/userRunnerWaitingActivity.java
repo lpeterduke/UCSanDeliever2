@@ -40,7 +40,6 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
 
         getWindow().setLayout((int )(width*0.9),(int)(height* 0.35));
 
-        // could be deleted
 
         // get the requestor for this bid
         Intent i = getIntent();
@@ -60,8 +59,6 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
 
                 if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
                     if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
-                        System.out.println("indicator entered============================");
-
 
                         // to change because chat needs to get done first - Zihan
                         // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
@@ -87,15 +84,6 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                         System.out.println("datachange not related to current user");
                     }
                 }
-                /*
-                else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
-                    if (dataSnapshot.getValue(Student.class).getAlreadyPick()){
-                        System.out.println("both entered===========================");
-                        Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
-                        startActivity(intent);
-                    }
-                }
-                */
 
             }
 
@@ -104,8 +92,6 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
 
                 if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
                     if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
-                        System.out.println("indicator entered============================");
-
 
                         // to change because chat needs to get done first - Zihan
                         // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
@@ -131,16 +117,6 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
                         System.out.println("datachange not related to current user");
                     }
                 }
-/*
-                else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
-                    if (dataSnapshot.getValue(Student.class).getAlreadyPick()){
-                        System.out.println("both entered===========================");
-                        Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
-                        startActivity(intent);
-
-                    }
-                }
-*/
             }
 
             @Override
@@ -160,131 +136,6 @@ public class userRunnerWaitingActivity extends AppCompatActivity {
             }
         });
 
-        // could be deleted end
 
-
-        // Cancel button to cancel a bid
-
-    }
-    public void refresh(){
-
-
-        Intent i = getIntent();
-        Bundle data = i.getExtras();
-        requester = data.getString("requestorGet");
-
-        // get the runner for this bid aka the current user
-        final String currUid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-
-        DatabaseReference mRootRef = FirebaseDatabase.getInstance().getReference();
-        final DatabaseReference usersRef = mRootRef.child("users");
-        DatabaseReference currRef = usersRef.child(currUid);
-        usersRef.addChildEventListener(new ChildEventListener() {
-
-            @Override
-            public void onChildAdded(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
-
-                if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
-                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
-                        System.out.println("indicator entered============================");
-
-
-                        // to change because chat needs to get done first - Zihan
-                        // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
-                        // startActivity(intent);
-                        //
-                        //go to runner_contact page - he chang
-
-                        Intent oldIntent = getIntent();
-                        Bundle oldData = oldIntent.getExtras();
-                        String payment = oldData.getString("payment");
-
-
-                        Intent intent = new Intent(userRunnerWaitingActivity.this,runner_contactActivity.class);
-                        Bundle b = new Bundle();
-                        b.putString("requestorGet", requester);
-
-                        String balance = dataSnapshot.getValue(Student.class).getBalance();
-                        b.putString("payment", payment);
-                        b.putString("balance", balance);
-                        intent.putExtras(b);
-                        startActivity(intent);
-                    } else {
-                        Toast.makeText(userRunnerWaitingActivity.this,"Oopsr!",Toast.LENGTH_SHORT).show();
-                        System.out.println("datachange not related to current user");
-                    }
-                }
-                /*
-                else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
-                    if (dataSnapshot.getValue(Student.class).getAlreadyPick()){
-                        System.out.println("both entered===========================");
-                        Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
-                        startActivity(intent);
-                    }
-                }
-                */
-
-            }
-
-            @Override
-            public void onChildChanged(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
-
-                if(dataSnapshot.getValue(Student.class).getuid().contentEquals(currUid)) {
-                    if (dataSnapshot.getValue(Student.class).getRunnerStatusIndicator()) {
-                        System.out.println("indicator entered============================");
-
-
-                        // to change because chat needs to get done first - Zihan
-                        // Intent intent = new Intent(userRunnerWaitingActivity.this, Chat.class);
-                        // startActivity(intent);
-                        //
-                        //go to runner_contact page - he chang
-
-                        Intent oldIntent = getIntent();
-                        Bundle oldData = oldIntent.getExtras();
-                        String payment = oldData.getString("payment");
-
-
-                        Intent intent = new Intent(userRunnerWaitingActivity.this,runner_contactActivity.class);
-                        Bundle b = new Bundle();
-                        b.putString("requestorGet", requester);
-
-                        String balance = dataSnapshot.getValue(Student.class).getBalance();
-                        b.putString("payment", payment);
-                        b.putString("balance", balance);
-                        intent.putExtras(b);
-                        startActivity(intent);
-                    } else {
-                        System.out.println("datachange not related to current user");
-                    }
-                }
-/*
-                else if(dataSnapshot.getValue(Student.class).getuid().contentEquals(requester)) {
-                    if (dataSnapshot.getValue(Student.class).getAlreadyPick()){
-                        System.out.println("both entered===========================");
-                        Intent intent = new Intent(userRunnerWaitingActivity.this, drawerActivity.class);
-                        startActivity(intent);
-
-                    }
-                }
-*/
-            }
-
-            @Override
-            public void onChildRemoved(com.google.firebase.database.DataSnapshot dataSnapshot) {
-
-
-            }
-
-            @Override
-            public void onChildMoved(com.google.firebase.database.DataSnapshot dataSnapshot, String s) {
-
-            }
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
     }
 }

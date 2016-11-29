@@ -110,7 +110,6 @@ public class requestor_contactActivity extends Activity {
 
 
                             if (order.getDone() == false && order.getRequestorUid().equals(requester))
-                                System.out.println("change the done to be true and requestor ready to finish");
 
                             snapshot.getRef().child("done").setValue(true);
 

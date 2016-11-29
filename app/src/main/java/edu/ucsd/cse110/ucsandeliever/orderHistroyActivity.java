@@ -59,7 +59,6 @@ public class orderHistroyActivity extends Fragment {
         super.onAttach(activity);
         requests = ((drawerActivity) activity).getOrderHistory();
 
-        System.out.println("History从Server接受了");
     }
 
     public void onBackPressed() {

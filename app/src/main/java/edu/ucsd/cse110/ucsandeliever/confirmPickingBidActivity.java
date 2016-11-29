@@ -27,7 +27,7 @@ public class confirmPickingBidActivity extends AppCompatActivity {
     private TextView moneyShow;
     private TextView timeShow;
     private TextView runnerShow;
-    int changedValue = 0;
+
     String balance1 = "";
     String balance2 = "";
 
@@ -61,9 +61,7 @@ public class confirmPickingBidActivity extends AppCompatActivity {
 
         String button_text;
         button_text = ((Button) view).getText().toString();
-        System.out.println("AAAAAAAAAAAAAAAAA");
         if(button_text.equals("Yes, choose this runner")){
-            System.out.println("BBBBBBBBBBBBBBBBB");
 
             // look for runner from firebase using runFromStatus
             // change that runner's status to true
@@ -79,28 +77,15 @@ public class confirmPickingBidActivity extends AppCompatActivity {
             DatabaseReference alreadyPickRef = requesterRef.child("alreadyPick");
             alreadyPickRef.setValue(true);
             requesterID = requesterRef.getKey();
-/**
-            System.out.println("runner id ----------- " + runFromStatus);
-            int changedValue = 0;
-            System.out.println("requester id ----------" + requesterRef.getKey());
- **/
+
             usersRef.addListenerForSingleValueEvent( new com.google.firebase.database.ValueEventListener() {
                 @Override
                 public void onDataChange(com.google.firebase.database.DataSnapshot dataSnapshot) {
-                    //  System.out.println("userUID : " + userUID);
 
-                    System.out.println("余额变更");
-                    System.out.println("/////////////////////////////");
                     balance1 = dataSnapshot.getValue(Student.class).getBalance();
-                    System.out.println("balance1: " + balance1);
-                    System.out.println("runFromStatus: " + runFromStatus);
-                    System.out.println("requesterID: " + requesterID);
-
 
                     for (com.google.firebase.database.DataSnapshot snapshot : dataSnapshot.getChildren()) {
                         Student student = snapshot.getValue(Student.class);
-                        System.out.println("StudentID : " + student.getuid());
-
 
                         if (student.getuid().equals(runFromStatus))
                         {
@@ -109,7 +94,6 @@ public class confirmPickingBidActivity extends AppCompatActivity {
                         else if (student.getuid().equals(requesterID))
                         {
                             balance2 = student.getBalance();
-                            System.out.println("balance 2: " + balance2);
                             int newBalanceForUser2 = Integer.parseInt(balance2) - Integer.parseInt(monFromStatus);
                             snapshot.getRef().child("balance").setValue(Integer.toString(newBalanceForUser2));
                         }
@@ -127,13 +111,6 @@ public class confirmPickingBidActivity extends AppCompatActivity {
 
 
 
-
-          //  int newBalanceForUser1 = Integer.parseInt(balance1) + Integer.parseInt(monFromStatus);
-          //  int newBalanceForUser2 = Integer.parseInt(balance2) - Integer.parseInt(monFromStatus);
-
-            //runnerRef.child("balance").setValue(Integer.toString(newBalanceForUser1));
-            //requesterRef.child("balance").setValue(Integer.toString(newBalanceForUser2));
-
             // to change because chat needs to get done first - Zihan
            // Intent intent = new Intent(this,Chat.class);
             //startActivity(intent);
@@ -142,11 +119,6 @@ public class confirmPickingBidActivity extends AppCompatActivity {
             // for chatting info
             Intent k = new Intent(confirmPickingBidActivity.this, requestor_contactActivity.class);
             Bundle b = new Bundle();
-
-            System.out.println("Outer balance1: " + balance1);
-            System.out.println("Outer balance2: " + balance2);
-            System.out.println("Outer monFromStatus: " + monFromStatus);
-
 
 
             b.putString("runner", runFromStatus);
@@ -166,29 +138,5 @@ public class confirmPickingBidActivity extends AppCompatActivity {
     public void onBackPressed() {
     }
 
-/*
 
-    //回调Function
-    titleSelectInterface aSelectInterface = new titleSelectInterface() {
-        @Override
-        public void onTitleSelect(String mon, String tim, String run) {
-
-        }
-
-    };
-
-
-    public interface titleSelectInterface{
-        public void onTitleSelect(String mon, String tim, String run);
-    }
-
-
-
-    public void onAttach(Activity activity) {
-        monFromStatus = ((orderStatus) activity).getMoneySelected();
-        timFromStatus = ((orderStatus) activity).getTimeSelected();
-        runFromStatus = ((orderStatus) activity).getRunnerSelected();
-    }
-
-*/
 }
