@@ -9,6 +9,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.ViewParent;
 
+import com.firebase.client.DataSnapshot;
+import com.firebase.client.Firebase;
+import com.firebase.client.FirebaseError;
+import com.firebase.client.ValueEventListener;
+import com.google.firebase.auth.FirebaseAuth;
+
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 import org.hamcrest.TypeSafeMatcher;
@@ -38,6 +44,8 @@ public class BiddingTest {
     @Test
     public void biddingTest() {
         ThreadController tc=new ThreadController();
+        FirebaseStatus fs=new FirebaseStatus();
+
         ViewInteraction appCompatButton = onView(
                 allOf(withId(R.id.buttonsignin), withText("Returning Customer"),
                         withParent(allOf(withId(R.id.activity_main),
@@ -57,7 +65,7 @@ public class BiddingTest {
                 allOf(withId(R.id.login2), withText("Login"), isDisplayed()));
         button.perform(click());
 
-        tc.sleep(2000);
+        tc.sleep(2500);
 
         ViewInteraction appCompatImageButton = onView(
                 allOf(withContentDescription("Open navigation drawer"),
@@ -114,6 +122,9 @@ public class BiddingTest {
                                 withParent(withId(R.id.content_main)))),
                         isDisplayed()));
         appCompatButton3.perform(click());
+
+        if (!fs.isUpdated())
+            throw new NoFirebaseUpdateException();
 
     }
 

@@ -21,24 +21,15 @@ import static android.support.test.espresso.matcher.ViewMatchers.withParent;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static org.hamcrest.Matchers.allOf;
 
-import com.firebase.client.DataSnapshot;
-import com.firebase.client.Firebase;
-import com.firebase.client.FirebaseError;
-import com.firebase.client.ValueEventListener;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.database.DatabaseReference;
-
-import java.util.*;
-
 @LargeTest
 @RunWith(AndroidJUnit4.class)
-public class RequestingTest {
+public class SetBalanceTest {
 
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
     @Test
-    public void requestingTest() {
+    public void setBalanceTest() {
         ThreadController tc=new ThreadController();
         FirebaseStatus fs=new FirebaseStatus();
 
@@ -61,7 +52,6 @@ public class RequestingTest {
                 allOf(withId(R.id.login2), withText("Login"), isDisplayed()));
         button.perform(click());
 
-        System.out.println("waiting");
         tc.sleep(2500);
 
         ViewInteraction appCompatImageButton = onView(
@@ -71,32 +61,29 @@ public class RequestingTest {
         appCompatImageButton.perform(click());
 
         ViewInteraction appCompatCheckedTextView = onView(
-                allOf(withId(R.id.design_menu_item_text), withText("Request A Delivery"), isDisplayed()));
+                allOf(withId(R.id.design_menu_item_text), withText("Balance"), isDisplayed()));
         appCompatCheckedTextView.perform(click());
 
-        ViewInteraction appCompatSpinner = onView(
-                allOf(withId(R.id.spinner_restaurant), isDisplayed()));
-        appCompatSpinner.perform(click());
-
-        ViewInteraction appCompatTextView = onView(
-                allOf(withId(android.R.id.text1), withText("Tapioca"), isDisplayed()));
-        appCompatTextView.perform(click());
-
-        ViewInteraction appCompatEditText = onView(
-                allOf(withId(R.id.editText8), isDisplayed()));
-        appCompatEditText.perform(replaceText("Combo B"), closeSoftKeyboard());
-
-        ViewInteraction appCompatSpinner2 = onView(
-                allOf(withId(R.id.spinner_building), isDisplayed()));
-        appCompatSpinner2.perform(click());
-
-        ViewInteraction appCompatTextView2 = onView(
-                allOf(withId(android.R.id.text1), withText("ERC Europe Hall"), isDisplayed()));
-        appCompatTextView2.perform(click());
-
         ViewInteraction appCompatButton2 = onView(
-                allOf(withId(R.id.button2), withText("make my order!"), isDisplayed()));
+                allOf(withId(R.id.balanceSetting), withText("You Can Set Your Balance Here"),
+                        withParent(allOf(withId(R.id.account_main),
+                                withParent(withId(R.id.content_main)))),
+                        isDisplayed()));
         appCompatButton2.perform(click());
+
+        ViewInteraction editText3 = onView(
+                allOf(withId(R.id.balanceEdit),
+                        withParent(allOf(withId(R.id.balance_setting),
+                                withParent(withId(android.R.id.content)))),
+                        isDisplayed()));
+        editText3.perform(replaceText("10"), closeSoftKeyboard());
+
+        ViewInteraction button2 = onView(
+                allOf(withId(R.id.confirm), withText("Confirm"),
+                        withParent(allOf(withId(R.id.balance_setting),
+                                withParent(withId(android.R.id.content)))),
+                        isDisplayed()));
+        button2.perform(click());
 
         if (!fs.isUpdated())
             throw new NoFirebaseUpdateException();
