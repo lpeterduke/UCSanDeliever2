@@ -26,6 +26,10 @@
             android:icon="@android:drawable/ic_secure"
             android:title="Balance" />
         <item
+            android:id="@+id/Orderstatus"
+            android:title="Order Status"
+            android:icon="@drawable/ic_menu_send" />
+        <item
             android:id="@+id/log_out"
             android:icon="@android:drawable/ic_lock_power_off"
             android:title="log out" />
