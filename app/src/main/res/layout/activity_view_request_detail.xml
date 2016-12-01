@@ -64,7 +64,7 @@
         android:layout_alignStart="@+id/View_item" />
 
     <TextView
-        android:text="Required Deliver Before: "
+        android:text="Deliver To: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView29"
@@ -74,7 +74,7 @@
         android:layout_alignParentStart="true" />
 
     <TextView
-        android:text="Deliver To: "
+        android:text="Required Deliver Before: "
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/textView27"

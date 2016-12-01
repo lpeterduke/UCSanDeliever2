@@ -63,7 +63,14 @@ public class ViewRequestDetailActivity extends Fragment implements Button.OnClic
         res.setText(resFromHome);
         dest.setText(destFromHomw);
         item.setText(itemFromHome);
-        time.setText(timeFromHome);
+
+        String time4D = timeFromHome.substring(8);
+        String time2DB = time4D.substring(0,2);
+        String time2DE = time4D.substring(2);
+
+
+
+        time.setText(time2DB+": "+time2DE);
         //userName.setText(orderNumberInterested);
 
 

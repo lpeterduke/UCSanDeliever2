@@ -28,12 +28,26 @@ public class runner_finishActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.content_runner_finish);
 
+
+
+
+        DisplayMetrics dm = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(dm);
+        int width = dm.widthPixels;
+        int height = dm.heightPixels;
+
+        getWindow().setLayout((int )(width*0.9),(int)(height*0.4));
+
+
+
+
+
         Intent oldIntent = getIntent();
         Bundle oldData = oldIntent.getExtras();
         String payment = oldData.getString("payment");
 
-        TextView py = (TextView) findViewById(R.id.textView17);
-        py.setText(payment);
+        TextView py = (TextView) findViewById(R.id.textView15);
+        py.setText("The Order is Completed! \n\n\n\n  You Got Paid:       " + payment);
 
 
 

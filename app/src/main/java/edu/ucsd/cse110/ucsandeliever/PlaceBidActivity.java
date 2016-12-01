@@ -39,7 +39,7 @@ TextView timeFromClock;
         bPlace = (Button) myView.findViewById(R.id.button4);
         money = (EditText) myView.findViewById(R.id.editText12);
         timeFromClock = (TextView) myView.findViewById(R.id.editText7);
-        timeFromClock.setText("2359");
+
 
         bPick.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +79,16 @@ TextView timeFromClock;
     public void updateDataBase1() {
         String id;
         id = mAuth.getCurrentUser().getUid();
-        Bid bid = new Bid(money.getText().toString(), timeFromClock.getText().toString(), id,requestorUid );
+        String timetoDatabase = timeFromClock.getText().toString();
+        String hour = timetoDatabase.substring(0,2);
+        String mm = timetoDatabase.substring(4);
+        System.out.println("小时"+hour);
+        System.out.println("分钟"+mm);
+
+        String timeUpdate = hour+mm;
+
+
+        Bid bid = new Bid(money.getText().toString(),timeUpdate , id,requestorUid );
         if (TextUtils.isEmpty(money.toString()) ||
                 TextUtils.isEmpty(timeFromClock.getText()) ||
                 TextUtils.isEmpty(id)) {
@@ -99,7 +108,15 @@ TextView timeFromClock;
         if(hourOfDay<10){
             h="0"+h;
         }
-        timeFromClock.setText("" + h + "" + minute);
+
+
+
+        String m = Integer.toString(minute);
+        if(minute<10){
+            m="0"+m;
+        }
+
+        timeFromClock.setText("" + h + ": " + m);
     }
 
 

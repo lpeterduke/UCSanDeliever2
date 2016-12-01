@@ -37,26 +37,6 @@
         android:text="TextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView29"
-        android:layout_alignRight="@+id/textView14"
-        android:layout_alignEnd="@+id/textView14"
-        android:layout_marginRight="26dp"
-        android:layout_marginEnd="26dp"
-        android:id="@+id/textView41" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignTop="@+id/textView30"
-        android:layout_alignRight="@+id/textView41"
-        android:layout_alignEnd="@+id/textView41"
-        android:id="@+id/textView42" />
-
-    <TextView
-        android:text="TextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
         android:layout_alignTop="@+id/textView31"
         android:layout_alignLeft="@+id/textView42"
         android:layout_alignStart="@+id/textView42"
@@ -109,4 +89,16 @@
         android:layout_below="@+id/textView32"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="58dp" />
+
+    <TextView
+        android:text="TextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textView42"
+        android:layout_alignBaseline="@+id/textView30"
+        android:layout_alignBottom="@+id/textView30"
+        android:layout_alignRight="@+id/textView14"
+        android:layout_alignEnd="@+id/textView14"
+        android:layout_marginRight="44dp"
+        android:layout_marginEnd="44dp" />
 </RelativeLayout>
