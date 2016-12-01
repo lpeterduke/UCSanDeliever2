@@ -37,6 +37,10 @@ public class RequestingTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+
+    /*
+    test the function of making request
+     */
     @Test
     public void requestingTest() {
         ThreadController tc=new ThreadController();
@@ -61,8 +65,8 @@ public class RequestingTest {
                 allOf(withId(R.id.login2), withText("Login"), isDisplayed()));
         button.perform(click());
 
-        //System.out.println("waiting");
-        tc.sleep(2500);
+        System.out.println("waiting");
+        tc.sleep(3000);
 
         ViewInteraction appCompatImageButton = onView(
                 allOf(withContentDescription("Open navigation drawer"),

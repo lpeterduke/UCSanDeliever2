@@ -28,6 +28,9 @@ public class SetBalanceTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+    /*
+    test the function of resetting balance
+    */
     @Test
     public void setBalanceTest() {
         ThreadController tc=new ThreadController();
@@ -52,7 +55,7 @@ public class SetBalanceTest {
                 allOf(withId(R.id.login2), withText("Login"), isDisplayed()));
         button.perform(click());
 
-        tc.sleep(2500);
+        tc.sleep(3000);
 
         ViewInteraction appCompatImageButton = onView(
                 allOf(withContentDescription("Open navigation drawer"),

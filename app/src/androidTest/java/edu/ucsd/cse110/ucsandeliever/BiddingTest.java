@@ -41,6 +41,10 @@ public class BiddingTest {
     @Rule
     public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class);
 
+
+    /*
+    test the function of placing bid to an order
+     */
     @Test
     public void biddingTest() {
         ThreadController tc=new ThreadController();
@@ -65,7 +69,7 @@ public class BiddingTest {
                 allOf(withId(R.id.login2), withText("Login"), isDisplayed()));
         button.perform(click());
 
-        tc.sleep(2500);
+        tc.sleep(3000);
 
         ViewInteraction appCompatImageButton = onView(
                 allOf(withContentDescription("Open navigation drawer"),
@@ -77,7 +81,7 @@ public class BiddingTest {
                 allOf(withId(R.id.design_menu_item_text), withText("View Orders"), isDisplayed()));
         appCompatCheckedTextView.perform(click());
 
-        tc.sleep(2000);
+        tc.sleep(3000);
 
         ViewInteraction appCompatTextView = onView(
                 allOf(withId(android.R.id.text1), withText("Getting: Combo B\nFrom: Tapioca\nDeliver to: ERC Europe Hall\nNeed it by the time at: 23: 59"),
