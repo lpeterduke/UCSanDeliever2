@@ -61,7 +61,7 @@ public class RequestingTest {
                 allOf(withId(R.id.login2), withText("Login"), isDisplayed()));
         button.perform(click());
 
-        System.out.println("waiting");
+        //System.out.println("waiting");
         tc.sleep(2500);
 
         ViewInteraction appCompatImageButton = onView(
