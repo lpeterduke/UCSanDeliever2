@@ -20,10 +20,7 @@
             android:icon="@android:drawable/ic_menu_recent_history"
             android:title="Order History" />
 
-        <item
-            android:id="@+id/finish"
-            android:icon="@android:drawable/ic_secure"
-            android:title="finish" />
+
         <item
             android:id="@+id/Account"
             android:icon="@android:drawable/ic_secure"

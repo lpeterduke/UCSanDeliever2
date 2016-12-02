@@ -246,6 +246,7 @@ public class drawerActivity extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.draweractivity_main);
+        ordersRef.addChildEventListener(childEventListener);
 
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -299,11 +300,7 @@ public class drawerActivity extends AppCompatActivity
 
             }
         });
-
-
-        ordersRef.addChildEventListener(childEventListener);
-
-
+       // ordersRef.removeEventListener(childEventListener);
 
 
     }
